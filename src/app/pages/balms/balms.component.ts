@@ -18,9 +18,6 @@ export class BalmsComponent implements OnInit {
   ngOnInit(): void {
     this._balmService.getAllBalms().subscribe((response: any)=>{
       this.balms = response.balms;
-
-      
-
     })
   }
 
