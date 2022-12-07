@@ -36,14 +36,40 @@
         <p *ngIf="errors.priceValidationError" style="color: red;">{{ errors.priceValidationError }}</p>
       </div>
       <div class="m-3">
-        <label for="imageUrl" class="form-label">Image url</label>
-        <input type="text" id="imageUrl" class="form-control" #imageUrl [value]="model.url">
-        <p *ngIf="errors.imageUrlValidationError" style="color: red;">{{ errors.imageUrlValidationError }}</p>
+        <label for="formFile" class="form-label">Image url</label>
+        <div class="custom-file fileInputProfileWrap">
+          <div class="img-space">
+              <div class="row">
+                <div class="col-12">
+
+
+                  <input type="file" class="form-control" (change)="fileChangeEvent($event)">
+
+
+                  <!-- <input type="file" class="form-control" (change)="fileChangeEvent($event)" class="fileInputProfile"> -->
+
+                  <ng-container *ngIf="isImageSaved; else elseTemplate">
+                    <img [src]="model.url" *ngIf="changedImage == ''" style="width: 230px; height: 160px" #imageUrl />
+                    <img [src]="changedImage" *ngIf="changedImage != ''" style="width: 230px; height: 160px" #imageUrl />
+                  </ng-container>
+                  <ng-template #elseTemplate>
+                    <!-- <img src="./../../assets/placeholder.png" class="img-responsive"> -->
+                  </ng-template>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+        <a class="btn btn-info" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+
+
+        <!-- <input type="text" id="imageUrl" class="form-control" #imageUrl [value]="model.url">
+        <p *ngIf="errors.imageUrlValidationError" style="color: red;">{{ errors.imageUrlValidationError }}</p> -->
       </div>
   
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary"  (click)="closeMe()">Close</button>
-        <button class="btn btn-danger" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value, imageUrl.value)">Confirm</button>
+        <button class="btn btn-danger" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value)">Confirm</button>
       </div>
     </div>
   </div>

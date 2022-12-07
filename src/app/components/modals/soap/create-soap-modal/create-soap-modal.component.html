@@ -50,7 +50,7 @@
           <div class="img-space">
               <div class="row">
                 <div class="col-12">
-                  <input type="file" class="btn btn-danger" (change)="fileChangeEvent($event)" class="fileInputProfile">
+                  <input type="file" class="form-control" (change)="fileChangeEvent($event)">
 
                   <ng-container *ngIf="isImageSaved; else elseTemplate">
                     <img [src]="cardImageBase64" style="width: 230px; height: 160px" />
