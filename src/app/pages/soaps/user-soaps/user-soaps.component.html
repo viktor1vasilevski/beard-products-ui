@@ -1,0 +1,21 @@
+<div class="row">
+    <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 mb-3" *ngFor="let soap of soaps">
+        <div class="card" style="width: auto;">
+            <img [src]="soap.url" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{soap.brand}}</h5>
+              <p class="card-text">{{soap.description}}</p>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Edition : {{soap.edition}}</li>
+              <li class="list-group-item">Quantity : {{soap.unitQuantity}}</li>
+              <li class="list-group-item">Price : {{soap.unitPrice}}$</li>
+            </ul>
+            <div class="card-body">
+              <a href="#" class="card-link">Card link</a>
+              <a href="#" class="card-link">Another link</a>
+            </div>
+        </div>   
+    </div> 
+</div>
+

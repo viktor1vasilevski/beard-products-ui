@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink=""><img src="https://app.imgforce.com/images/user/6in_1615854828_logo.jpg" id="img-logo" /></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mynavbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/soaps">Soaps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/balms">Balms</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/oils">Oils</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/auth">Authenticate</a>
+        </li>
+      </ul>
+      <div *ngIf="showUserInfo">
+        <h4 style="color: white;">{{ userInfo }}</h4>
+      </div>
+      <form *ngIf="showLogoutButton" class="d-flex">
+        <button class="btn btn-primary m-1" type="button" (click)="onLogout()">Logout</button>
+      </form>
+      <form *ngIf="!hideRegisterAndLoginButton" class="d-flex">
+        <button class="btn btn-primary m-1" type="button" routerLink="/register">Register</button>
+        <button class="btn btn-primary m-1" type="button" routerLink="/signin">Login</button>
+      </form>
+      
+    </div>
+  </div>
+</nav>

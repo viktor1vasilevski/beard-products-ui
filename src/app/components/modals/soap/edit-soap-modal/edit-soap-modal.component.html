@@ -1,0 +1,50 @@
+<div class="modal-container">
+    <div
+      style="
+        width: 500px;
+        height: auto;
+        border: olive 1px solid;
+        background-color: white;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;">
+
+      <div class="m-3">
+        <label for="brand" class="form-label">Brand</label>
+        <input type="text" id="brand" class="form-control" [value]="model.brand" #brand>
+        <p *ngIf="errors.brandValidationError" style="color: red;">{{ errors.brandValidationError }}</p>
+      </div>
+      <div class="m-3">
+        <label for="edition" class="form-label">Edition</label>
+        <input type="text" id="edition" class="form-control" #edition [value]="model.edition">
+        <p *ngIf="errors.editionValidationError" style="color: red;">{{ errors.editionValidationError }}</p>
+
+      </div>
+      <div class="m-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea type="text" id="description" rows="3" class="form-control" #description [value]="model.description"></textarea>
+      </div>
+      <div class="m-3">
+        <label for="quantity" class="form-label">Quantity</label>
+        <input type="number" min="1" max="100" id="quantity" class="form-control" #quantity [value]="model.unitQuantity">
+        <p *ngIf="errors.quantityValidationError" style="color: red;">{{ errors.quantityValidationError }}</p>
+      </div>
+      <div class="m-3">
+        <label for="price" class="form-label">Price</label>
+        <input type="number" id="price" min="1" max="100" class="form-control" #price [value]="model.unitPrice">
+        <p *ngIf="errors.priceValidationError" style="color: red;">{{ errors.priceValidationError }}</p>
+      </div>
+      <div class="m-3">
+        <label for="imageUrl" class="form-label">Image url</label>
+        <input type="text" id="imageUrl" class="form-control" #imageUrl [value]="model.url">
+        <p *ngIf="errors.imageUrlValidationError" style="color: red;">{{ errors.imageUrlValidationError }}</p>
+      </div>
+  
+      <div class="btn-container modal-footer">
+        <button class="btn btn-secondary"  (click)="closeMe()">Close</button>
+        <button class="btn btn-danger" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value, imageUrl.value)">Confirm</button>
+      </div>
+    </div>
+  </div>
+
