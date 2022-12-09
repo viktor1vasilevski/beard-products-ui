@@ -72,7 +72,6 @@ export class CreateSoapModalComponent implements OnInit {
             this.cardImageBase64 = e.target.result.toString();    
             this.createdSoapModel.url = e.target.result.toString();    
             this.isImageChosen = true;
-              //this.isImageChosen = true;
           }
         };
       };

@@ -30,6 +30,7 @@ export class EditSoapModalComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -99,6 +100,8 @@ export class EditSoapModalComponent implements OnInit {
       description: desc,
     }
 
+    debugger;
+
     if(this.changedImageUrl === '' && this.showImagePanel) {
       editedSoapModel.url = this.model.url;
     } else {
@@ -109,7 +112,7 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   handleValidationErrors(counter: any, model: any)  {
-
+    debugger;
     // soap brand validation 
     if(model.brand === '') {
       this.errors.brandValidationError = 'Brand is required';
@@ -159,17 +162,26 @@ export class EditSoapModalComponent implements OnInit {
       counter++;
     }
 
-    // soap image validation
-    if(this.model.url === '') {
-      this.errors.imageUrlValidationError = 'Please choose file image';
+    console.log(this.changedImageUrl);
+    console.log(this.isImageChanged);
+    console.log(this.showImagePanel);
+
+    if(this.changedImageUrl != '' && this.isImageChanged && !this.showImagePanel) {
+      this.errors.imageUrlValidationError = 'trgnata e slikate';
       counter++;
     }
+    
+    debugger;
+    // soap image validation
+
 
     return counter;
   }
 
   fileChangeEvent(fileInput: any) {
+    debugger;
     this.showImagePanel = true;
+    this.errors.imageUrlValidationError = '';
     if (fileInput.target.files && fileInput.target.files[0]) {
       // Size Filter Bytes
       const max_size = 20971520;
@@ -213,6 +225,7 @@ export class EditSoapModalComponent implements OnInit {
     this.showImagePanel = false;
     this.isImageChanged = false;
     this.changedImageUrl = '';
+    this.errors.imageUrlValidationError = '';
   }
   
 }
