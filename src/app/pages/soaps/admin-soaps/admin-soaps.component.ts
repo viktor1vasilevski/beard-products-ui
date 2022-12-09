@@ -86,15 +86,12 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
     this.editSoapSub = this._editSoapModalService
     .openModal(this.editSoapEntry, soap)
     .subscribe((model) => {
-      debugger;
       this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
         let indexOfEditedItem = this.soaps.findIndex((x : any) => x.id == response.id);
         this.soaps.splice(indexOfEditedItem, 1);
         this.soaps.unshift(response);
-
         this._toastr.success('Soap seccessfuly edited!');
       }, (err:any) => {
-
         this._toastr.error('Soap unseccessfuly edited!');
       })      
     });

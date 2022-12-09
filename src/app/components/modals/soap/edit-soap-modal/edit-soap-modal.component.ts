@@ -10,7 +10,7 @@ import * as _ from 'lodash'
 export class EditSoapModalComponent implements OnInit {
 
   @Output() closeMeEvent = new EventEmitter();
-  @Output() confirmEvent = new EventEmitter<any>();
+  @Output() confirmEvent = new EventEmitter<CreateEditSoapModel>();
 
   model: any;
   errors: any = {
@@ -21,16 +21,13 @@ export class EditSoapModalComponent implements OnInit {
     imageUrlValidationError: ''
   }
 
-
-
-  changedImageUrl = '';
-  isImageChanged: boolean = false;
-  showImagePanel: boolean = false;
+  public changedImageUrl = '';
+  public isImageChanged: boolean = false;
+  public showImagePanel: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
-
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -100,8 +97,6 @@ export class EditSoapModalComponent implements OnInit {
       description: desc,
     }
 
-    debugger;
-
     if(this.changedImageUrl === '' && this.showImagePanel) {
       editedSoapModel.url = this.model.url;
     } else {
@@ -112,7 +107,6 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   handleValidationErrors(counter: any, model: any)  {
-    debugger;
     // soap brand validation 
     if(model.brand === '') {
       this.errors.brandValidationError = 'Brand is required';
@@ -162,40 +156,31 @@ export class EditSoapModalComponent implements OnInit {
       counter++;
     }
 
-    console.log(this.changedImageUrl);
-    console.log(this.isImageChanged);
-    console.log(this.showImagePanel);
-
-    if(this.changedImageUrl != '' && this.isImageChanged && !this.showImagePanel) {
-      this.errors.imageUrlValidationError = 'trgnata e slikate';
+    if(!this.showImagePanel) {
+      this.errors.imageUrlValidationError = 'Please choose image';
       counter++;
     }
-    
-    debugger;
-    // soap image validation
-
 
     return counter;
   }
 
   fileChangeEvent(fileInput: any) {
-    debugger;
     this.showImagePanel = true;
     this.errors.imageUrlValidationError = '';
     if (fileInput.target.files && fileInput.target.files[0]) {
-      // Size Filter Bytes
+
       const max_size = 20971520;
       const allowed_types = ['image/png', 'image/jpeg'];
       const max_height = 15200;
       const max_width = 25600;
 
       if (fileInput.target.files[0].size > max_size) {
-        this.errors.priceValidationError ='Maximum size allowed is ' + max_size / 1000 + 'Mb';
+        this.errors.imageUrlValidationError =`Maximum size allowed is ${max_size / 1000}Mb`;
         return;
       } 
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
-        this.errors.priceValidationError = 'Only Images are allowed ( JPG | PNG )';
+        this.errors.imageUrlValidationError = 'Only Images are allowed ( JPG | PNG )';
         return;
       } 
       const reader = new FileReader();
@@ -208,7 +193,7 @@ export class EditSoapModalComponent implements OnInit {
           const img_width = rs.currentTarget['width'];
 
           if (img_height > max_height && img_width > max_width) {
-            this.errors.priceValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
+            this.errors.imageUrlValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
             return;
           } else {  
             this.isImageChanged = true;
@@ -218,6 +203,8 @@ export class EditSoapModalComponent implements OnInit {
       };
 
       reader.readAsDataURL(fileInput.target.files[0]);
+    } else {
+      this.removeImage();
     }
   }
 
