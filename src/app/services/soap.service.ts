@@ -14,7 +14,7 @@ export class SoapService {
     return this.http.get(this.soapUrl);
   }
 
-  createEditSoap(soap: any, imagePath: any | null) {
+  createEditSoap(soap: any) {
     let userData;
     let lsData = sessionStorage.getItem('UserInfo');
 
@@ -30,14 +30,8 @@ export class SoapService {
       description: soap.description, 
       unitPrice: soap.unitPrice, 
       unitQuantity: soap.unitQuantity, 
-      url: ''
+      url: soap.url
     };
-
-    if(imagePath === null) {
-      
-    }
-
-    debugger;
     
     return this.http.post<any>(this.soapUrl, body, { headers });
   }

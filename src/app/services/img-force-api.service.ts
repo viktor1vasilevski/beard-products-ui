@@ -10,7 +10,6 @@ export class ImgForceApiService {
   constructor(private http: HttpClient) { }
 
   myApi(result: any) {
-    debugger;
     let body = { file: result.url.toString() }
     let headers = { 
       'Authorization' : 'Bearer '

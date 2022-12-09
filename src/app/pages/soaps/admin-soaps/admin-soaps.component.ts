@@ -6,8 +6,6 @@ import { DeleteSoapModalService } from 'src/app/services/modals/soap/delete-soap
 import { CreateSoapModalService } from 'src/app/services/modals/soap/create-soap-modal.service';
 import { EditSoapModalService } from 'src/app/services/modals/soap/edit-soap-modal.service';
 import { CreateEditSoapModel } from './create-edit-soap-model';
-import { ImgForceApiService } from 'src/app/services/img-force-api.service';
-
 
 @Component({
   selector: 'app-admin-soaps',
@@ -45,41 +43,20 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
     private _toastr: ToastrService, 
     private _deleteSoapModalService: DeleteSoapModalService, 
     private _createSoapModalService: CreateSoapModalService, 
-    private _editSoapModalService: EditSoapModalService, 
-    private _imgForceApi: ImgForceApiService) { }
+    private _editSoapModalService: EditSoapModalService) { }
 
-  ngOnInit(): void {
-
-  }
-
+  ngOnInit(): void {}
 
   openCreateSoapModal() {
     this.createSoapSub = this._createSoapModalService
       .openModal(this.createSoapEntry)
       .subscribe((model) => {
-        this._imgForceApi.myApi(model).subscribe((res: any) => {
-
-
-          this._soapService.createEditSoap(model, res.image.url).subscribe((response: CreateEditSoapModel) => {
-            this.soaps.unshift(response);
-            this._toastr.success('Soap seccessfuly created!');
-          }, (err:any) => {
-            this._toastr.error('Soap unseccessfuly created!');
-          }) 
-
-
-          if(res.success === 200) {
-            /*
-              model is the object that we fill up from the create modal and contains the input data.
-              this createEditSoap metod has second parameter because you can't assign the image url directly in the model
-
-              for ex: model.url = res.image.url  <-- this is not possible
-            */
- 
-          }    
-        }, (err: any) => {
+        this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
+          this.soaps.unshift(response);
+          this._toastr.success('Soap seccessfuly created!');
+        }, (err:any) => {
           this._toastr.error('Soap unseccessfuly created!');
-        })  
+        })
       });
   } 
 
@@ -109,8 +86,7 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
     this.editSoapSub = this._editSoapModalService
     .openModal(this.editSoapEntry, soap)
     .subscribe((model) => {
-      debugger;
-      this._soapService.createEditSoap(model, this.imagePath).subscribe((response: CreateEditSoapModel) => {
+      this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
         let index = this.soaps.findIndex((x : any) => x.id == response.id);
         this.soaps.splice(index, 1);
         this.soaps.unshift(response);

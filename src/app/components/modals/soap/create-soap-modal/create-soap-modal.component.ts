@@ -1,7 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { CreateEditSoapModel } from 'src/app/pages/soaps/admin-soaps/create-edit-soap-model';
 import * as _ from 'lodash'
-import { ImgForceApiService } from 'src/app/services/img-force-api.service';
 
 @Component({
   selector: 'app-create-soap-modal',
@@ -25,11 +24,9 @@ export class CreateSoapModalComponent implements OnInit {
   imageError: string | null = '';
   isImageSaved: boolean = false;
   cardImageBase64: string | null = '';
-  isImageChosen: boolean = false;
+  public isImageChosen: boolean = false;
 
-  bar = 'World';
-
-  constructor(private _imgForceApiService: ImgForceApiService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
@@ -40,9 +37,6 @@ export class CreateSoapModalComponent implements OnInit {
   }
 
   confirm() { 
-    console.log(this.createdSoapModel);
-    debugger;
-    
     this.confirmEvent.emit(this.createdSoapModel);
   }
 
@@ -68,7 +62,6 @@ export class CreateSoapModalComponent implements OnInit {
         const image = new Image();
         image.src = e.target.result;
         image.onload = (rs : any) => {
-          debugger
           const img_height = rs.currentTarget['height'];
           const img_width = rs.currentTarget['width'];
 
