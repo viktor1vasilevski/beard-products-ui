@@ -58,14 +58,24 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
       .openModal(this.createSoapEntry)
       .subscribe((model) => {
         this._imgForceApi.myApi(model).subscribe((res: any) => {
+
+
+          this._soapService.createEditSoap(model, res.image.url).subscribe((response: CreateEditSoapModel) => {
+            this.soaps.unshift(response);
+            this._toastr.success('Soap seccessfuly created!');
+          }, (err:any) => {
+            this._toastr.error('Soap unseccessfuly created!');
+          }) 
+
+
           if(res.success === 200) {
-            debugger;
-            this._soapService.createEditSoap(model, res.image.url).subscribe((response: CreateEditSoapModel) => {
-              this.soaps.unshift(response);
-              this._toastr.success('Soap seccessfuly created!');
-            }, (err:any) => {
-              this._toastr.error('Soap unseccessfuly created!');
-            })  
+            /*
+              model is the object that we fill up from the create modal and contains the input data.
+              this createEditSoap metod has second parameter because you can't assign the image url directly in the model
+
+              for ex: model.url = res.image.url  <-- this is not possible
+            */
+ 
           }    
         }, (err: any) => {
           this._toastr.error('Soap unseccessfuly created!');
@@ -96,10 +106,10 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
   }
 
   openEditSoapModal(soap: CreateEditSoapModel) {
-    // treba istoto da se nap[ravi za edit]
     this.editSoapSub = this._editSoapModalService
     .openModal(this.editSoapEntry, soap)
     .subscribe((model) => {
+      debugger;
       this._soapService.createEditSoap(model, this.imagePath).subscribe((response: CreateEditSoapModel) => {
         let index = this.soaps.findIndex((x : any) => x.id == response.id);
         this.soaps.splice(index, 1);

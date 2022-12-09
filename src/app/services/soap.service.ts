@@ -14,13 +14,13 @@ export class SoapService {
     return this.http.get(this.soapUrl);
   }
 
-  createEditSoap(soap: any, imagePath: any) {
+  createEditSoap(soap: any, imagePath: any | null) {
     let userData;
     let lsData = sessionStorage.getItem('UserInfo');
 
-      if(lsData != null) {
-        userData  = JSON.parse(lsData);
-      }
+    if(lsData != null) {
+      userData  = JSON.parse(lsData);
+    }
 
     const headers = { 'Authorization': `Bearer ${userData.token}` };
     const body = { 
@@ -30,8 +30,13 @@ export class SoapService {
       description: soap.description, 
       unitPrice: soap.unitPrice, 
       unitQuantity: soap.unitQuantity, 
-      url: imagePath
+      url: ''
     };
+
+    if(imagePath === null) {
+      
+    }
+
     debugger;
     
     return this.http.post<any>(this.soapUrl, body, { headers });

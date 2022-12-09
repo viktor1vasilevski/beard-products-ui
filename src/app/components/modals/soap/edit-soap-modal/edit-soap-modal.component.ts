@@ -21,16 +21,16 @@ export class EditSoapModalComponent implements OnInit {
     imageUrlValidationError: ''
   }
 
-  imageError: string | null = '';
-  isImageSaved: boolean = true;
-  cardImageBase64: string | null = '';
-  changedImage = '';
+
+
+  changedImageUrl = '';
+  isImageChanged: boolean = false;
+  showImagePanel: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.model);
-    
+    this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
   ngOnDestroy(): void {}
@@ -77,16 +77,17 @@ export class EditSoapModalComponent implements OnInit {
       this.errors.quantityValidationError = 'Please enter valid quantity';
       return;
     }
+
     let validationObject = {
       brand: brand,
       edition: edition,
       desc: desc,
       quantity: unitQuantity,
-      price: unitPrice,
-      //imageUrl: imageUrl
+      price: unitPrice
     }
 
-    if(this.handleValidationErrors(errorCounter, validationObject) > 0) return;
+    if(this.handleValidationErrors(errorCounter, validationObject) > 0) 
+      return;
  
     let editedSoapModel: CreateEditSoapModel = {
       id: this.model.id,
@@ -96,6 +97,12 @@ export class EditSoapModalComponent implements OnInit {
       unitQuantity: unitQuantity,
       url: '',
       description: desc,
+    }
+
+    if(this.changedImageUrl === '' && this.showImagePanel) {
+      editedSoapModel.url = this.model.url;
+    } else {
+      editedSoapModel.url = this.changedImageUrl;
     }
 
     this.confirmEvent.emit(editedSoapModel);
@@ -153,8 +160,8 @@ export class EditSoapModalComponent implements OnInit {
     }
 
     // soap image validation
-    if(model.imageUrl === '') {
-      this.errors.imageUrlValidationError = 'Please enter image url';
+    if(this.model.url === '') {
+      this.errors.imageUrlValidationError = 'Please choose file image';
       counter++;
     }
 
@@ -162,61 +169,50 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput: any) {
-    debugger;
-    this.imageError = null;
+    this.showImagePanel = true;
     if (fileInput.target.files && fileInput.target.files[0]) {
-        // Size Filter Bytes
-        const max_size = 20971520;
-        const allowed_types = ['image/png', 'image/jpeg'];
-        const max_height = 15200;
-        const max_width = 25600;
+      // Size Filter Bytes
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
 
-        if (fileInput.target.files[0].size > max_size) {
-            this.imageError ='Maximum size allowed is ' + max_size / 1000 + 'Mb';
+      if (fileInput.target.files[0].size > max_size) {
+        this.errors.priceValidationError ='Maximum size allowed is ' + max_size / 1000 + 'Mb';
+        return;
+      } 
 
-            //return false;
-        } 
+      if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+        this.errors.priceValidationError = 'Only Images are allowed ( JPG | PNG )';
+        return;
+      } 
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = (rs : any) => {
 
-        if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
-            this.imageError = 'Only Images are allowed ( JPG | PNG )';
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
+
+          if (img_height > max_height && img_width > max_width) {
+            this.errors.priceValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
             return;
-        } 
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = (rs : any) => {
-
-                const img_height = rs.currentTarget['height'];
-                const img_width = rs.currentTarget['width'];
-
-                if (img_height > max_height && img_width > max_width) {
-                  this.imageError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
-                  return;
-              } else {
-                  // this._imgForceApiService.myApi(e.target.result).subscribe((res: any) => {
-                  //   debugger
-                  //   console.log(res);
-                    
-                  // }, (err: any) => {
-                  //   console.log(err);
-                    
-                  // })
-                  //this.createdSoapModel.url = e.target.result.toString();    
-                  this.changedImage = e.target.result.toString();    
-                  //this.model.url = imgBase64Path;
-                  this.isImageSaved = true;
-              }
-            };
+          } else {  
+            this.isImageChanged = true;
+            this.changedImageUrl = e.target.result.toString();    
+          }
         };
+      };
 
-        reader.readAsDataURL(fileInput.target.files[0]);
+      reader.readAsDataURL(fileInput.target.files[0]);
     }
-}
+  }
 
   removeImage() {
-    this.cardImageBase64 = null;
-    this.isImageSaved = false;
+    this.showImagePanel = false;
+    this.isImageChanged = false;
+    this.changedImageUrl = '';
   }
   
 }

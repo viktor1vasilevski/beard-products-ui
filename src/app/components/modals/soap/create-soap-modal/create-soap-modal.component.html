@@ -45,15 +45,15 @@
       </div>
       <div class="m-3">
         <label for="image" class="form-label">Image</label>
-        <div class="custom-file fileInputProfileWrap">
-          
+        <div class="fileInputProfileWrap">  
           <div class="img-space">
               <div class="row">
                 <div class="col-12">
                   <input type="file" class="form-control" (change)="fileChangeEvent($event)">
+                  <p style="color: red;">{{imageError}}</p>
 
-                  <ng-container *ngIf="isImageSaved; else elseTemplate">
-                    <img [src]="cardImageBase64" style="width: 230px; height: 160px" />
+                  <ng-container *ngIf="isImageChosen; else elseTemplate">
+                    <img [src]="cardImageBase64" class="m-1" style="width: 230px; height: 160px" />
                   </ng-container>
                   <ng-template #elseTemplate>
                     <!-- <img src="./../../assets/placeholder.png" class="img-responsive"> -->
@@ -63,7 +63,7 @@
               
           </div>
         </div>
-        <a class="btn btn-danger" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+        <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="isImageChosen">Remove</a>
 
 
 
@@ -75,7 +75,7 @@
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary" (click)="closeMe()">Close</button>
         <button class="btn btn-danger" 
-          [disabled]="brand.errors || edition.errors || unitPrice.errors || unitQuantity.errors" (click)="confirm()">Confirm</button>
+          [disabled]="brand.errors || edition.errors || unitPrice.errors || unitQuantity.errors || !isImageChosen" (click)="confirm()">Confirm</button>
       </div>
     </div>
   </div>

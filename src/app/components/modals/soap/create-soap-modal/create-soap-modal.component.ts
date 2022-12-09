@@ -25,6 +25,9 @@ export class CreateSoapModalComponent implements OnInit {
   imageError: string | null = '';
   isImageSaved: boolean = false;
   cardImageBase64: string | null = '';
+  isImageChosen: boolean = false;
+
+  bar = 'World';
 
   constructor(private _imgForceApiService: ImgForceApiService) {}
 
@@ -36,65 +39,59 @@ export class CreateSoapModalComponent implements OnInit {
     this.closeMeEvent.emit();
   }
 
-  confirm() {  
+  confirm() { 
+    console.log(this.createdSoapModel);
+    debugger;
+    
     this.confirmEvent.emit(this.createdSoapModel);
   }
 
   fileChangeEvent(fileInput: any) {
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
-        // Size Filter Bytes
-        const max_size = 20971520;
-        const allowed_types = ['image/png', 'image/jpeg'];
-        const max_height = 15200;
-        const max_width = 25600;
+      const max_size = 20971520;
+      const allowed_types = ['image/png', 'image/jpeg'];
+      const max_height = 15200;
+      const max_width = 25600;
 
-        if (fileInput.target.files[0].size > max_size) {
-            this.imageError ='Maximum size allowed is ' + max_size / 1000 + 'Mb';
+      if (fileInput.target.files[0].size > max_size) {
+        this.imageError =`Maximum size allowed is ${max_size / 1000}Mb`;
+        return;
+      } 
 
-            //return false;
-        } 
+      if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
+        this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        return;
+      } 
+      const reader = new FileReader();
+      reader.onload = (e: any) => {
+        const image = new Image();
+        image.src = e.target.result;
+        image.onload = (rs : any) => {
+          debugger
+          const img_height = rs.currentTarget['height'];
+          const img_width = rs.currentTarget['width'];
 
-        if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
-            this.imageError = 'Only Images are allowed ( JPG | PNG )';
+          if (img_height > max_height && img_width > max_width) {
+            this.imageError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
             return;
-        } 
-        const reader = new FileReader();
-        reader.onload = (e: any) => {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = (rs : any) => {
-
-                const img_height = rs.currentTarget['height'];
-                const img_width = rs.currentTarget['width'];
-
-                if (img_height > max_height && img_width > max_width) {
-                  this.imageError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
-                  return;
-              } else {
-                  // this._imgForceApiService.myApi(e.target.result).subscribe((res: any) => {
-                  //   debugger
-                  //   console.log(res);
-                    
-                  // }, (err: any) => {
-                  //   console.log(err);
-                    
-                  // })
-                  this.createdSoapModel.url = e.target.result.toString();    
-                  let imgBase64Path = e.target.result.toString();    
-                  this.cardImageBase64 = imgBase64Path;
-                  this.isImageSaved = true;
-              }
-            };
+          } else {
+            this.cardImageBase64 = e.target.result.toString();    
+            this.createdSoapModel.url = e.target.result.toString();    
+            this.isImageChosen = true;
+              //this.isImageChosen = true;
+          }
         };
+      };
 
-        reader.readAsDataURL(fileInput.target.files[0]);
+      reader.readAsDataURL(fileInput.target.files[0]);
     }
-}
+  }
 
   removeImage() {
     this.cardImageBase64 = null;
-    this.isImageSaved = false;
+    this.isImageChosen = false;
+    this.createdSoapModel.url = '';
   }
   
 }

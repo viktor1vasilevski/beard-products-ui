@@ -44,23 +44,24 @@
 
 
                   <input type="file" class="form-control" (change)="fileChangeEvent($event)">
-
-
+                  <p *ngIf="errors.imageUrlValidationError" style="color: red;">{{ errors.imageUrlValidationError }}</p>
                   <!-- <input type="file" class="form-control" (change)="fileChangeEvent($event)" class="fileInputProfile"> -->
 
-                  <ng-container *ngIf="isImageSaved; else elseTemplate">
-                    <img [src]="model.url" *ngIf="changedImage == ''" style="width: 230px; height: 160px" #imageUrl />
-                    <img [src]="changedImage" *ngIf="changedImage != ''" style="width: 230px; height: 160px" #imageUrl />
-                  </ng-container>
-                  <ng-template #elseTemplate>
-                    <!-- <img src="./../../assets/placeholder.png" class="img-responsive"> -->
-                  </ng-template>
+                  <div *ngIf="showImagePanel">
+                    <ng-container *ngIf="!isImageChanged else elseTemplate">
+                      <img [src]="model.url" class="m-1" style="width: 230px; height: 160px" />
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                      <img [src]="changedImageUrl" class="m-1" style="width: 230px; height: 160px" />
+                    </ng-template>
+                  </div>
+                  
                 </div>
               </div>
               
           </div>
         </div>
-        <a class="btn btn-info" (click)="removeImage()" *ngIf="isImageSaved">Remove</a>
+        <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
 
 
         <!-- <input type="text" id="imageUrl" class="form-control" #imageUrl [value]="model.url">
