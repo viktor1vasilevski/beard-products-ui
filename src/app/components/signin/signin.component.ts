@@ -14,6 +14,9 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SigninComponent implements OnInit {
 
+
+  public hideLoginImage: boolean = false; 
+
   isLoginMode = false;
   isLoadingSpinner = false;
   error: string = "";
@@ -34,6 +37,7 @@ export class SigninComponent implements OnInit {
     // ova vrati go
     // }
     this.isLoadingSpinner = true;
+    this.hideLoginImage = true;
     // const username = registerData.value.username;
     // const password = registerData.value.password;
 

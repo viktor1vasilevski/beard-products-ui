@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthComponent } from './auth/auth.component';
 import { RegisterComponent } from './components/register/register.component';
 import { SigninComponent } from './components/signin/signin.component';
 import { BalmsComponent } from './pages/balms/balms.component';
@@ -15,7 +14,6 @@ const routes: Routes = [
   { path: 'oils', component: OilsComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'auth', component: AuthComponent }
 ];
 
 @NgModule({
