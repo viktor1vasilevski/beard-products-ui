@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   hideRegisterAndLoginButton = false;
   isAdminLogged = false;
 
-  constructor(private _userService: UserService, private _authService: AuthService) {
+  constructor(private _userService: UserService, private _authService: AuthenticationService) {
     this._userService.showUserInfo.subscribe((data: any) => {
       this.setUserInfo(data);   
     });

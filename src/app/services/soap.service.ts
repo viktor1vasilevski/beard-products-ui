@@ -54,9 +54,3 @@ export class SoapService {
 
 
 }
-
-// private _post(endpoint: string, body: any, responseType?: any) {
-//   const headers = new HttpHeaders().set(
-//     'Authorization',
-//     'Bearer ' + this.authService.currentUser?.access_token!
-//   );

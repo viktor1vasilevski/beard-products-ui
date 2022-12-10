@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { BannerService } from 'src/app/services/banner.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class RegisterComponent implements OnInit {
   }
   constructor(
     private _bannerService: BannerService, 
-    private _authService: AuthService, 
+    private _authService: AuthenticationService, 
     private router: Router) {
       this._bannerService.toggleBanned(true);
    }
