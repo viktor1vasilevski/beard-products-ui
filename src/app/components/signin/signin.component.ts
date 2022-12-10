@@ -32,6 +32,7 @@ export class SigninComponent implements OnInit {
   }
 
   onLogin(registerData: NgForm) { 
+    debugger;
     // if (!registerData.valid) {
     //   return
     // ova vrati go

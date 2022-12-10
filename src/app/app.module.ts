@@ -14,7 +14,6 @@ import { BannerService } from './services/banner.service';
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { UserSoapsComponent } from './pages/soaps/user-soaps/user-soaps.component';
 import { AdminSoapsComponent } from './pages/soaps/admin-soaps/admin-soaps.component';
@@ -39,7 +38,6 @@ import { EditSoapModalComponent } from './components/modals/soap/edit-soap-modal
     RegisterComponent,
     SigninComponent,
     HomeComponent,
-    AuthComponent,
     LoadingSpinnerComponent,
     UserSoapsComponent,
     AdminSoapsComponent,
