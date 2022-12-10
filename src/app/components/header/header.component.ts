@@ -16,9 +16,9 @@ export class HeaderComponent implements OnInit {
   isAdminLogged = false;
 
   constructor(private _userService: UserService, private _authService: AuthenticationService) {
-    this._userService.showUserInfo.subscribe((data: any) => {
-      this.setUserInfo(data);   
-    });
+    // this._userService.showUserInfo.subscribe((data: any) => {
+    //   this.setUserInfo(data);   
+    // });
    }
 
   ngOnInit(): void {
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
 
   onLogout() {
     this._authService.logout().subscribe((res: any) => {
-      this._userService.isAdminUserLogged(false);
+      //this._userService.isAdminUserLogged(false);
       sessionStorage.removeItem('UserInfo');
       this.showLogoutButton = false;
       this.hideRegisterAndLoginButton = false;

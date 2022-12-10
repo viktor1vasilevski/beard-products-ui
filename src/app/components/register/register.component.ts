@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
     private _bannerService: BannerService, 
     private _authService: AuthenticationService, 
     private router: Router) {
-      this._bannerService.toggleBanned(true);
+      //this._bannerService.toggleBanned(true);
    }
 
   ngOnInit(): void {

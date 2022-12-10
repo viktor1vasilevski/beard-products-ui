@@ -9,7 +9,7 @@ import { BannerService } from 'src/app/services/banner.service';
 export class HomeComponent implements OnInit {
 
   constructor(private _bannerService: BannerService) {
-    this._bannerService.toggleBanned(false);
+    //this._bannerService.toggleBanned(false);
    }
 
   ngOnInit(): void {

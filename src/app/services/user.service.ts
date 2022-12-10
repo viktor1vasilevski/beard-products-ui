@@ -12,17 +12,17 @@ interface User {
 })
 export class UserService {
 
-  showUserInfo : BehaviorSubject<Object> = new BehaviorSubject<Object>({showDataStatus: false, username: "", role: "", token: "", userId: ""});
-  isAdminLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  //showUserInfo : BehaviorSubject<Object> = new BehaviorSubject<Object>({showDataStatus: false, username: "", role: "", token: "", userId: ""});
+  //isAdminLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
-  userDetails(value: any) {
-    this.showUserInfo.next(value);
-  }
+  // userDetails(value: any) {
+  //   this.showUserInfo.next(value);
+  // }
 
-  isAdminUserLogged(value: boolean = false) {
-    this.isAdminLogged.next(value);
-  }
+  // isAdminUserLogged(value: boolean = false) {
+  //   this.isAdminLogged.next(value);
+  // }
 
 }

@@ -12,7 +12,7 @@ export class BalmsComponent implements OnInit {
   balms: any;
 
   constructor(private _bannerService: BannerService, private _balmService: BalmService) {
-    this._bannerService.toggleBanned(false);
+    //this._bannerService.toggleBanned(false);
    }
 
   ngOnInit(): void {

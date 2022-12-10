@@ -25,7 +25,7 @@ export class SigninComponent implements OnInit {
     private _authService: AuthenticationService, 
     private _userService: UserService, 
     private route: Router) {
-    this._bannerService.toggleBanned(true);
+    //this._bannerService.toggleBanned(true);
    }
 
   ngOnInit(): void {
@@ -61,7 +61,7 @@ export class SigninComponent implements OnInit {
 
         //this.isLoginMode = true; ova neznam kje vidime
         
-        this._userService.userDetails(userDetailsInfo);
+        //this._userService.userDetails(userDetailsInfo);
         let user = sessionStorage.getItem('UserInfo');
         if(user != null) {
           let ggg = JSON.parse(user);
@@ -69,7 +69,7 @@ export class SigninComponent implements OnInit {
         }
 
         if(userDetailsInfo.role === 'Admin') {
-          this._userService.isAdminUserLogged(true);        
+          //this._userService.isAdminUserLogged(true);        
         }
         this.isLoadingSpinner = false;
         this.route.navigate([''])

@@ -16,10 +16,10 @@ export class SoapsComponent implements OnInit {
   constructor(
     private _bannerService: BannerService, 
     private _soapService: SoapService, private _userService: UserService) {
-      this._bannerService.toggleBanned(false);
-      this._userService.isAdminLogged.subscribe((adminStatus: any) => {      
-        this.manageAdmin(adminStatus);
-      })
+      //this._bannerService.toggleBanned(false);
+      // this._userService.isAdminLogged.subscribe((adminStatus: any) => {      
+      //   this.manageAdmin(adminStatus);
+      // })
    }
 
   ngOnInit(): void {
@@ -31,7 +31,7 @@ export class SoapsComponent implements OnInit {
 
   manageAdmin(status: boolean) {
     this.isAdminLogged = status;
-    this._bannerService.toggleBanned(false);
+    //this._bannerService.toggleBanned(false);
   }
 
 

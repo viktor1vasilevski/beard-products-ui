@@ -12,7 +12,7 @@ export class OilsComponent implements OnInit {
   oils: any;
 
   constructor(private _bannerService: BannerService, private _oilService: OilService) {
-    this._bannerService.toggleBanned(false);
+    //this._bannerService.toggleBanned(false);
    }
 
   ngOnInit(): void {

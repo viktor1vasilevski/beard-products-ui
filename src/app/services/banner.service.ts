@@ -6,11 +6,11 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class BannerService {
 
-  isBannerShow: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  //isBannerShow: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
-  toggleBanned(value: boolean = false) {
-    this.isBannerShow.next(value);
-  }
+  // toggleBanned(value: boolean = false) {
+  //   this.isBannerShow.next(value);
+  // }
 }
