@@ -24,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DeleteSoapModalComponent } from './components/modals/soap/delete-soap-modal/delete-soap-modal.component';
 import { CreateSoapModalComponent } from './components/modals/soap/create-soap-modal/create-soap-modal.component';
 import { EditSoapModalComponent } from './components/modals/soap/edit-soap-modal/edit-soap-modal.component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
 
 
 
@@ -52,8 +53,9 @@ import { EditSoapModalComponent } from './components/modals/soap/edit-soap-modal
     HttpClientModule,
     BrowserAnimationsModule,
 	  ToastrModule.forRoot(),
+    Ng2SmartTableModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [BannerService],
   bootstrap: [AppComponent]
