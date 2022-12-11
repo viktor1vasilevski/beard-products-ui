@@ -1,6 +1,6 @@
 <div class="">
-  <app-user-soaps *ngIf="!isAdminLogged; else adminBlock" [soaps]="soaps"></app-user-soaps>
+  <app-user-soaps *ngIf="!isAdminLogged; else adminBlock"></app-user-soaps>
   <ng-template #adminBlock>
-    <app-admin-soaps [soaps]="soaps"></app-admin-soaps>
+    <app-admin-soaps></app-admin-soaps>
   </ng-template>
 </div>

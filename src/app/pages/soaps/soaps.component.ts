@@ -10,24 +10,17 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class SoapsComponent implements OnInit {
 
-  public soaps: any;
   isAdminLogged = false;
 
   constructor(
-    private _bannerService: BannerService, 
-    private _soapService: SoapService, private _userService: UserService) {
+    private _bannerService: BannerService, private _userService: UserService) {
       this._bannerService.toggleBanned(false);
       this._userService.isAdminLogged.subscribe((adminStatus: any) => {      
         this.manageAdmin(adminStatus);
       })
    }
 
-  ngOnInit(): void {
-    this._soapService.getAllSoaps().subscribe((response: any) => {
-      this.soaps = response.soaps;
-
-    })
-  }
+  ngOnInit(): void {}
 
   manageAdmin(status: boolean) {
     this.isAdminLogged = status;

@@ -6,6 +6,7 @@ import { DeleteSoapModalService } from 'src/app/services/modals/soap/delete-soap
 import { CreateSoapModalService } from 'src/app/services/modals/soap/create-soap-modal.service';
 import { EditSoapModalService } from 'src/app/services/modals/soap/edit-soap-modal.service';
 import { CreateEditSoapModel } from './create-edit-soap-model';
+import { LocalDataSource } from 'ng2-smart-table';
 
 @Component({
   selector: 'app-admin-soaps',
@@ -15,7 +16,8 @@ import { CreateEditSoapModel } from './create-edit-soap-model';
 
 export class AdminSoapsComponent implements OnInit, OnDestroy {
 
-  @Input() soaps: any;
+  public soaps: any;
+  source: LocalDataSource;
   public imagePath = '';
 
   @ViewChild('deleteSoapModal', { read: ViewContainerRef })
@@ -43,9 +45,51 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
     private _toastr: ToastrService, 
     private _deleteSoapModalService: DeleteSoapModalService, 
     private _createSoapModalService: CreateSoapModalService, 
-    private _editSoapModalService: EditSoapModalService) { }
+    private _editSoapModalService: EditSoapModalService,) {
+      this.source = new LocalDataSource();
+     }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._soapService.getAllSoaps().subscribe((response: any) => {
+      this.soaps = response.soaps;
+      this.source.load(this.soaps);
+    })
+  }
+
+  settings = {
+    actions: {
+      add: false,
+      edit: false,
+      delete: false,
+      custom: [
+        {
+          name: 'edit',
+          title: '<a class="btn btn-info m-1">Edit</a>',
+        },
+        {
+          name: 'delete',
+          title: '<a class="btn btn-danger m-1">Delete</a>',
+        }
+      ],
+      position: 'right'
+    },
+    columns: {
+      brand: {
+        title: 'Brand',
+        filter: false
+      },
+      edition: {
+        title: 'Edition',
+        filter: false,
+      },
+      url: {
+        title: 'Image',
+        filter: false,
+        type: 'html',
+        valuePrepareFunction: (url: any) => { return `<img src="${url}" width="100px" hight="100px"  />` }
+      }
+    },
+  };
 
   openCreateSoapModal() {
     this.createSoapSub = this._createSoapModalService

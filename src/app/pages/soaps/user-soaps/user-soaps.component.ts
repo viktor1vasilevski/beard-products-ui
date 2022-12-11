@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { SoapService } from 'src/app/services/soap.service';
 
 @Component({
   selector: 'app-user-soaps',
@@ -7,12 +8,15 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class UserSoapsComponent implements OnInit {
 
-  @Input() soaps: any;
+  public soaps: any;
 
-  constructor() { }
+  constructor(private _soapService: SoapService) { }
 
   ngOnInit(): void {
-    console.log(this.soaps);
+    this._soapService.getAllSoaps().subscribe((response: any) => {
+      this.soaps = response.soaps;
+
+    })
     
   }
 
