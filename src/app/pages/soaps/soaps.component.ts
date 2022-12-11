@@ -26,8 +26,4 @@ export class SoapsComponent implements OnInit {
     this.isAdminLogged = status;
     this._bannerService.toggleBanned(false);
   }
-
-
-  
-
 }

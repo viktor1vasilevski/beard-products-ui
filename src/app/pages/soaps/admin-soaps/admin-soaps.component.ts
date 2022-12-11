@@ -62,14 +62,8 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
       edit: false,
       delete: false,
       custom: [
-        {
-          name: 'edit',
-          title: '<a class="btn btn-info m-1">Edit</a>',
-        },
-        {
-          name: 'delete',
-          title: '<a class="btn btn-danger m-1">Delete</a>',
-        }
+        { name: 'edit', title: '<a class="btn btn-info m-1">Edit</a>' },
+        { name: 'delete', title: '<a class="btn btn-danger m-1">Delete</a>' }
       ],
       position: 'right'
     },
@@ -109,7 +103,9 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
   };
 
 
-  onCustomAction(event: any) {
+
+
+  onAction(event: any) {
     switch (event.action) {
 
       case 'edit':
@@ -150,6 +146,7 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
             this._toastr.error('Soap unseccessfuly deleted!');
           });
         break;
+
       default:
         break;
     }
@@ -168,23 +165,6 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
         })
       });
   } 
-
-  openEditSoapModal(soap: CreateEditSoapModel) {
-    this.editSoapSub = this._editSoapModalService
-    .openModal(this.editSoapEntry, soap)
-    .subscribe((model) => {
-      this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
-        let indexOfEditedItem = this.soaps.findIndex((x : any) => x.id == response.id);
-        this.soaps.splice(indexOfEditedItem, 1);
-        this.soaps.unshift(response);
-        this._toastr.success('Soap seccessfuly edited!');
-      }, (err:any) => {
-        this._toastr.error('Soap unseccessfuly edited!');
-      })      
-    });
-  }
-
-
     
   ngOnDestroy(): void {
     if (this.deleteSoapSub) this.deleteSoapSub.unsubscribe();
