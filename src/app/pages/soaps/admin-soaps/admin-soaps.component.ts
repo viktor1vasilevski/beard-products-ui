@@ -76,20 +76,84 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
     columns: {
       brand: {
         title: 'Brand',
-        filter: false
+        filter: true,
+        sort: false,
       },
       edition: {
         title: 'Edition',
-        filter: false,
+        filter: true,
+        sort: false,
+      },
+      description: {
+        title: 'Description',
+        filter: true,
+        sort: false,
+      },
+      unitQuantity: {
+        title: 'Quantity',
+        filter: true,
+        sort: true,
+      },
+      unitPrice: {
+        title: 'Price',
+        filter: true,
       },
       url: {
         title: 'Image',
         filter: false,
+        sort: false,
         type: 'html',
         valuePrepareFunction: (url: any) => { return `<img src="${url}" width="100px" hight="100px"  />` }
       }
     },
   };
+
+
+  onCustomAction(event: any) {
+    switch (event.action) {
+
+      case 'edit':
+        this.editSoapSub = this._editSoapModalService
+        .openModal(this.editSoapEntry, event.data)
+        .subscribe((model) => {
+          this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
+            let indexOfEditedItem = this.soaps.findIndex((x : any) => x.id == response.id);
+            this.soaps.splice(indexOfEditedItem, 1);
+            this.soaps.unshift(response);
+            this.source.load(this.soaps);
+            this._toastr.success('Soap seccessfuly edited!');
+          }, (err:any) => {
+            this._toastr.error('Soap unseccessfuly edited!');
+          })      
+        });
+        break;
+
+      case 'delete':
+        this.deleteSoapSub = this._deleteSoapModalService
+          .openModal(this.deleteSoapEntry, event.data.brand, event.data.edition, event.data.unitQuantity, event.data.unitPrice, event.data.url)
+          .subscribe((status) => {
+            if(status) {
+              this._soapService.deleteSoap(event.data.id).subscribe((response: boolean) => {
+                if(response) {
+                  let index = this.soaps.findIndex((x : any) => x.id == event.data.id);
+                  this.soaps.splice(index, 1);
+                  this.source.load(this.soaps);
+                  this._toastr.success('Soap sucessfuly deleted!')
+                } else {
+                  this._toastr.error('Soap unsecessfuly deleted!');
+                }
+              })
+            } else { 
+              this._toastr.error('Soap unseccessfuly deleted!');
+            }       
+          }, (err: any) => {
+            this._toastr.error('Soap unseccessfuly deleted!');
+          });
+        break;
+      default:
+        break;
+    }
+  }
 
   openCreateSoapModal() {
     this.createSoapSub = this._createSoapModalService
@@ -97,34 +161,13 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
       .subscribe((model) => {
         this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
           this.soaps.unshift(response);
+          this.source.load(this.soaps);
           this._toastr.success('Soap seccessfuly created!');
         }, (err:any) => {
           this._toastr.error('Soap unseccessfuly created!');
         })
       });
   } 
-
-  openDeleteSoapModal(soap: CreateEditSoapModel) {
-    this.deleteSoapSub = this._deleteSoapModalService
-      .openModal(this.deleteSoapEntry, soap.brand, soap.edition, soap.unitQuantity, soap.unitPrice, soap.url)
-      .subscribe((status) => {
-        if(status) {
-          this._soapService.deleteSoap(soap.id).subscribe((response: boolean) => {
-            if(response) {
-              let index = this.soaps.findIndex((x : any) => x.id == soap.id);
-              this.soaps.splice(index, 1);
-              this._toastr.success('Soap sucessfuly deleted!')
-            } else {
-              this._toastr.error('Soap unsecessfuly deleted!');
-            }
-          })
-        } else { 
-          this._toastr.error('Soap unseccessfuly deleted!');
-        }       
-      }, (err: any) => {
-        this._toastr.error('Soap unseccessfuly deleted!');
-      });
-  }
 
   openEditSoapModal(soap: CreateEditSoapModel) {
     this.editSoapSub = this._editSoapModalService

@@ -1,44 +1,8 @@
 <button class="btn btn-primary m-3" (click)="openCreateSoapModal()">Create Soap</button>
-<div #createSoapModal></div>
-<ng2-smart-table class="table table-success table-striped"  [settings]="settings" [source]="source" ></ng2-smart-table>
 
-<!-- <div>
-    <table class="table table-striped table-light" >
-        <thead>
-          <tr >
-            <th scope="col">Brand</th>
-            <th scope="col">Edition</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th scope="col">Image</th>
-            <th scope="col"></th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let soap of soaps">
-            <td>{{soap.brand}}</td>
-            <td>{{soap.edition}}</td>
-            <td>{{soap.unitQuantity}}</td>
-            <td>{{soap.unitPrice}}</td>
-            <td>{{soap.description}}</td>
-            <td><img style="width: 100px; height: 100px" [src]="soap.url" alt=""></td>
-            <td>
-              <div class="modal-container">
-                <button class="btn btn-info" (click)="openEditSoapModal(soap)">Edit</button>
-                <div #editSoapModal></div>
-              </div>
-            </td>
-            <td>
-              <div class="modal-container">
-                <button class="btn btn-danger" (click)="openDeleteSoapModal(soap)">Delete</button>
-                <div #deleteSoapModal></div>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-</div> -->
-
-
+<ng2-smart-table class="table" [settings]="settings" [source]="source" (custom)="onCustomAction($event)"></ng2-smart-table>
+<div class="modal-container">
+  <div #deleteSoapModal></div>
+  <div #createSoapModal></div>
+  <div #editSoapModal></div>
+</div>
