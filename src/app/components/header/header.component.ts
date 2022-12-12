@@ -9,7 +9,10 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class HeaderComponent implements OnInit {
 
-  userInfo = "";
+  userInfo = {
+    username: '',
+    role: '',
+  };
   showUserInfo = false;
   showLogoutButton = false;
   hideRegisterAndLoginButton = false;
@@ -25,12 +28,14 @@ export class HeaderComponent implements OnInit {
 
   }
 
-  setUserInfo(data: any) {
-    if(!data.showDataStatus) {
+  setUserInfo(user: any) {
+    if(!user.showDataStatus) {
       return
     }
+    debugger;
     this.showUserInfo = true
-    this.userInfo = data.username;
+    this.userInfo.username = user.username;
+    this.userInfo.role = user.role;
     this.showLogoutButton = true;
     this.hideRegisterAndLoginButton = true;
   }

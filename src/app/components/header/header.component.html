@@ -17,7 +17,10 @@
         </li>
       </ul>
       <div *ngIf="showUserInfo">
-        <h4 style="color: white;">{{ userInfo }}</h4>
+        <h4 class="p-1" style="color: white; margin: 0 0 0 0;">user : {{ userInfo.username }} |</h4>
+      </div>
+      <div *ngIf="showUserInfo">
+        <h4 class="p-1" style="color: white; margin: 0 0 0 0;">role : {{ userInfo.role }}</h4>
       </div>
       <form *ngIf="showLogoutButton" class="d-flex">
         <button class="btn btn-primary m-1" type="button" (click)="onLogout()">Logout</button>

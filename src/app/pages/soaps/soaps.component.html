@@ -1,4 +1,4 @@
-<div class="">
+<div class="row">
   <app-user-soaps *ngIf="!isAdminLogged; else adminBlock"></app-user-soaps>
   <ng-template #adminBlock>
     <app-admin-soaps></app-admin-soaps>
