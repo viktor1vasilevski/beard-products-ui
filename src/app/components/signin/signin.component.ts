@@ -32,11 +32,32 @@ export class SigninComponent implements OnInit {
     this._bannerService.toggleBanned(true);
    }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   myLogin() {
     console.log(this.user);
+
+
+    this._authService.login(this.user.username, this.user.password)
+      .subscribe((res :any) => {
+        sessionStorage.setItem('UserInfo', JSON.stringify(res));
+
+        let userDetails = {
+          username: res.userName,
+          role: res.role,
+          showDataStatus: true,
+          token: res.token,
+          userId: res.userId
+        }
+        debugger
+        this._userService.userDetails(userDetails);
+
+        if(res.role == 'Admin') {
+          this._userService.isAdminUserLogged(true);
+        }
+        this.route.navigate(['/soaps'])
+
+      })
     
   }
   

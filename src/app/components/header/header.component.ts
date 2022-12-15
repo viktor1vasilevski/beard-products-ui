@@ -20,6 +20,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _userService: UserService, private _authService: AuthenticationService) {
     this._userService.showUserInfo.subscribe((data: any) => {
+      debugger;
       this.setUserInfo(data);   
     });
    }
