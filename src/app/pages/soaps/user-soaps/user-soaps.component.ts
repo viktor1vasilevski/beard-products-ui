@@ -8,17 +8,29 @@ import { SoapService } from 'src/app/services/soap.service';
 })
 export class UserSoapsComponent implements OnInit {
 
-  public soaps: any;
+  public userSoaps: any;
+  public orginalSoaps: any[] = [];
 
   constructor(private _soapService: SoapService) { }
 
   ngOnInit(): void {
     this._soapService.getAllSoaps().subscribe((response: any) => {
-      this.soaps = response.soaps;
+      this.userSoaps = response.soaps;
+      this.userSoaps.forEach((soap: any) => {
+        let tempData = { 
+          desc: soap.description, 
+          id : soap.id 
+        };
+        this.orginalSoaps.push(tempData);
+        soap.description = soap.description.slice(0, 140);
+      });
     })
   }
 
-
-  
+  loadMoreDescription(id: any){
+    var originalDesc = this.orginalSoaps.find((x : any) => x.id == id).desc;
+    var displaySoap = this.userSoaps.find((x : any) => x.id == id);
+    displaySoap.description = originalDesc;
+  }
 
 }
