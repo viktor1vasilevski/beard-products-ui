@@ -25,6 +25,9 @@ import { DeleteSoapModalComponent } from './components/modals/soap/delete-soap-m
 import { CreateSoapModalComponent } from './components/modals/soap/create-soap-modal/create-soap-modal.component';
 import { EditSoapModalComponent } from './components/modals/soap/edit-soap-modal/edit-soap-modal.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CreateBalmModalComponent } from './components/modals/balm/create-balm-modal/create-balm-modal.component';
+import { DeleteBalmModalComponent } from './components/modals/balm/delete-balm-modal/delete-balm-modal.component';
+import { EditBalmModalComponent } from './components/modals/balm/edit-balm-modal/edit-balm-modal.component';
 
 
 
@@ -45,6 +48,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     DeleteSoapModalComponent,
     CreateSoapModalComponent,
     EditSoapModalComponent,
+    CreateBalmModalComponent,
+    DeleteBalmModalComponent,
+    EditBalmModalComponent,
   ],
   imports: [
     BrowserModule,
