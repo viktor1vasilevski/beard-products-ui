@@ -49,7 +49,6 @@ export class SigninComponent implements OnInit {
           token: res.token,
           userId: res.userId
         }
-        debugger
         this._userService.userDetails(userDetails);
 
         if(res.role == 'Admin') {

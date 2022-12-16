@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BalmService } from 'src/app/services/balm.service';
 
 @Component({
   selector: 'app-admin-balms',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminBalmsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _balmService: BalmService) { }
 
   ngOnInit(): void {
+    this._balmService.getAllBalms().subscribe((response: any) => {
+      console.log(response);
+      
+    })
   }
 
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BannerService } from 'src/app/services/banner.service';
 import { OilService } from 'src/app/services/oil.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-oils',
@@ -9,17 +10,21 @@ import { OilService } from 'src/app/services/oil.service';
 })
 export class OilsComponent implements OnInit {
 
-  oils: any;
+  isAdminLogged = false;
 
-  constructor(private _bannerService: BannerService, private _oilService: OilService) {
+  constructor(private _bannerService: BannerService, 
+    private _userService: UserService) {
+      this._userService.isAdminLogged.subscribe((adminStatus: any) => {
+        this.manageAdmin(adminStatus)
+      })
     this._bannerService.toggleBanned(false);
    }
 
-  ngOnInit(): void {
-    this._oilService.getAllOils().subscribe((response: any) => {
-      this.oils = response.oils;
-      
-    })
+  ngOnInit(): void {}
+
+  manageAdmin(status: boolean) {
+    this.isAdminLogged = status;
+    this._bannerService.toggleBanned(false);
   }
 
 }

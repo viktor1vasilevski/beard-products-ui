@@ -1,21 +1,6 @@
 <div class="row">
-    <h1 style="text-align: center; font-size: 300px; font-family: Verdana, Geneva, Tahoma, sans-serif">BALMS</h1>
-    <div class="col-4"*ngFor="let balm of balms">
-        <div class="card" style="width: 25rem;">
-            <img [src]="balm.url" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{balm.brand}}</h5>
-              <p class="card-text">{{balm.description}}</p>
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Volume : {{balm.volume}}g</li>
-              <li class="list-group-item">Quantity : {{balm.unitQuantity}}</li>
-              <li class="list-group-item">Price : {{balm.unitPrice}}$</li>
-            </ul>
-            <div class="card-body">
-              <a href="#" class="card-link">Card link</a>
-              <a href="#" class="card-link">Another link</a>
-            </div>
-        </div>
-    </div> 
+  <app-user-balms *ngIf="!isAdminLogged; else adminBalms"></app-user-balms>
+  <ng-template #adminBalms>
+    <app-admin-balms></app-admin-balms>
+  </ng-template>
 </div>

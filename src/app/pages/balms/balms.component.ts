@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BalmService } from 'src/app/services/balm.service';
 import { BannerService } from 'src/app/services/banner.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-balms',
@@ -9,16 +9,20 @@ import { BannerService } from 'src/app/services/banner.service';
 })
 export class BalmsComponent implements OnInit {
 
-  balms: any;
+  public isAdminLogged: Boolean = false;
 
-  constructor(private _bannerService: BannerService, private _balmService: BalmService) {
+  constructor(private _bannerService: BannerService, private _userService: UserService) {
     this._bannerService.toggleBanned(false);
+    this._userService.isAdminLogged.subscribe((adminStatus: any) => {      
+      this.manageAdmin(adminStatus);
+    })
    }
 
-  ngOnInit(): void {
-    this._balmService.getAllBalms().subscribe((response: any)=>{
-      this.balms = response.balms;
-    })
+  ngOnInit(): void {}
+
+  manageAdmin(status: boolean) {
+    this.isAdminLogged = status;
+    this._bannerService.toggleBanned(false);
   }
 
 }

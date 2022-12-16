@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
 
   constructor(private _userService: UserService, private _authService: AuthenticationService) {
     this._userService.showUserInfo.subscribe((data: any) => {
-      debugger;
       this.setUserInfo(data);   
     });
    }
@@ -33,7 +32,6 @@ export class HeaderComponent implements OnInit {
     if(!user.showDataStatus) {
       return
     }
-    debugger;
     this.showUserInfo = true
     this.userInfo.username = user.username;
     this.userInfo.role = user.role;

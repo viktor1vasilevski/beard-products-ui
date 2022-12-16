@@ -1,6 +1,6 @@
 <div class="row">
-  <app-user-soaps *ngIf="!isAdminLogged; else adminBlock"></app-user-soaps>
-  <ng-template #adminBlock>
+  <app-user-soaps *ngIf="!isAdminLogged; else adminSoaps"></app-user-soaps>
+  <ng-template #adminSoaps>
     <app-admin-soaps></app-admin-soaps>
   </ng-template>
 </div>
