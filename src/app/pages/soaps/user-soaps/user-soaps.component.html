@@ -22,6 +22,7 @@
         <div class="card"  style="width: auto; box-shadow: 5px 10px 8px #888888;">
           <img [src]="soap.url" class="card-img-top" height="350px">
           <div class="card-body">
+            <h4>{{soap.brand}}</h4>
             <p class="card-text">{{soap.description}}<span style="cursor: pointer;" (click)="loadMoreDescription(soap.id)"><strong >...</strong></span></p>
           </div>
           <div class="row">

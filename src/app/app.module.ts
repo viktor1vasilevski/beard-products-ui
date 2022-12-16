@@ -31,6 +31,10 @@ import { EditBalmModalComponent } from './components/modals/balm/edit-balm-modal
 import { CreateOilModalComponent } from './components/modals/oil/create-oil-modal/create-oil-modal.component';
 import { DeleteOilModalComponent } from './components/modals/oil/delete-oil-modal/delete-oil-modal.component';
 import { EditOilModalComponent } from './components/modals/oil/edit-oil-modal/edit-oil-modal.component';
+import { AdminOilsComponent } from './pages/oils/admin-oils/admin-oils.component';
+import { UserOilsComponent } from './pages/oils/user-oils/user-oils.component';
+import { AdminBalmsComponent } from './pages/balms/admin-balms/admin-balms.component';
+import { UserBalmsComponent } from './pages/balms/user-balms/user-balms.component';
 
 
 
@@ -57,6 +61,10 @@ import { EditOilModalComponent } from './components/modals/oil/edit-oil-modal/ed
     CreateOilModalComponent,
     DeleteOilModalComponent,
     EditOilModalComponent,
+    AdminOilsComponent,
+    UserOilsComponent,
+    AdminBalmsComponent,
+    UserBalmsComponent,
   ],
   imports: [
     BrowserModule,
