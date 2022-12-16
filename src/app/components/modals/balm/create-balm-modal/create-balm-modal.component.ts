@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-create-balm-modal',
@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-balm-modal.component.css']
 })
 export class CreateBalmModalComponent implements OnInit {
+
+  @Output() closeMeEvent = new EventEmitter();
+  @Output() confirmEvent = new EventEmitter<any>();
 
   constructor() { }
 
