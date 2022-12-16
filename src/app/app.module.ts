@@ -28,6 +28,9 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CreateBalmModalComponent } from './components/modals/balm/create-balm-modal/create-balm-modal.component';
 import { DeleteBalmModalComponent } from './components/modals/balm/delete-balm-modal/delete-balm-modal.component';
 import { EditBalmModalComponent } from './components/modals/balm/edit-balm-modal/edit-balm-modal.component';
+import { CreateOilModalComponent } from './components/modals/oil/create-oil-modal/create-oil-modal.component';
+import { DeleteOilModalComponent } from './components/modals/oil/delete-oil-modal/delete-oil-modal.component';
+import { EditOilModalComponent } from './components/modals/oil/edit-oil-modal/edit-oil-modal.component';
 
 
 
@@ -51,6 +54,9 @@ import { EditBalmModalComponent } from './components/modals/balm/edit-balm-modal
     CreateBalmModalComponent,
     DeleteBalmModalComponent,
     EditBalmModalComponent,
+    CreateOilModalComponent,
+    DeleteOilModalComponent,
+    EditOilModalComponent,
   ],
   imports: [
     BrowserModule,
