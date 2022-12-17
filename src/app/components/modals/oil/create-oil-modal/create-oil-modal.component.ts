@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CreateEditOilModel } from 'src/app/pages/oils/admin-oils/create-edit-oil-model';
 import * as _ from 'lodash'
 
@@ -7,7 +7,7 @@ import * as _ from 'lodash'
   templateUrl: './create-oil-modal.component.html',
   styleUrls: ['./create-oil-modal.component.css']
 })
-export class CreateOilModalComponent implements OnInit {
+export class CreateOilModalComponent {
 
   @Output() closeMeEvent = new EventEmitter();
   @Output() confirmEvent = new EventEmitter<any>();
@@ -29,11 +29,6 @@ export class CreateOilModalComponent implements OnInit {
     unitQuantity: null,
     url: ''
   }
-
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {}
 
   closeMe() {
     this.closeMeEvent.emit();

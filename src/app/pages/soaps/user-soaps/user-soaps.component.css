@@ -1,0 +1,22 @@
+.card {
+    width: auto; 
+    box-shadow: 5px 10px 8px #888888;
+}
+
+img {
+    height: 350px;
+}
+
+span {
+    cursor: pointer;
+}
+
+#add-to-card-btn {
+    width: 96%; 
+    cursor: pointer;
+}
+
+#view-details-btn {
+    width: 92%; 
+    cursor: pointer;
+}

@@ -21,3 +21,27 @@
 button {
     margin: 5px;
 }
+
+h4 {
+    text-align: center;
+}
+
+h5 {
+    margin-left: 20px;
+}
+
+.modal-card {
+    width: 500px;
+    height: auto;
+    border: olive 1px solid;
+    background-color: white;
+    border-radius: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+img {
+    width: 180px; 
+    height: 150px
+}
