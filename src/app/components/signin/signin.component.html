@@ -25,10 +25,12 @@
                    name="username" 
                    required 
                    minlength="5"
-                   maxlength="15"/>
+                   maxlength="15" 
+                   (click)="manageCustomErrors()"/>
             <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['required']" style="color: red;">Username is required</p>
             <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['minlength']" style="color: red;">Username must have more then 5 letters</p>
             <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['maxlength']" style="color: red;">Username must be less then 15 letters</p>
+            <p *ngIf="errorMessage.length" style="color: red;">{{errorMessage}}</p>
           </div>
 
           <div class="form-outline mb-4">
@@ -43,7 +45,8 @@
                    name="password"
                    required 
                    minlength="5"
-                   maxlength="25"/>
+                   maxlength="25"
+                   (click)="manageCustomErrors()"/>
             <p *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['required']" style="color: red;">Username is required</p>
             <p *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['minlength']" style="color: red;">Username must have more then 5 letters</p>
             <p *ngIf="password.invalid && (username.dirty || password.touched) && password.errors?.['maxlength']" style="color: red;">Username must be less then 15 letters</p>

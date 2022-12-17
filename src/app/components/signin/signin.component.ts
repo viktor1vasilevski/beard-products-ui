@@ -1,10 +1,10 @@
-
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { BannerService } from 'src/app/services/banner.service';
 import { UserService } from 'src/app/services/user.service';
+import { UserDetailsModel } from './user-details-model';
+import { UserModel } from './user-model';
 
 
 @Component({
@@ -12,18 +12,17 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './signin.component.html',
   styleUrls: ['./signin.component.css']
 })
+
 export class SigninComponent implements OnInit {
 
-  user = {
+  public user: UserModel = {
     username: '',
     password: ''
   }
 
   public hideLoginImage: boolean = false; 
-
-  isLoginMode = false;
-  isLoadingSpinner = false;
-  error: string = "";
+  public isLoadingSpinner: boolean = false;
+  public errorMessage: string = '';
 
   constructor(private _bannerService: BannerService, 
     private _authService: AuthenticationService, 
@@ -35,14 +34,14 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {}
 
   myLogin() {
-    console.log(this.user);
-
-
     this._authService.login(this.user.username, this.user.password)
       .subscribe((res :any) => {
+        this.isLoadingSpinner = true;
+        this.hideLoginImage = true;
+
         sessionStorage.setItem('UserInfo', JSON.stringify(res));
 
-        let userDetails = {
+        let userDetails : UserDetailsModel = {
           username: res.userName,
           role: res.role,
           showDataStatus: true,
@@ -54,12 +53,19 @@ export class SigninComponent implements OnInit {
         if(res.role == 'Admin') {
           this._userService.isAdminUserLogged(true);
         }
+        this.isLoadingSpinner = false;
         this.route.navigate(['/soaps'])
 
+      }, (error: any) => {
+        if(error.status == 400) {
+          this.errorMessage = 'Your username or password might be incorect!';
+        }
       })
     
   }
   
-  
+  manageCustomErrors() {
+    this.errorMessage = '';
+  }
 
 }
