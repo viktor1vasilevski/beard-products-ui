@@ -1,1 +1,103 @@
-<p>create-oil-modal works!</p>
+<div class="modal-container">
+    <div
+      style="
+        width: 800px;
+        height: auto;
+        border: olive 1px solid;
+        background-color: white;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;">
+        <h3 class="p-2" style="text-align: left; text-decoration: underline;">Create Oil</h3>
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2 mt-2">
+                    <label for="brand" class="form-label">Brand</label>
+                    <input type="text" id="brand" name="brand" class="form-control" required minlength="3" [(ngModel)]="createdOilModel.brand" #brand="ngModel" autocomplete="off">
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['required']" style="color: red;">Brand is required</p>
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['minlength']" style="color: red;">Brand must have more then 3 letters</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2 mt-2">
+                    <label for="scent" class="form-label">Scent</label>
+                    <input type="text" id="scent" name="edition" class="form-control" required minlength="3" maxlength="50" [(ngModel)]="createdOilModel.scent" #scent="ngModel">
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['required']" style="color: red;">Scent is required</p>
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['minlength']" style="color: red;">Scent must have more then 3 letters</p>
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['maxlength']" style="color: red;">Scent must be less then 50 letters</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="liquidVolume" class="form-label">Liquid Volume</label>
+                    <input type="number" id="liquidVolume" name="liquidVolume" class="form-control" min="1" max="500" required [(ngModel)]="createdOilModel.liquidVolume" #liquidVolume="ngModel">
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['required']" style="color: red;">Liquid Volum is required</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['min']" style="color: red;">Liquid Volum must be more then 0</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['max']" style="color: red;">Liquid Volum must be less then 500</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="desciption" rows="1" [(ngModel)]="createdOilModel.description" #description="ngModel"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" max="500" required [(ngModel)]="createdOilModel.unitQuantity" #unitQuantity="ngModel">
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']" style="color: red;">Quantity is required</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['min']" style="color: red;">Quantity must be more then 0</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['max']" style="color: red;">Quantity must be less then 500</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" id="price" name="price" class="form-control" min="1" max="1000" required [(ngModel)]="createdOilModel.unitPrice" #unitPrice="ngModel">
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']" style="color: red;">Price is required</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['min']" style="color: red;">Price must be more then 0</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['max']" style="color: red;">Price must be lest then 1000</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="m-2">
+                <label for="image" class="form-label">Image</label>
+                <div class="fileInputProfileWrap">  
+                <div class="img-space">
+                    <div class="row">
+                        <div class="col-12">
+                        <input type="file" style="width: 98%;" class="form-control" (change)="fileChangeEvent($event)">
+                        <p style="color: red;">{{imageError}}</p>
+        
+                        <ng-container *ngIf="isImageChosen; else elseTemplate">
+                            <img [src]="cardImageBase64" class="m-1" style="width: 230px; height: 160px" />
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                        </ng-template>
+                        </div>
+                    </div>
+                    
+                </div>
+                </div>
+                <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="isImageChosen">Remove</a>
+            </div>
+        </div>
+        <div class="btn-container modal-footer">
+            <button class="btn btn-secondary m-2" (click)="closeMe()">Close</button>
+            <button class="btn btn-danger m-2" 
+            [disabled]="brand.errors || scent.errors || liquidVolume.errors || unitPrice.errors || unitQuantity.errors || !isImageChosen" (click)="confirm()">Confirm</button>
+        </div>
+    </div>
+  </div>
+

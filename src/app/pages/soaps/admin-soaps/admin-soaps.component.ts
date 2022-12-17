@@ -17,8 +17,7 @@ import { LocalDataSource } from 'ng2-smart-table';
 export class AdminSoapsComponent implements OnInit, OnDestroy {
 
   public soaps: any;
-  source: LocalDataSource;
-  public imagePath = '';
+  public source: LocalDataSource;
 
   @ViewChild('deleteSoapModal', { read: ViewContainerRef })
   deleteSoapEntry!: ViewContainerRef;

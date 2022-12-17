@@ -21,6 +21,10 @@ button{
     margin: 5px;
 }
 
+label {
+    font-weight: 600;
+}
+
 
 /*image css*/
 /* .image-wrap {
