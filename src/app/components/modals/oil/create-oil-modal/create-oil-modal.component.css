@@ -25,6 +25,10 @@ label {
     font-weight: 600;
 }
 
+p {
+    color: red;
+}
+
 
 /*image css*/
 /* .image-wrap {

@@ -15,17 +15,17 @@
                 <div class="m-2 mt-2">
                     <label for="brand" class="form-label">Brand</label>
                     <input type="text" id="brand" name="brand" class="form-control" required minlength="3" [(ngModel)]="createdOilModel.brand" #brand="ngModel" autocomplete="off">
-                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['required']" style="color: red;">Brand is required</p>
-                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['minlength']" style="color: red;">Brand must have more then 3 letters</p>
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['required']">Brand is required</p>
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['minlength']">Brand must have more then 3 letters</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="m-2 mt-2">
                     <label for="scent" class="form-label">Scent</label>
                     <input type="text" id="scent" name="edition" class="form-control" required minlength="3" maxlength="50" [(ngModel)]="createdOilModel.scent" #scent="ngModel">
-                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['required']" style="color: red;">Scent is required</p>
-                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['minlength']" style="color: red;">Scent must have more then 3 letters</p>
-                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['maxlength']" style="color: red;">Scent must be less then 50 letters</p>
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['required']">Scent is required</p>
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['minlength']">Scent must have more then 3 letters</p>
+                    <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['maxlength']">Scent must be less then 50 letters</p>
                 </div>
             </div>
         </div>
@@ -35,9 +35,9 @@
                 <div class="m-2">
                     <label for="liquidVolume" class="form-label">Liquid Volume</label>
                     <input type="number" id="liquidVolume" name="liquidVolume" class="form-control" min="1" max="500" required [(ngModel)]="createdOilModel.liquidVolume" #liquidVolume="ngModel">
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['required']" style="color: red;">Liquid Volum is required</p>
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['min']" style="color: red;">Liquid Volum must be more then 0</p>
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['max']" style="color: red;">Liquid Volum must be less then 500</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['required']">Liquid Volum is required</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['min']">Liquid Volum must be more then 0</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['max']">Liquid Volum must be less then 500</p>
                 </div>
             </div>
             <div class="col-6">
@@ -53,18 +53,18 @@
                 <div class="m-2">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" id="quantity" name="quantity" class="form-control" min="1" max="500" required [(ngModel)]="createdOilModel.unitQuantity" #unitQuantity="ngModel">
-                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']" style="color: red;">Quantity is required</p>
-                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['min']" style="color: red;">Quantity must be more then 0</p>
-                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['max']" style="color: red;">Quantity must be less then 500</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']">Quantity is required</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['min']">Quantity must be more then 0</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['max']">Quantity must be less then 500</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="m-2">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" id="price" name="price" class="form-control" min="1" max="1000" required [(ngModel)]="createdOilModel.unitPrice" #unitPrice="ngModel">
-                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']" style="color: red;">Price is required</p>
-                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['min']" style="color: red;">Price must be more then 0</p>
-                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['max']" style="color: red;">Price must be lest then 1000</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']">Price is required</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['min']">Price must be more then 0</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['max']">Price must be lest then 1000</p>
                 </div>
             </div>
         </div>
