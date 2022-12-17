@@ -31,8 +31,6 @@ export class EditSoapModalComponent implements OnInit {
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
-  ngOnDestroy(): void {}
-
   closeMe() {
     this.closeMeEvent.emit();
   }

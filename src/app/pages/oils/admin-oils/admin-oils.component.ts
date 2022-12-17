@@ -123,21 +123,21 @@ export class AdminOilsComponent implements OnInit, OnDestroy {
   onAction(event: any) {
     switch (event.action) {
 
-      // case 'edit':
-      //   this.editSoapSub = this._editSoapModalService
-      //   .openModal(this.editSoapEntry, event.data)
-      //   .subscribe((model) => {
-      //     this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
-      //       let indexOfEditedItem = this.soaps.findIndex((x : any) => x.id == response.id);
-      //       this.soaps.splice(indexOfEditedItem, 1);
-      //       this.soaps.unshift(response);
-      //       this.source.load(this.soaps);
-      //       this._toastr.success('Soap seccessfuly edited!');
-      //     }, (err:any) => {
-      //       this._toastr.error('Soap unseccessfuly edited!');
-      //     })      
-      //   });
-      //   break;
+      case 'edit':
+        this.editOilSub = this._editOilModalService
+        .openModal(this.editOilEntry, event.data)
+        .subscribe((model) => {
+          this._oilService.createEditOil(model).subscribe((response: CreateEditOilModel) => {
+            let indexOfEditedItem = this.oils.findIndex((x : any) => x.id == response.id);
+            this.oils.splice(indexOfEditedItem, 1);
+            this.oils.unshift(response);
+            this.source.load(this.oils);
+            this._toastr.success('Soap seccessfuly edited!');
+          }, (err:any) => {
+            this._toastr.error('Soap unseccessfuly edited!');
+          })      
+        });
+        break;
 
       case 'delete':
         this.deleteOilSub = this._deleteOilModalService
