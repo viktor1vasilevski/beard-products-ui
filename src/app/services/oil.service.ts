@@ -36,4 +36,15 @@ export class OilService {
     
     return this.http.post<any>(this.oilUrl, body, { headers });
   }
+
+  deleteOil(id: any) {
+    let userData;
+    let userDataFromStorage = sessionStorage.getItem('UserInfo');
+
+    if(userDataFromStorage != null) {
+      userData  = JSON.parse(userDataFromStorage);
+    }
+    const headers = { 'Authorization': `Bearer ${userData.token}` };
+    return this.http.delete<any>(`${this.oilUrl}/${id}`, { headers });
+  }
 }

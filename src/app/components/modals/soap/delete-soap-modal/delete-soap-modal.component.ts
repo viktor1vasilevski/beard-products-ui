@@ -5,9 +5,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   templateUrl: './delete-soap-modal.component.html',
   styleUrls: ['./delete-soap-modal.component.css']
 })
-export class DeleteSoapModalComponent implements OnInit {
-
-  constructor() {}
+export class DeleteSoapModalComponent {
 
   @Input() title: string = '';
   @Input() subTitle: any = null;
@@ -17,13 +15,10 @@ export class DeleteSoapModalComponent implements OnInit {
   @Output() closeMeEvent = new EventEmitter();
   @Output() confirmEvent = new EventEmitter<boolean>(false);
 
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {}
-
   closeMe() {
     this.closeMeEvent.emit();
   }
+  
   confirm() {  
     this.confirmEvent.emit(true);
   }

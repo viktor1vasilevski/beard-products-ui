@@ -17,6 +17,7 @@
 .btn-container{
     display: flex;
 } 
-button{
+
+button {
     margin: 5px;
 }
