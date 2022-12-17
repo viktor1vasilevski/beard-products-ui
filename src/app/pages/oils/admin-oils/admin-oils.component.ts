@@ -110,19 +110,14 @@ export class AdminOilsComponent implements OnInit {
     this.createOilSub = this._createOilModalService
       .openModal(this.createOilEntry)
       .subscribe((model) => {
-        
-      })
-    // this.createSoapSub = this._createSoapModalService
-    //   .openModal(this.createSoapEntry)
-    //   .subscribe((model) => {
-    //     this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
-    //       this.soaps.unshift(response);
-    //       this.source.load(this.soaps);
-    //       this._toastr.success('Soap seccessfuly created!');
-    //     }, (err:any) => {
-    //       this._toastr.error('Soap unseccessfuly created!');
-    //     })
-    //   });
+       this._oilService.createEditOil(model).subscribe((response: CreateEditOilModel) => {
+        this.oils.unshift(response);
+        this.source.load(this.oils);
+        this._toastr.success('Oil seccessfuly created!');
+       }, (err: any) => {
+        this._toastr.error('Oil unseccessfuly created!');
+       });
+      });
   } 
 
   onAction(event: any) {
