@@ -52,64 +52,9 @@
             <p *ngIf="password.invalid && (username.dirty || password.touched) && password.errors?.['maxlength']" style="color: red;">Username must be less then 15 letters</p>
           </div>
 
-
           <button class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="username.errors || password.errors" (click)="myLogin()">Login</button>
           <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register" class="link-danger">Register</a></p>
-
-          <!-- <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
-            <div class="alert alert-danger" *ngIf="error">
-              <p>{{error}}</p>
-            </div>
-
-
-
-
-
-
-  
-
-            <div class="form-outline mb-3">
-              <input type="password" id="password" class="form-control form-control-lg" placeholder="Enter password" ngModel name="password" required minlength="6" />
-              <label class="form-label" for="password">Password</label>
-            </div>
-  
-            <div class="d-flex justify-content-between align-items-center">
-
-              <div class="form-check mb-0">
-                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
-                <label class="form-check-label" for="form2Example3">
-                  Remember me
-                </label>
-              </div>
-              <a href="#!" class="text-body">Forgot password?</a>
-            </div>
-  
-            <div class="text-center text-lg-start mt-4 pt-2">
-              <button type="button" class="btn btn-primary btn-lg"
-                style="padding-left: 2.5rem; padding-right: 2.5rem;" class="btn btn-primary" [disabled]="username.error" type="submit" >Login</button>
-              <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register"
-                  class="link-danger">Register</a></p>
-            </div>
-  
-          </form> -->
         </div>
       </div>
     </div>
-    <!-- <div
-      class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
-      <div>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a href="#!" class="text-white me-4">
-          <i class="fab fa-google"></i>
-        </a>
-        <a href="#!" class="text-white">
-          <i class="fab fa-linkedin-in"></i>
-        </a>
-      </div>
-    </div> -->
   </section>
