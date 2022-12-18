@@ -1,29 +1,28 @@
 <div class="modal-container">
     <div class="modal-card">
-        <h3 class="p-2">Create Oil</h3>
+        <h3 class="p-2">Edit Oil</h3>
         <div class="row">
             <div class="col-6">
                 <div class="m-2 mt-2">
                     <label for="brand" class="form-label">Brand</label>
                     <input type="text" id="brand" class="form-control" [value]="model.brand" #brand autocomplete="off">
-
+                    <p *ngIf="errors.brandValidationError">{{ errors.brandValidationError }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="m-2 mt-2">
                     <label for="scent" class="form-label">Scent</label>
                     <input type="text" id="scent" class="form-control" [value]="model.scent" #scent>
-
+                    <p *ngIf="errors.scentValidationError">{{ errors.scentValidationError }}</p>
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-6">
                 <div class="m-2">
                     <label for="liquidVolume" class="form-label">Liquid Volume</label>
-                    <input type="number" id="liquidVolume" class="form-control" [value]="model.liquidVolume" #liquidVolume>
-                    
+                    <input type="number" id="liquidVolume" class="form-control" #liquid [value]="model.liquidVolume">
+                    <p *ngIf="errors.liquidVolumeValidationError">{{ errors.liquidVolumeValidationError }}</p>
                 </div>
             </div>
             <div class="col-6">
@@ -33,53 +32,47 @@
                 </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-6">
                 <div class="m-2">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" id="quantity" class="form-control" [value]="model.unitQuantity" #quantity>
+                    <p *ngIf="errors.quantityValidationError">{{ errors.quantityValidationError }}</p>
                 </div>
             </div>
             <div class="col-6">
                 <div class="m-2">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" id="price" class="form-control" [value]="model.unitPrice" #price>
-
+                    <p *ngIf="errors.priceValidationError">{{ errors.priceValidationError }}</p>
                 </div>
             </div>
         </div>
-
-
         <div class="row">
             <div class="m-2">
-                <label for="image" class="form-label">Image</label>
-                <div class="fileInputProfileWrap">  
+                <label for="image" class="form-label">Image</label> 
                 <div class="img-space">
                     <div class="row">
                         <div class="col-12">
                         <input type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
                         <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
-        
                         <div *ngIf="showImagePanel">
                             <ng-container *ngIf="!isImageChanged else elseTemplate">
-                              <img [src]="model.url" class="m-1" style="width: 230px; height: 160px" />
+                              <img [src]="model.url" class="m-1" />
                             </ng-container>
                             <ng-template #elseTemplate>
-                              <img [src]="changedImageUrl" class="m-1" style="width: 230px; height: 160px" />
+                              <img [src]="changedImageUrl" class="m-1" />
                             </ng-template>
                         </div>
                         </div>
-                    </div>
-                    
-                </div>
+                    </div> 
                 </div>
                 <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="isImageChanged">Remove</a>
             </div>
         </div>
         <div class="btn-container modal-footer">
             <button class="btn btn-secondary m-2" (click)="closeMe()">Close</button>
-            <button class="btn btn-danger" (click)="confirm(brand.value, scent.value, description.value, quantity.value, price.value)">Confirm</button>E
+            <button class="btn btn-danger" (click)="confirm(brand.value, scent.value, liquid.value, quantity.value, price.value, description.value)">Confirm</button>
         </div>
     </div>
   </div>

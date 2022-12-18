@@ -15,7 +15,8 @@ export class EditOilModalComponent implements OnInit {
   model: any;
   errors: any = {
     brandValidationError: '',
-    editionValidationError: '',
+    scentValidationError: '',
+    liquidVolumeValidationError: '',
     priceValidationError: '',
     quantityValidationError: '',
     imageUrlValidationError: ''
@@ -26,8 +27,6 @@ export class EditOilModalComponent implements OnInit {
   public showImagePanel: boolean = false;
 
   ngOnInit(): void {
-    console.log(this.model);
-    
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -48,49 +47,32 @@ export class EditOilModalComponent implements OnInit {
     }
   }
 
-  confirm(brand: string, scent: string, desc: string, quantity: string, price: string) {  
+  confirm(brand: string, scent: string, liquid: string, quantity: string, price: string, desc: string) {  
     
     let errorCounter = 0;
-    this.errors.brandValidationError = '';
-    this.errors.editionValidationError = '';
-    this.errors.priceValidationError = '';
-    this.errors.quantityValidationError = '';
-    this.errors.imageUrlValidationError = '';
-   
-    const unitPrice = this.convertStringToNumber(price);
-    const unitQuantity = this.convertStringToNumber(quantity);
-
-    if(isNaN(unitPrice) && isNaN(unitQuantity)) {
-      this.errors.priceValidationError = 'Please enter valid price';
-      this.errors.quantityValidationError = 'Please enter valid quantity';
-      return;
-    }
-    if(isNaN(unitPrice)) {
-      this.errors.priceValidationError = 'Please enter valid price';
-      return;
-    }
-    if(isNaN(unitQuantity)) {
-      this.errors.quantityValidationError = 'Please enter valid quantity';
-      return;
-    }
+    this.resetValidationErrors();
 
     let validationObject = {
       brand: brand,
       scent: scent,
-      //liquidVolume: liquidVolume,
+      liquidVolume: liquid,
       desc: desc,
-      quantity: unitQuantity,
-      price: unitPrice
+      quantity: quantity,
+      price: price
     }
 
     if(this.handleValidationErrors(errorCounter, validationObject) > 0) 
       return;
+
+    const unitPrice = this.convertStringToNumber(price);
+    const unitQuantity = this.convertStringToNumber(quantity);
+    const liquidVolume = this.convertStringToNumber(liquid);
  
     let editedOilModel: CreateEditOilModel = {
       id: this.model.id,
       brand: brand,
       scent: scent,
-      liquidVolume: null,
+      liquidVolume: liquidVolume,
       unitPrice: unitPrice,
       unitQuantity: unitQuantity,
       url: '',
@@ -107,7 +89,38 @@ export class EditOilModalComponent implements OnInit {
   }
 
   handleValidationErrors(counter: any, model: any)  {
-    // soap brand validation 
+    debugger;
+    const unitPrice = this.convertStringToNumber(model.price);
+    const unitQuantity = this.convertStringToNumber(model.quantity);
+    const liquidVolume = this.convertStringToNumber(model.liquidVolume);
+
+    if(isNaN(unitPrice) && isNaN(unitQuantity) && isNaN(liquidVolume)) {
+      this.errors.priceValidationError = 'Price is required';
+      this.errors.quantityValidationError = 'Quantity is required';
+      this.errors.liquidVolumeValidationError = 'Liquid volume is required';
+      counter++;
+    }
+    if(isNaN(unitPrice) && isNaN(unitQuantity)) {
+      this.errors.priceValidationError = 'Price is required';
+      this.errors.quantityValidationError = 'Quantity is required';
+      counter++;
+    }
+    if(isNaN(unitPrice) && isNaN(liquidVolume)) {
+      this.errors.priceValidationError = 'Price is required';
+      this.errors.liquidVolumeValidationError = 'Liquid volume is required';
+      counter++;
+    }
+    if(isNaN(unitQuantity) && isNaN(liquidVolume)) {
+      this.errors.quantityValidationError = 'Quantity is required';
+      this.errors.liquidVolumeValidationError = 'Liquid volume is required';
+      counter++;
+    }
+    if(isNaN(unitPrice)) {
+      this.errors.priceValidationError = 'Price is required';
+      counter++;
+    }
+
+    // oil brand validation 
     if(model.brand === '') {
       this.errors.brandValidationError = 'Brand is required';
       counter++;
@@ -117,26 +130,32 @@ export class EditOilModalComponent implements OnInit {
       counter++;
     }
 
-    // soap edition validation
-    if(model.edition === '') {
-      this.errors.editionValidationError = 'Edition is required';
+    // oil edition validation
+    if(model.scent === '') {
+      this.errors.scentValidationError = 'Scent is required';
       counter++;
     }
-    if(model.edition.length < 3 && model.edition !== '') {
-      this.errors.editionValidationError = 'Edition must have more then 3 letters';
+    if(model.scent.length < 3 && model.scent !== '') {
+      this.errors.scentValidationError = 'Scent must have more then 3 letters';
       counter++;
     }
-    if(model.edition.length > 50) {
-      this.errors.editionValidationError = 'Edition must be less then 50 letters';
+    if(model.scent.length > 50) {
+      this.errors.scentValidationError = 'Scent must be less then 50 letters';
       counter++;
     }
 
-    if(!Number.isInteger(model.quantity)) {
+    if(!Number.isInteger(unitQuantity)) {
+      debugger;
       this.errors.quantityValidationError = 'Quantity must be whole number';
       counter++;
     }
 
-    // soap quantity validation
+    if(isNaN(unitQuantity)) {
+      this.errors.quantityValidationError = 'Quantity is required';
+      counter++;
+    }
+
+    // oil quantity validation
     if(model.quantity === 0 || model.quantity < 0) {
       this.errors.quantityValidationError = 'Quantity must be more then 0';
       counter++;
@@ -146,7 +165,23 @@ export class EditOilModalComponent implements OnInit {
       counter++;
     }
 
-    // soap price validation
+    // oil liquid volume validaton
+    if(model.liquidVolume === 0 || model.liquidVolume < 30) {
+      this.errors.liquidVolumeValidationError = 'Liquie volume must be more then 30ml';
+      counter++;
+    }
+
+    if(isNaN(liquidVolume)) {
+      this.errors.liquidVolumeValidationError = 'Liquid volume is required';
+      counter++;
+    }
+    
+    if(model.liquidVolume > 100) {
+      this.errors.liquidVolumeValidationError = 'Liquie volume must be less then 100ml';
+      counter++;
+    }
+
+    // oil price validation
     if(model.price === 0 || model.price < 0) {
       this.errors.priceValidationError = 'Price must be more then 0';
       counter++;
@@ -213,6 +248,16 @@ export class EditOilModalComponent implements OnInit {
     this.showImagePanel = false;
     this.isImageChanged = false;
     this.changedImageUrl = '';
+    this.errors.imageUrlValidationError = '';
+  }
+
+  resetValidationErrors() {
+    this.errors.brandValidationError = '';
+    this.errors.scentValidationError = '',
+    this.errors.liquidVolumeValidationError = '';
+    this.errors.editionValidationError = '';
+    this.errors.priceValidationError = '';
+    this.errors.quantityValidationError = '';
     this.errors.imageUrlValidationError = '';
   }
 

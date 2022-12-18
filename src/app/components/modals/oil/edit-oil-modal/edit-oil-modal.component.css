@@ -31,3 +31,21 @@
 button{
     margin: 5px;
 }
+
+p {
+    color: red
+}
+
+h3 {
+    text-align: left; 
+    text-decoration: underline;
+}
+
+img {
+    width: 230px; 
+    height: 160px
+}
+
+#data-image-input {
+    width: 98%;
+}

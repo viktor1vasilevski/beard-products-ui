@@ -54,7 +54,7 @@ export class SigninComponent implements OnInit {
           this._userService.isAdminUserLogged(true);
         }
         this.isLoadingSpinner = false;
-        this.route.navigate(['/soaps'])
+        this.route.navigate(['/oils'])
 
       }, (error: any) => {
         if(error.status == 400) {

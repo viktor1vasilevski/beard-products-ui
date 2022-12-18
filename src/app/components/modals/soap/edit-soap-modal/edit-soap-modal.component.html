@@ -27,15 +27,10 @@
       </div>
       <div class="m-3">
         <label for="formFile" class="form-label">Image url</label>
-        <div class="custom-file fileInputProfileWrap">
-          <div class="img-space">
               <div class="row">
                 <div class="col-12">
-
-
                   <input type="file" class="form-control" (change)="fileChangeEvent($event)">
                   <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
-                  <!-- <input type="file" class="form-control" (change)="fileChangeEvent($event)" class="fileInputProfile"> -->
 
                   <div *ngIf="showImagePanel">
                     <ng-container *ngIf="!isImageChanged else elseTemplate">
@@ -44,20 +39,12 @@
                     <ng-template #elseTemplate>
                       <img [src]="changedImageUrl" class="m-1" style="width: 230px; height: 160px" />
                     </ng-template>
-                  </div>
-                  
+                  </div> 
+                                  
                 </div>
-              </div>
-              
-          </div>
-        </div>
+              </div>             
         <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
-
-
-        <!-- <input type="text" id="imageUrl" class="form-control" #imageUrl [value]="model.url">
-        <p *ngIf="errors.imageUrlValidationError" style="color: red;">{{ errors.imageUrlValidationError }}</p> -->
       </div>
-  
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary"  (click)="closeMe()">Close</button>
         <button class="btn btn-danger" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value)">Confirm</button>
