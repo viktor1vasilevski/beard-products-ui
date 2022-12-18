@@ -35,3 +35,8 @@ button{
 p {
     color: red;
 }
+
+img {
+    width: 230px; 
+    height: 160px;
+}

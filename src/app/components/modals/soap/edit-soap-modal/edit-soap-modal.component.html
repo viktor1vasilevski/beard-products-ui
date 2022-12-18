@@ -34,13 +34,13 @@
 
                   <div *ngIf="showImagePanel">
                     <ng-container *ngIf="!isImageChanged else elseTemplate">
-                      <img [src]="model.url" class="m-1" style="width: 230px; height: 160px" />
+                      <img [src]="model.url" class="m-1"/>
                     </ng-container>
                     <ng-template #elseTemplate>
-                      <img [src]="changedImageUrl" class="m-1" style="width: 230px; height: 160px" />
+                      <img [src]="changedImageUrl" class="m-1"/>
                     </ng-template>
                   </div> 
-                                  
+
                 </div>
               </div>             
         <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
