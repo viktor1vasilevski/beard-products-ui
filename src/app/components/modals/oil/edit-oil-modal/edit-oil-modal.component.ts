@@ -89,7 +89,7 @@ export class EditOilModalComponent implements OnInit {
   }
 
   handleValidationErrors(counter: any, model: any)  {
-    debugger;
+
     const unitPrice = this.convertStringToNumber(model.price);
     const unitQuantity = this.convertStringToNumber(model.quantity);
     const liquidVolume = this.convertStringToNumber(model.liquidVolume);
@@ -145,7 +145,6 @@ export class EditOilModalComponent implements OnInit {
     }
 
     if(!Number.isInteger(unitQuantity)) {
-      debugger;
       this.errors.quantityValidationError = 'Quantity must be whole number';
       counter++;
     }

@@ -95,20 +95,20 @@ export class AdminBalmsComponent implements OnInit {
     switch (event.action) {
 
       case 'edit':
-        // this.editSoapSub = this._editSoapModalService
-        // .openModal(this.editSoapEntry, event.data)
-        // .subscribe((model) => {
-        //   this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
-        //     let indexOfEditedItem = this.soaps.findIndex((x : any) => x.id == response.id);
-        //     this.soaps.splice(indexOfEditedItem, 1);
-        //     this.soaps.unshift(response);
-        //     this.source.load(this.soaps);
-        //     this._toastr.success('Soap seccessfuly edited!');
-        //   }, (err:any) => {
-        //     this._toastr.error('Soap unseccessfuly edited!');
-        //   })      
-        // });
-        // break;
+        this.editBalmSub = this._editBalmModalService
+        .openModal(this.editBalmEntry, event.data)
+        .subscribe((model) => {
+          this._balmService.createEditBalm(model).subscribe((response: CreateEditBalmModel) => {
+            let indexOfEditedItem = this.balms.findIndex((x : any) => x.id == response.id);
+            this.balms.splice(indexOfEditedItem, 1);
+            this.balms.unshift(response);
+            this.source.load(this.balms);
+            this._toastr.success('Balm seccessfuly edited!');
+          }, (err:any) => {
+            this._toastr.error('Balm unseccessfuly edited!');
+          })      
+        });
+        break;
 
       case 'delete':
         this.deleteBalmSub = this._deleteBalmModalService
