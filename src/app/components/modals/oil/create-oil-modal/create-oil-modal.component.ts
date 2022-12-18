@@ -12,13 +12,10 @@ export class CreateOilModalComponent {
   @Output() closeMeEvent = new EventEmitter();
   @Output() confirmEvent = new EventEmitter<any>();
 
-  imageError: string | null = '';
-  isImageSaved: boolean = false;
-  cardImageBase64: string | null = '';
+  public imageError: string | null = '';
+  public isImageSaved: boolean = false;
+  public cardImageBase64: string | null = '';
   public isImageChosen: boolean = false;
-
-  constructor() { }
-
 
   public createdOilModel: CreateEditOilModel = {
     brand : '',

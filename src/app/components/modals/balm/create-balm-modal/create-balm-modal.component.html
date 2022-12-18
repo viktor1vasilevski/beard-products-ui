@@ -1,1 +1,84 @@
-<p>create-balm-modal works!</p>
+<div class="modal-container">
+    <div class="modal-card">
+        <h3 class="p-2">Create Balm</h3>
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2 mt-2">
+                    <label for="brand" class="form-label">Brand</label>
+                    <input type="text" id="brand" name="brand" class="form-control" required minlength="3" [(ngModel)]="createdBalmModel.brand" #brand="ngModel" autocomplete="off">
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['required']">Brand is required</p>
+                    <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['minlength']">Brand must have more then 3 letters</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2 mt-2">
+                    <label for="volume" class="form-label">Volume</label>
+                    <input type="number" id="volume" name="volume" class="form-control" required min="10" max="150" [(ngModel)]="createdBalmModel.volume" #volume="ngModel">
+                    <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['required']">Volume is required</p>
+                    <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['min']">Volume must have more then 10g</p>
+                    <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['max']">Volume must be less then 150g</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" max="500" required [(ngModel)]="createdBalmModel.unitQuantity" #unitQuantity="ngModel">
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']">Quantity is required</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['min']">Quantity must be more then 0 units</p>
+                    <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['max']">Quantity must be less then 500 units</p>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="desciption" rows="1" [(ngModel)]="createdBalmModel.description" #description="ngModel"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="m-2">
+                    <div class="m-2">
+                        <label for="image" class="form-label">Image</label> 
+                        <div class="img-space">
+                            <div class="row">
+                                <div class="col-12">
+                                <input type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
+                                <p>{{imageError}}</p>
+                
+                                <ng-container *ngIf="isImageChosen; else elseTemplate">
+                                    <img [src]="cardImageBase64" class="m-1" />
+                                </ng-container>
+                                <ng-template #elseTemplate>
+                                </ng-template>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="isImageChosen">Remove</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="m-2">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" id="price" name="price" class="form-control" min="1" max="1000" required [(ngModel)]="createdBalmModel.unitPrice" #unitPrice="ngModel">
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']">Price is required</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['min']">Price must be more then 0 $</p>
+                    <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['max']">Price must be lest then 1000 $</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="btn-container modal-footer">
+            <button class="btn btn-secondary m-2" (click)="closeMe()">Close</button>
+            <button class="btn btn-danger m-2" 
+            [disabled]="brand.errors || volume.errors || unitPrice.errors || unitQuantity.errors || !isImageChosen" (click)="confirm()">Confirm</button>
+        </div>
+    </div>
+  </div>
+
+

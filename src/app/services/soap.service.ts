@@ -16,10 +16,10 @@ export class SoapService {
 
   createEditSoap(soap: any) {
     let userData;
-    let lsData = sessionStorage.getItem('UserInfo');
+    let userDataFromStorage = sessionStorage.getItem('UserInfo');
 
-    if(lsData != null) {
-      userData  = JSON.parse(lsData);
+    if(userDataFromStorage != null) {
+      userData  = JSON.parse(userDataFromStorage);
     }
 
     const headers = { 'Authorization': `Bearer ${userData.token}` };
@@ -39,14 +39,12 @@ export class SoapService {
 
   deleteSoap(id: any) {
     let userData;
-    let lsData = sessionStorage.getItem('UserInfo');
-
-      if(lsData != null) {
-        userData  = JSON.parse(lsData);
-      }
+    let userDataFromStorage = sessionStorage.getItem('UserInfo');
+    if(userDataFromStorage != null) {
+      userData  = JSON.parse(userDataFromStorage);
+    }
 
     const headers = { 'Authorization': `Bearer ${userData.token}` };
-    
     return this.http.delete<any>(`${this.soapUrl}/${id}`, { headers });
   }
 
