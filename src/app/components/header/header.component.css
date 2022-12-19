@@ -3,3 +3,11 @@
     height: 40px;
     border-radius: 50%;
 }
+
+.navbar {
+    position: fixed; /* Set the navbar to fixed position */
+    top: 0; /* Position the navbar at the bottom of the page */
+    width: 100%; /* Full width */
+    z-index: 9999;
+  }
+  

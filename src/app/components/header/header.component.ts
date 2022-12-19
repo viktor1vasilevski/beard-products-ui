@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
+import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -13,19 +14,24 @@ export class HeaderComponent implements OnInit {
     username: '',
     role: '',
   };
+
+  public totalItem : number = 0;
   showUserInfo = false;
   showLogoutButton = false;
   hideRegisterAndLoginButton = false;
   isAdminLogged = false;
 
-  constructor(private _userService: UserService, private _authService: AuthenticationService) {
+  constructor(private _userService: UserService, private _authService: AuthenticationService, private _cartService: CartService) {
     this._userService.showUserInfo.subscribe((data: any) => {
       this.setUserInfo(data);   
     });
    }
 
   ngOnInit(): void {
-
+    this._cartService.getProducts()
+    .subscribe(res => {
+      this.totalItem = res.length;
+    })
   }
 
   setUserInfo(user: any) {

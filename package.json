@@ -21,6 +21,8 @@
     "@ng-bootstrap/ng-bootstrap": "^13.1.1",
     "@types/gsap": "^3.0.0",
     "bootstrap": "^5.2.2",
+    "bootstrap-icons": "^1.10.2",
+    "font-awesome-plus": "^4.3.0",
     "gsap": "^3.11.3",
     "ng2-smart-table": "^1.7.2",
     "ngx-toastr": "^15.2.1",

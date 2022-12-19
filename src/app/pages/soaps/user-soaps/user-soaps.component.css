@@ -20,3 +20,8 @@ span {
     width: 92%; 
     cursor: pointer;
 }
+
+  /* Main content */
+  .row {
+    margin-bottom: 30px; /* Add a bottom margin to avoid content overlay */
+  }

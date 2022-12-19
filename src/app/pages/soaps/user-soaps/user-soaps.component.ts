@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { SoapService } from 'src/app/services/soap.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class UserSoapsComponent implements OnInit {
   public userSoaps: any;
   public orginalSoaps: any[] = [];
 
-  constructor(private _soapService: SoapService) { }
+  constructor(private _soapService: SoapService, private _cartService: CartService) { }
 
   ngOnInit(): void {
     this._soapService.getAllSoaps().subscribe((response: any) => {
@@ -31,6 +32,10 @@ export class UserSoapsComponent implements OnInit {
     var originalDesc = this.orginalSoaps.find((x : any) => x.id == id).desc;
     var displaySoap = this.userSoaps.find((x : any) => x.id == id);
     displaySoap.description = originalDesc;
+  }
+
+  addToCart(item: any) {
+    this._cartService.addtoCart(item);
   }
 
 }
