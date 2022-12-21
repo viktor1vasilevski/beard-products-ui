@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/services/cart.service';
 import { OilService } from 'src/app/services/oil.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class UserOilsComponent implements OnInit {
   public userOils: any;
   public orginalOils: any[] = [];
 
-  constructor(private _oilService: OilService) { }
+  constructor(private _oilService: OilService, private _cartService: CartService) { }
 
   ngOnInit(): void {
     this._oilService.getAllOils().subscribe((response: any) => {
@@ -32,6 +33,10 @@ export class UserOilsComponent implements OnInit {
     var originalDesc = this.orginalOils.find((x : any) => x.id == id).desc;
     var displayOil = this.userOils.find((x : any) => x.id == id);
     displayOil.description = originalDesc;
+  }
+
+  addToCart(item: any) {
+    this._cartService.addtoCart(item);
   }
 
 }
