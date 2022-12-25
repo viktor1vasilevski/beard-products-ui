@@ -5,10 +5,11 @@
           <div class="card-body">
             <h4>{{balm.brand}}</h4>
             <p class="card-text">{{balm.description}}<span (click)="loadMoreDescription(balm.id)"><strong >...</strong></span></p>
+            <h6>Price: {{ balm.unitPrice }}$</h6>
           </div>
           <div class="row">
             <div class="col-6">
-              <button type="button" class="btn btn-primary m-2">Add to card</button>
+              <button type="button" class="btn btn-primary m-2" (click)="addToCart(balm)">Add to card</button>
             </div>
             <div class="col-6">
               <button type="button" class="btn btn-secondary m-2">View Details</button>
@@ -17,4 +18,3 @@
         </div>
     </div> 
 </div>
-

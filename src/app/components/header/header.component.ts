@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
@@ -15,16 +16,25 @@ export class HeaderComponent implements OnInit {
     role: '',
   };
 
+  public isCustomerLogged: boolean = false;
+
   public totalItem : number = 0;
   showUserInfo = false;
   showLogoutButton = false;
   hideRegisterAndLoginButton = false;
   isAdminLogged = false;
 
-  constructor(private _userService: UserService, private _authService: AuthenticationService, private _cartService: CartService) {
+  constructor(private _userService: UserService, 
+    private _authService: AuthenticationService, 
+    private _cartService: CartService, 
+    private _router: Router) {
     this._userService.showUserInfo.subscribe((data: any) => {
       this.setUserInfo(data);   
     });
+
+    this._userService.isCustomerLogged.subscribe((status: boolean) => {
+      this.manageCustomer(status);
+    })
    }
 
   ngOnInit(): void {
@@ -32,6 +42,10 @@ export class HeaderComponent implements OnInit {
     .subscribe(res => {
       this.totalItem = res.length;
     })
+  }
+
+  manageCustomer(status: boolean) {
+    this.isCustomerLogged = status;
   }
 
   setUserInfo(user: any) {
@@ -52,6 +66,8 @@ export class HeaderComponent implements OnInit {
       this.showLogoutButton = false;
       this.hideRegisterAndLoginButton = false;
       this.showUserInfo = false;
+      this._userService.isUserCustomerLogged(false);
+      this._router.navigate(['/']);
     })
   }
 

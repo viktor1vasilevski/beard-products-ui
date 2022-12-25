@@ -16,8 +16,8 @@ import { UserModel } from './user-model';
 export class SigninComponent implements OnInit {
 
   public user: UserModel = {
-    username: 'Viktor',
-    password: 'Viktor@123'
+    username: 'Goran',
+    password: 'Goran@123'
   }
 
   public hideLoginImage: boolean = false; 
@@ -53,8 +53,12 @@ export class SigninComponent implements OnInit {
         if(res.role == 'Admin') {
           this._userService.isAdminUserLogged(true);
         }
+
+        if(res.role == 'User') {
+          this._userService.isUserCustomerLogged(true);
+        }
         this.isLoadingSpinner = false;
-        this.route.navigate(['/oils'])
+        this.route.navigate(['/'])
 
       }, (error: any) => {
         if(error.status == 400) {

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { stubFalse } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 
 interface User {
@@ -14,6 +15,7 @@ export class UserService {
 
   showUserInfo : BehaviorSubject<Object> = new BehaviorSubject<Object>({showDataStatus: false, username: "", role: "", token: "", userId: ""});
   isAdminLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  isCustomerLogged: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor() { }
 
@@ -23,6 +25,10 @@ export class UserService {
 
   isAdminUserLogged(value: boolean = false) {
     this.isAdminLogged.next(value);
+  }
+
+  isUserCustomerLogged(value: boolean = false) {
+    this.isCustomerLogged.next(value);
   }
 
 }

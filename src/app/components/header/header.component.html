@@ -22,7 +22,7 @@
       <div *ngIf="showUserInfo">
         <h4 class="p-1" style="color: white; margin: 0 0 0 0;">role : {{ userInfo.role }}</h4>
       </div>
-      <button routerLink="cart" class="btn btn-primary">
+      <button *ngIf="isCustomerLogged" routerLink="cart" class="btn btn-primary m-1">
         <i class="bi bi-cart3"></i>
         <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
       </button>

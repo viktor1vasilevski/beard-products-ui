@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BalmService } from 'src/app/services/balm.service';
+import { CartService } from 'src/app/services/cart.service';
 
 @Component({
   selector: 'app-user-balms',
@@ -11,7 +12,8 @@ export class UserBalmsComponent implements OnInit {
   public userBalms: any;
   public orginalBalms: any[] = [];
 
-  constructor(private _balmSerice: BalmService) { }
+  constructor(private _balmSerice: BalmService, 
+    private _cartService: CartService) { }
 
   ngOnInit(): void {
     this._balmSerice.getAllBalms().subscribe((response: any) => {
@@ -31,6 +33,11 @@ export class UserBalmsComponent implements OnInit {
     var originalDesc = this.orginalBalms.find((x : any) => x.id == id).desc;
     var displayBalm = this.userBalms.find((x : any) => x.id == id);
     displayBalm.description = originalDesc;
+  }
+
+  addToCart(item: any) {
+    item.description = this.orginalBalms.find((x : any) => x.id == item.id).desc;
+    this._cartService.addtoCart(item);
   }
 
 }

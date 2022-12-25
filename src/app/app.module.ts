@@ -36,6 +36,7 @@ import { UserOilsComponent } from './pages/oils/user-oils/user-oils.component';
 import { AdminBalmsComponent } from './pages/balms/admin-balms/admin-balms.component';
 import { UserBalmsComponent } from './pages/balms/user-balms/user-balms.component';
 import { CartComponent } from './components/cart/cart.component';
+import { AddToCartWarningComponent } from './components/modals/add-to-cart-warning/add-to-cart-warning.component';
 
 
 
@@ -67,6 +68,7 @@ import { CartComponent } from './components/cart/cart.component';
     AdminBalmsComponent,
     UserBalmsComponent,
     CartComponent,
+    AddToCartWarningComponent,
   ],
   imports: [
     BrowserModule,

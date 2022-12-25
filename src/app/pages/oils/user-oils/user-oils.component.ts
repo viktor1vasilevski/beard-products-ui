@@ -36,6 +36,7 @@ export class UserOilsComponent implements OnInit {
   }
 
   addToCart(item: any) {
+    item.description = this.orginalOils.find((x : any) => x.id == item.id).desc;
     this._cartService.addtoCart(item);
   }
 

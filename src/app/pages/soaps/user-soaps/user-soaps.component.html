@@ -3,8 +3,9 @@
         <div class="card">
           <img [src]="soap.url" class="card-img-top">
           <div class="card-body">
-            <h4>{{soap.brand}}</h4>
+            <h4>{{ soap.brand }}, {{ soap.edition }}</h4>
             <p class="card-text">{{soap.description}}<span (click)="loadMoreDescription(soap.id)"><strong >...</strong></span></p>
+            <h6>Price: {{ soap.unitPrice }}$</h6>
           </div>
           <div class="row">
             <div class="col-6">
@@ -16,4 +17,7 @@
           </div>
         </div>
     </div> 
+</div>
+<div class="modal-container">
+  <div #addToCartWarningModal></div>
 </div>

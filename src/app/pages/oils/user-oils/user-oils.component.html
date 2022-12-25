@@ -3,8 +3,9 @@
         <div class="card"  style="width: auto; box-shadow: 5px 10px 8px #888888;">
           <img [src]="oil.url" class="card-img-top" height="350px">
           <div class="card-body">
-            <h4>{{oil.brand}}</h4>
+            <h4>{{ oil.brand }}, {{ oil.scent }}</h4>
             <p class="card-text">{{oil.description}}<span style="cursor: pointer;" (click)="loadMoreDescription(oil.id)"><strong >...</strong></span></p>
+            <h6>Price: {{ oil.unitPrice }}$</h6>
           </div>
           <div class="row">
             <div class="col-6">
