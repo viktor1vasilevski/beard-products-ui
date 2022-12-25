@@ -23,7 +23,7 @@ export class RegisterComponent  {
 
       this.form = fb.group({
         username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(15)]],
-        password: ['', [Validators.required, Validators.minLength(5)]],
+        password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$')]],
         confirm_password: ['', [Validators.required]]      
       }, { 
         validator: this.confirmedValidator('password', 'confirm_password')
