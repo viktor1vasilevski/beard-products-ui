@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { AddToCartSuccessfulPurchaseModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-successful-purchase-modal.service';
 import { AddToCartWarningModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-warning-modal.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -20,10 +21,15 @@ export class CartComponent implements OnInit {
   addToCartWarningEntry!: ViewContainerRef;
   addToCartWarningSoapSub!: Subscription;
 
+  @ViewChild('addToCartSuccessfulPurchaseModal', { read: ViewContainerRef })
+  addToCartSuccessfulPurchasEntry!: ViewContainerRef;
+  addToCartSuccessfulPurchasSub!: Subscription;
+
   constructor(private cartService : CartService, 
     private _userService: UserService, 
     private router: Router, 
-    private _addToCartWarningModal: AddToCartWarningModalService) { 
+    private _addToCartWarningModal: AddToCartWarningModalService,
+    private _addtoCartSuccessfulPurchaseModal: AddToCartSuccessfulPurchaseModalService) { 
     this._userService.isCustomerLogged.subscribe(status => {
       this.isCustomerLogged = status;
     })
@@ -55,7 +61,11 @@ export class CartComponent implements OnInit {
         }
       });
     } else {
-      alert('ok, gi kupi ovie ajtemi')
+      this.addToCartSuccessfulPurchasSub = this._addtoCartSuccessfulPurchaseModal
+      .openModal(this.addToCartSuccessfulPurchasEntry)
+      .subscribe((status) => {
+        debugger;
+      });
     }
   }
 

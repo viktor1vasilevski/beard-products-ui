@@ -38,6 +38,7 @@ import { UserBalmsComponent } from './pages/balms/user-balms/user-balms.componen
 import { CartComponent } from './components/cart/cart.component';
 import { AddToCartWarningComponent } from './components/modals/add-to-cart-warning/add-to-cart-warning.component';
 import { TruncatePipe } from './components/pipes/truncate.pipe';
+import { AddToCartSuccessfulPurchaseComponent } from './components/modals/add-to-cart-successful-purchase/add-to-cart-successful-purchase.component';
 
 
 
@@ -71,6 +72,7 @@ import { TruncatePipe } from './components/pipes/truncate.pipe';
     CartComponent,
     AddToCartWarningComponent,
     TruncatePipe,
+    AddToCartSuccessfulPurchaseComponent,
   ],
   imports: [
     BrowserModule,
