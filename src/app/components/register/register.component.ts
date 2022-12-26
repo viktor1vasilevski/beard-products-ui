@@ -71,7 +71,6 @@ export class RegisterComponent {
   }
    
   submit(){
-    debugger;
     console.log(this.form.value);
     let username = this.form.get('username')?.value;
     let email = this.form.get('email')?.value;

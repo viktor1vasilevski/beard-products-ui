@@ -19,10 +19,10 @@ export class HeaderComponent implements OnInit {
   public isCustomerLogged: boolean = false;
 
   public totalItem : number = 0;
-  showUserInfo = false;
-  showLogoutButton = false;
-  hideRegisterAndLoginButton = false;
-  isAdminLogged = false;
+  public showUserInfo: boolean = false;
+  public showLogoutButton: boolean = false;
+  public hideRegisterAndLoginButton: boolean = false;
+  public isAdminLogged: boolean = false;
 
   constructor(private _userService: UserService, 
     private _authService: AuthenticationService, 
@@ -32,8 +32,12 @@ export class HeaderComponent implements OnInit {
       this.setUserInfo(data);   
     });
 
+    this._userService.isAdminLogged.subscribe(status => {
+      this.isAdminLogged = status;
+    })
+
     this._userService.isCustomerLogged.subscribe((status: boolean) => {
-      this.manageCustomer(status);
+      //this.manageCustomer(status);
     })
    }
 
@@ -50,7 +54,7 @@ export class HeaderComponent implements OnInit {
 
   setUserInfo(user: any) {
     if(!user.showDataStatus) {
-      return
+      return;
     }
     this.showUserInfo = true
     this.userInfo.username = user.username;
@@ -67,6 +71,7 @@ export class HeaderComponent implements OnInit {
       this.hideRegisterAndLoginButton = false;
       this.showUserInfo = false;
       this._userService.isUserCustomerLogged(false);
+      this._cartService.removeAllCart();
       this._router.navigate(['/']);
     })
   }

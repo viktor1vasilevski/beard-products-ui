@@ -50,19 +50,21 @@ export class UserSoapsComponent implements OnInit {
   }
 
   addToCart(item: any) {
-    debugger
-    if(!this.isCustomerLogged) {
-      this.addToCartWarningSoapSub = this._addToCartWarningModal
-      .openModal(this.addToCartWarningEntry)
-      .subscribe((m) => {
-        this._soapService.createEditSoap(m).subscribe((response: any) =>{
 
-        })
-      });
-    } else {
-      //item.description = this.orginalSoaps.find((x : any) => x.id == item.id).desc;
-      this._cartService.addtoCart(item);
-    }
+    this._cartService.addtoCart(item);
+
+    // if(!this.isCustomerLogged) {
+    //   this.addToCartWarningSoapSub = this._addToCartWarningModal
+    //   .openModal(this.addToCartWarningEntry)
+    //   .subscribe((m) => {
+    //     this._soapService.createEditSoap(m).subscribe((response: any) =>{
+
+    //     })
+    //   });
+    // } else {
+    //   //item.description = this.orginalSoaps.find((x : any) => x.id == item.id).desc;
+      
+    // }
     
   }
 
