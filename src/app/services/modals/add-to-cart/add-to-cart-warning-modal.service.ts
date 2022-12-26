@@ -15,6 +15,8 @@ export class AddToCartWarningModalService {
     let factory = this.resolver.resolveComponentFactory(AddToCartWarningComponent);
     this.componentRef = entry.createComponent(factory);
     this.componentRef.instance.closeMeEvent.subscribe(() => this.closeModal());
+    this.componentRef.instance.confirmEvent.subscribe((response) => this.confirm(response));
+
     this.componentSubscriber = new Subject<string>();
     return this.componentSubscriber.asObservable();
   }
@@ -22,5 +24,10 @@ export class AddToCartWarningModalService {
   closeModal() {
     this.componentSubscriber.complete();
     this.componentRef.destroy();
+  }
+
+  confirm(response: any) {
+    this.componentSubscriber.next(response);
+    this.closeModal();
   }
 }

@@ -8,9 +8,14 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class AddToCartWarningComponent {
 
   @Output() closeMeEvent = new EventEmitter();
+  @Output() confirmEvent = new EventEmitter<boolean>(false);
 
   closeMe() {
     this.closeMeEvent.emit();
+  }
+
+  confirm() {  
+    this.confirmEvent.emit(true);
   }
 
 }

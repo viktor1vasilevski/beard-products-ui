@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { AddToCartWarningModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-warning-modal.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,9 +16,14 @@ export class CartComponent implements OnInit {
   public grandTotal !: number;
   public isCustomerLogged: boolean = false;
 
+  @ViewChild('addToCartWarningModal', { read: ViewContainerRef })
+  addToCartWarningEntry!: ViewContainerRef;
+  addToCartWarningSoapSub!: Subscription;
+
   constructor(private cartService : CartService, 
     private _userService: UserService, 
-    private router: Router) { 
+    private router: Router, 
+    private _addToCartWarningModal: AddToCartWarningModalService) { 
     this._userService.isCustomerLogged.subscribe(status => {
       this.isCustomerLogged = status;
     })
@@ -40,10 +47,15 @@ export class CartComponent implements OnInit {
 
   checkOut() {
     if(!this.isCustomerLogged) {
-      //this.router.navigate(['/signin'])
-      alert('u need to first login')
+      this.addToCartWarningSoapSub = this._addToCartWarningModal
+      .openModal(this.addToCartWarningEntry)
+      .subscribe((status) => {
+        if(status) {
+          this.router.navigate(['/signin']);
+        }
+      });
     } else {
-      alert('ok u are signed in')
+      alert('ok, gi kupi ovie ajtemi')
     }
   }
 
