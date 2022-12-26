@@ -80,6 +80,8 @@ export class RegisterComponent {
     this._authService.signup(username, email, password, confPassword).subscribe((res: any) => {
       this._toastr.success('User successfully created!');
       this.router.navigate(['/signin']);
+    }, (err: any) => {
+      this._toastr.error('User unsuccessfully created!');
     })
   }
 
