@@ -32,14 +32,14 @@ export class UserSoapsComponent implements OnInit {
   ngOnInit(): void {
     this._soapService.getAllSoaps().subscribe((response: any) => {
       this.userSoaps = response.soaps;
-      this.userSoaps.forEach((soap: any) => {
-        let tempData = { 
-          desc: soap.description, 
-          id : soap.id 
-        };
-        this.orginalSoaps.push(tempData);
-        soap.description = soap.description.slice(0, 140);
-      });
+      // this.userSoaps.forEach((soap: any) => {
+      //   let tempData = { 
+      //     desc: soap.description, 
+      //     id : soap.id 
+      //   };
+      //   this.orginalSoaps.push(tempData);
+      //   soap.description = soap.description.slice(0, 140);
+      // });
     })
   }
 
@@ -50,6 +50,7 @@ export class UserSoapsComponent implements OnInit {
   }
 
   addToCart(item: any) {
+    debugger
     if(!this.isCustomerLogged) {
       this.addToCartWarningSoapSub = this._addToCartWarningModal
       .openModal(this.addToCartWarningEntry)
@@ -59,7 +60,7 @@ export class UserSoapsComponent implements OnInit {
         })
       });
     } else {
-      item.description = this.orginalSoaps.find((x : any) => x.id == item.id).desc;
+      //item.description = this.orginalSoaps.find((x : any) => x.id == item.id).desc;
       this._cartService.addtoCart(item);
     }
     
