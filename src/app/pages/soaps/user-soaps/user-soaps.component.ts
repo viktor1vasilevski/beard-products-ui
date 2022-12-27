@@ -17,14 +17,9 @@ export class UserSoapsComponent implements OnInit {
   public isCustomerLogged: boolean = false;
   public loadmoreText: boolean = false;
 
-  @ViewChild('addToCartWarningModal', { read: ViewContainerRef })
-  addToCartWarningEntry!: ViewContainerRef;
-  addToCartWarningSoapSub!: Subscription;
-
   constructor(private _soapService: SoapService, 
     private _cartService: CartService, 
-    private _userService: UserService,  
-    private _addToCartWarningModal: AddToCartWarningModalService) {
+    private _userService: UserService) {
       this._userService.isCustomerLogged.subscribe(status => {
         this.manageAddtoCartLogic(status);
       });
@@ -33,14 +28,6 @@ export class UserSoapsComponent implements OnInit {
   ngOnInit(): void {
     this._soapService.getAllSoaps().subscribe((response: any) => {
       this.userSoaps = response.soaps;
-      // this.userSoaps.forEach((soap: any) => {
-      //   let tempData = { 
-      //     desc: soap.description, 
-      //     id : soap.id 
-      //   };
-      //   this.orginalSoaps.push(tempData);
-      // //   soap.description = soap.description.slice(0, 140);
-      // });
     })
   }
 
@@ -59,22 +46,7 @@ export class UserSoapsComponent implements OnInit {
   }
 
   addToCart(item: any) {
-
     this._cartService.addtoCart(item);
-
-    // if(!this.isCustomerLogged) {
-    //   this.addToCartWarningSoapSub = this._addToCartWarningModal
-    //   .openModal(this.addToCartWarningEntry)
-    //   .subscribe((m) => {
-    //     this._soapService.createEditSoap(m).subscribe((response: any) =>{
-
-    //     })
-    //   });
-    // } else {
-    //   //item.description = this.orginalSoaps.find((x : any) => x.id == item.id).desc;
-      
-    // }
-    
   }
 
   manageAddtoCartLogic(status: any) {
