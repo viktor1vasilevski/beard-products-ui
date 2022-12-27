@@ -1,49 +1,68 @@
 <div class="modal-container">
     <div class="modal-card">
-      <div class="m-3">
-        <label for="brand" class="form-label">Brand</label>
-        <input type="text" id="brand" class="form-control" [value]="model.brand" #brand>
-        <p *ngIf="errors.brandValidationError">{{ errors.brandValidationError }}</p>
+      <div class="row">
+        <div class="col-6">
+          <div class="m-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" id="brand" class="form-control" [value]="model.brand" #brand>
+            <p *ngIf="errors.brandValidationError">{{ errors.brandValidationError }}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="m-3">
+            <label for="edition" class="form-label">Edition</label>
+            <input type="text" id="edition" class="form-control" #edition [value]="model.edition">
+            <p *ngIf="errors.editionValidationError">{{ errors.editionValidationError }}</p>
+          </div>
+        </div>
       </div>
-      <div class="m-3">
-        <label for="edition" class="form-label">Edition</label>
-        <input type="text" id="edition" class="form-control" #edition [value]="model.edition">
-        <p *ngIf="errors.editionValidationError">{{ errors.editionValidationError }}</p>
 
+      <div class="row">
+        <div class="col-6">
+          <div class="m-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" min="1" max="100" id="quantity" class="form-control" #quantity [value]="model.unitQuantity">
+            <p *ngIf="errors.quantityValidationError">{{ errors.quantityValidationError }}</p>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="m-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea type="text" id="description" rows="3" class="form-control" #description [value]="model.description"></textarea>
+          </div>
+        </div>
       </div>
-      <div class="m-3">
-        <label for="description" class="form-label">Description</label>
-        <textarea type="text" id="description" rows="3" class="form-control" #description [value]="model.description"></textarea>
-      </div>
-      <div class="m-3">
-        <label for="quantity" class="form-label">Quantity</label>
-        <input type="number" min="1" max="100" id="quantity" class="form-control" #quantity [value]="model.unitQuantity">
-        <p *ngIf="errors.quantityValidationError">{{ errors.quantityValidationError }}</p>
-      </div>
-      <div class="m-3">
-        <label for="price" class="form-label">Price</label>
-        <input type="number" id="price" min="1" max="100" class="form-control" #price [value]="model.unitPrice">
-        <p *ngIf="errors.priceValidationError">{{ errors.priceValidationError }}</p>
-      </div>
-      <div class="m-3">
-        <label for="formFile" class="form-label">Image url</label>
-              <div class="row">
-                <div class="col-12">
-                  <input type="file" class="form-control" (change)="fileChangeEvent($event)">
-                  <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
 
-                  <div *ngIf="showImagePanel">
-                    <ng-container *ngIf="!isImageChanged else elseTemplate">
-                      <img [src]="model.url" class="m-1"/>
-                    </ng-container>
-                    <ng-template #elseTemplate>
-                      <img [src]="changedImageUrl" class="m-1"/>
-                    </ng-template>
-                  </div> 
-
-                </div>
-              </div>             
-        <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
+      <div class="row">
+        <div class="col-6">
+          <div class="m-3">
+            <label for="formFile" class="form-label">Image url</label>
+                  <div class="row">
+                    <div class="col-12">
+                      <input type="file" class="form-control" (change)="fileChangeEvent($event)">
+                      <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
+    
+                      <div *ngIf="showImagePanel">
+                        <ng-container *ngIf="!isImageChanged else elseTemplate">
+                          <img [src]="model.url" class="m-1"/>
+                        </ng-container>
+                        <ng-template #elseTemplate>
+                          <img [src]="changedImageUrl" class="m-1"/>
+                        </ng-template>
+                      </div> 
+    
+                    </div>
+                  </div>             
+            <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="m-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" id="price" min="1" max="100" class="form-control" #price [value]="model.unitPrice">
+            <p *ngIf="errors.priceValidationError">{{ errors.priceValidationError }}</p>
+          </div>
+        </div>
       </div>
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary"  (click)="closeMe()">Close</button>

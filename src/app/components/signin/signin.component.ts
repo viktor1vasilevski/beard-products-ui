@@ -16,8 +16,8 @@ import { UserModel } from './user-model';
 export class SigninComponent implements OnInit {
 
   public user: UserModel = {
-    username: 'Goran',
-    password: 'Goran@123'
+    username: 'Viktor',
+    password: 'Viktor@123'
   }
 
   public hideLoginImage: boolean = false; 
