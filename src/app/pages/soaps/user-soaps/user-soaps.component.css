@@ -9,6 +9,7 @@ img {
 
 span {
     cursor: pointer;
+    font-style: italic;
 }
 
 #add-to-card-btn {

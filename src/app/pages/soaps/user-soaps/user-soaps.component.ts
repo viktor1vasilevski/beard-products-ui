@@ -15,6 +15,7 @@ export class UserSoapsComponent implements OnInit {
   public userSoaps: any;
   public orginalSoaps: any[] = [];
   public isCustomerLogged: boolean = false;
+  public loadmoreText: boolean = false;
 
   @ViewChild('addToCartWarningModal', { read: ViewContainerRef })
   addToCartWarningEntry!: ViewContainerRef;
@@ -38,9 +39,17 @@ export class UserSoapsComponent implements OnInit {
       //     id : soap.id 
       //   };
       //   this.orginalSoaps.push(tempData);
-      //   soap.description = soap.description.slice(0, 140);
+      // //   soap.description = soap.description.slice(0, 140);
       // });
     })
+  }
+
+  loadmore(id: any){
+    let desc = this.userSoaps.find((x : any) => x.id == id).description;
+    let el = document.getElementById(id);
+    if(el != undefined) {
+      el.innerText = desc;
+    }
   }
 
   loadMoreDescription(id: any){
