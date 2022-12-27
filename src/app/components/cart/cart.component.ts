@@ -64,7 +64,10 @@ export class CartComponent implements OnInit {
       this.addToCartSuccessfulPurchasSub = this._addtoCartSuccessfulPurchaseModal
       .openModal(this.addToCartSuccessfulPurchasEntry)
       .subscribe((status) => {
-        debugger;
+        if(status) {
+          this.cartService.removeAllCart();
+          this.router.navigate(['/']);
+        }
       });
     }
   }

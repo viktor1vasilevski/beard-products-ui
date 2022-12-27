@@ -9,24 +9,20 @@ export class AddToCartSuccessfulPurchaseComponent implements OnInit {
 
   @Output() confirmEvent = new EventEmitter<boolean>(false);
 
-  public mytime = 5;
+  public sec = 5;
 
   confirm() {  
     this.confirmEvent.emit(true);
   }
 
   ngOnInit(): void {
-    let time = 5
     let x = setInterval(() => {
-      
-      time = time - 1;  
-      this.mytime = time;
-      if (time === 0) {
-        alert("hello");
+      this.sec = this.sec - 1;  
+      if (this.sec === 0) {
         clearInterval(x);
+        this.confirm();
       }
     }, 1000);
-    
   }
 
 }
