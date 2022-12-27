@@ -4,7 +4,7 @@
           <img [src]="oil.url" class="card-img-top" height="350px">
           <div class="card-body">
             <h4>{{ oil.brand }}, {{ oil.scent }}</h4>
-            <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 100 }}<span (click)="loadmore(oil.id)">load more</span></p>
+            <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 125 }}<span (click)="loadmore(oil.id)">load more</span></p>
             <h6>Price: {{ oil.unitPrice }}$</h6>
           </div>
           <div class="row">

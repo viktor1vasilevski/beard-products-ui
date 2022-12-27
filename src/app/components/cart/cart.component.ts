@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BannerService } from 'src/app/services/banner.service';
 import { CartService } from 'src/app/services/cart.service';
 import { AddToCartSuccessfulPurchaseModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-successful-purchase-modal.service';
 import { AddToCartWarningModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-warning-modal.service';
@@ -29,10 +30,13 @@ export class CartComponent implements OnInit {
     private _userService: UserService, 
     private router: Router, 
     private _addToCartWarningModal: AddToCartWarningModalService,
-    private _addtoCartSuccessfulPurchaseModal: AddToCartSuccessfulPurchaseModalService) { 
+    private _addtoCartSuccessfulPurchaseModal: AddToCartSuccessfulPurchaseModalService, 
+    private _bannerService: BannerService) { 
     this._userService.isCustomerLogged.subscribe(status => {
       this.isCustomerLogged = status;
     })
+
+    this._bannerService.toggleBanned(false);
   }
 
   ngOnInit(): void {

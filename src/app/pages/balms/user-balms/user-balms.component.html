@@ -4,7 +4,7 @@
           <img [src]="balm.url" class="card-img-top" height="350px">
           <div class="card-body">
             <h4>{{balm.brand}}</h4>
-            <p [id]="balm.id" class="card-text">{{ balm.description | truncate : 100 }}<span (click)="loadmore(balm.id)">load more</span></p>
+            <p [id]="balm.id" class="card-text">{{ balm.description | truncate : 125 }}<span (click)="loadmore(balm.id)">load more</span></p>
             <h6>Price: {{ balm.unitPrice }}$</h6>
           </div>
           <div class="row">
