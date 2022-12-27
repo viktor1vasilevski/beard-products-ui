@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { stubFalse } from 'lodash';
 import { BehaviorSubject } from 'rxjs';
 
 interface User {

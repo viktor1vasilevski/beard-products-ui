@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
-import { AddToCartWarningModalService } from 'src/app/services/modals/add-to-cart/add-to-cart-warning-modal.service';
 import { SoapService } from 'src/app/services/soap.service';
 import { UserService } from 'src/app/services/user.service';
 
