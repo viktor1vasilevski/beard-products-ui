@@ -4,7 +4,7 @@
           <img [src]="soap.url" class="card-img-top">
           <div class="card-body">
             <h4>{{ soap.brand }}, {{ soap.edition }}</h4>
-            <p [id]="soap.id" class="card-text">{{ soap.description | truncate : 140 }}<span (click)="loadmore(soap.id)">load more</span></p>
+            <p [id]="soap.id" class="card-text">{{ soap.description | truncate : 100 }}<span (click)="loadmore(soap.id)">load more</span></p>
             <h6>Price: {{ soap.unitPrice }}$</h6>
           </div>
           <div class="row">

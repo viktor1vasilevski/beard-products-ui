@@ -16,3 +16,8 @@ p {
     width: 92%; 
     cursor: pointer;
 }
+
+span {
+    font-style: italic;
+    cursor: pointer;
+}

@@ -18,25 +18,18 @@ export class UserBalmsComponent implements OnInit {
   ngOnInit(): void {
     this._balmSerice.getAllBalms().subscribe((response: any) => {
       this.userBalms = response.balms;
-      this.userBalms.forEach((balm: any) => {
-        let tempData = { 
-          desc: balm.description, 
-          id : balm.id 
-        };
-        this.orginalBalms.push(tempData);
-        balm.description = balm.description.slice(0, 140);
-      });
     })
   }
 
-  loadMoreDescription(id: any){
-    var originalDesc = this.orginalBalms.find((x : any) => x.id == id).desc;
-    var displayBalm = this.userBalms.find((x : any) => x.id == id);
-    displayBalm.description = originalDesc;
+  loadmore(id: any){
+    let desc = this.userBalms.find((x : any) => x.id == id).description;
+    let el = document.getElementById(id);
+    if(el != undefined) {
+      el.innerText = desc;
+    }
   }
 
   addToCart(item: any) {
-    item.description = this.orginalBalms.find((x : any) => x.id == item.id).desc;
     this._cartService.addtoCart(item);
   }
 

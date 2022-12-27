@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './oils.component.html',
   styleUrls: ['./oils.component.css']
 })
-export class OilsComponent implements OnInit {
+export class OilsComponent {
 
   isAdminLogged = false;
 
@@ -19,8 +19,6 @@ export class OilsComponent implements OnInit {
       })
     this._bannerService.toggleBanned(false);
    }
-
-  ngOnInit(): void {}
 
   manageAdmin(status: boolean) {
     this.isAdminLogged = status;

@@ -13,7 +13,6 @@ import { UserService } from 'src/app/services/user.service';
 export class UserSoapsComponent implements OnInit {
 
   public userSoaps: any;
-  public orginalSoaps: any[] = [];
   public isCustomerLogged: boolean = false;
   public loadmoreText: boolean = false;
 
@@ -21,7 +20,7 @@ export class UserSoapsComponent implements OnInit {
     private _cartService: CartService, 
     private _userService: UserService) {
       this._userService.isCustomerLogged.subscribe(status => {
-        this.manageAddtoCartLogic(status);
+        this.isCustomerLogged = status;
       });
      }
 
@@ -39,18 +38,8 @@ export class UserSoapsComponent implements OnInit {
     }
   }
 
-  loadMoreDescription(id: any){
-    var originalDesc = this.orginalSoaps.find((x : any) => x.id == id).desc;
-    var displaySoap = this.userSoaps.find((x : any) => x.id == id);
-    displaySoap.description = originalDesc;
-  }
-
   addToCart(item: any) {
     this._cartService.addtoCart(item);
-  }
-
-  manageAddtoCartLogic(status: any) {
-    this.isCustomerLogged = status;
   }
 
 }

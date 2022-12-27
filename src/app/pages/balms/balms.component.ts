@@ -7,7 +7,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './balms.component.html',
   styleUrls: ['./balms.component.css']
 })
-export class BalmsComponent implements OnInit {
+export class BalmsComponent {
 
   public isAdminLogged: Boolean = false;
 

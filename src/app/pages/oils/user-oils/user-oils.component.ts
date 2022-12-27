@@ -10,33 +10,24 @@ import { OilService } from 'src/app/services/oil.service';
 export class UserOilsComponent implements OnInit {
 
   public userOils: any;
-  public orginalOils: any[] = [];
 
   constructor(private _oilService: OilService, private _cartService: CartService) { }
 
   ngOnInit(): void {
     this._oilService.getAllOils().subscribe((response: any) => {
       this.userOils = response.oils;
-      this.userOils.forEach((oil: any) => {
-        let tempData = { 
-          desc: oil.description, 
-          id : oil.id 
-        };
-        this.orginalOils.push(tempData);
-        oil.description = oil.description.slice(0, 150);
-      });
-      
     })
   }
 
-  loadMoreDescription(id: any){
-    var originalDesc = this.orginalOils.find((x : any) => x.id == id).desc;
-    var displayOil = this.userOils.find((x : any) => x.id == id);
-    displayOil.description = originalDesc;
+  loadmore(id: any){
+    let desc = this.userOils.find((x : any) => x.id == id).description;
+    let el = document.getElementById(id);
+    if(el != undefined) {
+      el.innerText = desc;
+    }
   }
 
   addToCart(item: any) {
-    item.description = this.orginalOils.find((x : any) => x.id == item.id).desc;
     this._cartService.addtoCart(item);
   }
 
