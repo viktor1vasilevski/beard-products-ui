@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/services/cart.service';
 import { SoapService } from 'src/app/services/soap.service';
 import { UserService } from 'src/app/services/user.service';
@@ -16,7 +17,8 @@ export class UserSoapsComponent implements OnInit {
 
   constructor(private _soapService: SoapService, 
     private _cartService: CartService, 
-    private _userService: UserService) {
+    private _userService: UserService, 
+    private _toastr: ToastrService) {
       this._userService.isCustomerLogged.subscribe(status => {
         this.isCustomerLogged = status;
       });
@@ -38,6 +40,7 @@ export class UserSoapsComponent implements OnInit {
 
   addToCart(item: any) {
     this._cartService.addtoCart(item);
+    //this._toastr.success('You added item into your basket!')
   }
 
 }

@@ -22,6 +22,19 @@ export class CartService {
   }
 
   addtoCart(product : any) {
+    if(product.unitQuantity == product.quantity) {
+      alert('nemas pojke')
+      return
+    }
+    let index = this.cartItemList.findIndex((x: any) => x.id == product.id);
+    let element = this.cartItemList.find((x: any) => x.id == product.id);
+
+    if(index != -1 && element != undefined){
+      element.quantity += 1;
+      this.cartItemList.splice(index, 1);
+    } else {
+      product['quantity'] = 1;
+    }
     this.cartItemList.push(product);
     this.productList.next(this.cartItemList);
     this.getTotalPrice();
@@ -29,8 +42,8 @@ export class CartService {
 
   getTotalPrice() : number{
     let grandTotal = 0;
-    this.cartItemList.map((a:any)=>{
-      grandTotal += a.unitPrice;
+    this.cartItemList.map((a: any)=>{
+      grandTotal = grandTotal + (a.unitPrice * a.quantity);
     })
     return grandTotal;
   }
@@ -46,6 +59,10 @@ export class CartService {
 
   removeAllCart(){
     this.cartItemList = []
+    this.productList.next(this.cartItemList);
+  }
+
+  sendCartList(){
     this.productList.next(this.cartItemList);
   }
 }

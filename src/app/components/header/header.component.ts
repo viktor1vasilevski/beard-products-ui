@@ -35,16 +35,15 @@ export class HeaderComponent implements OnInit {
     this._userService.isAdminLogged.subscribe(status => {
       this.isAdminLogged = status;
     })
-
-    this._userService.isCustomerLogged.subscribe((status: boolean) => {
-      //this.manageCustomer(status);
-    })
    }
 
   ngOnInit(): void {
     this._cartService.getProducts()
     .subscribe(res => {
-      this.totalItem = res.length;
+      this.totalItem = 0;
+      res.forEach((el: any) => {
+        this.totalItem += el.quantity;
+      });
     })
   }
 
