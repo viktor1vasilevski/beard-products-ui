@@ -2,3 +2,8 @@ span {
     font-style: italic;
     cursor: pointer;
 }
+
+#add-to-card-btn {
+    width: 100%; 
+    cursor: pointer;
+}

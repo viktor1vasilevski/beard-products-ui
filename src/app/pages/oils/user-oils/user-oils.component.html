@@ -7,12 +7,9 @@
             <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 125 }}<span (click)="loadmore(oil.id)">load more</span></p>
             <h6>Price: {{ oil.unitPrice }}$</h6>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <button type="button" class="btn btn-primary m-2" style="width: 96%; cursor: pointer;" (click)="addToCart(oil)">Add to card</button>
-            </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-secondary m-2" style="width: 92%; cursor: pointer;">View Details</button>
+          <div class="row m-3">
+            <div class="col-12">
+              <button type="button" id="add-to-card-btn" class="btn btn-primary" (click)="addToCart(oil)">Add to card</button>
             </div>
           </div>
         </div>

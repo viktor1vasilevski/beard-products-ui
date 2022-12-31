@@ -7,12 +7,9 @@
             <p [id]="balm.id" class="card-text">{{ balm.description | truncate : 125 }}<span (click)="loadmore(balm.id)">load more</span></p>
             <h6>Price: {{ balm.unitPrice }}$</h6>
           </div>
-          <div class="row">
-            <div class="col-6">
-              <button type="button" class="btn btn-primary m-2" (click)="addToCart(balm)">Add to card</button>
-            </div>
-            <div class="col-6">
-              <button type="button" class="btn btn-secondary m-2">View Details</button>
+          <div class="row m-3">
+            <div class="col-12">
+              <button type="button" id="add-to-cart-btn" class="btn btn-primary" (click)="addToCart(balm)">Add to card</button>
             </div>
           </div>
         </div>
