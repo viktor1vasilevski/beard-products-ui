@@ -42,25 +42,9 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.cartService.getProducts()
     .subscribe(res => {
-      let data = res;
-      let arrowData = this.manageArrows(data)
-
-
-      this.products = arrowData;
+      this.products = res;
       this.grandTotal = this.cartService.getTotalPrice();
     })
-  }
-
-  manageArrows(data: any): any {
-    data.forEach((e : any) => {
-      if(e.quantity > 1) {
-        e['showLeftArrow'] = true;
-      }
-      if(e.quantity >= 1) {
-        e['showRightArrow'] = true;
-      }
-    });
-    return data;
   }
 
   removeItem(item: any){
@@ -72,25 +56,25 @@ export class CartComponent implements OnInit {
   }
 
   rightArrow(item: any) {
+    debugger;
     if(item.quantity == item.unitQuantity) {
-      alert('tolku');
       return;
     }
     let element = this.products.find((el: any) => el.id == item.id);
     element.quantity += 1;
-    element.showLeftArrow = true;
 
     this.cartService.sendCartList();
     this.grandTotal = this.cartService.getTotalPrice();
   }
 
   leftArrow(item: any) {
+    debugger
+    if(item.quantity <= 1) {
+      return;
+    }
     let element = this.products.find((el: any) => el.id == item.id);
     element.quantity -= 1;
-    if(element.quantity <= 1) {
-      element.showLeftArrow = false;
-      element.showRightArrow = true;
-    }
+
     this.cartService.sendCartList();
     this.grandTotal = this.cartService.getTotalPrice();
   }

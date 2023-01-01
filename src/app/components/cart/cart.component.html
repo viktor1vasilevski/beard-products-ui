@@ -24,9 +24,9 @@
                             <td style="width: 25%;">{{item.description}}</td>
                             <th style="width: 10%;">{{item.unitPrice}}$</th>
                             <th style="width: 10%;">
-                                <span *ngIf="item.showLeftArrow" (click)="leftArrow(item)"><i class="bi bi-dash-square"></i></span>
+                                <span (click)="leftArrow(item)"><i class="bi bi-dash-square"></i></span>
                                     {{item.quantity}}
-                                <span *ngIf="item.showRightArrow" (click)="rightArrow(item)"><i class="bi bi-plus-square"></i></span>
+                                <span (click)="rightArrow(item)"><i class="bi bi-plus-square"></i></span>
                             </th>
                             <th style="width: 10%;">{{item.quantity * item.unitPrice}}$</th>
                             <td>

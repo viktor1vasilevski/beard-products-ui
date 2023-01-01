@@ -22,10 +22,13 @@ export class CartService {
   }
 
   addtoCart(product : any) {
-    if(product.unitQuantity == product.quantity) {
-      alert('nemas pojke')
-      return
+    let el = this.cartItemList.find((x : any) => x.id == product.id);
+    if(el != undefined) {
+      if(el.quantity == product.unitQuantity) {
+        return
+      }
     }
+
     let index = this.cartItemList.findIndex((x: any) => x.id == product.id);
     let element = this.cartItemList.find((x: any) => x.id == product.id);
 
