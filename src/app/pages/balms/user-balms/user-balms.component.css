@@ -3,10 +3,6 @@
     box-shadow: 5px 10px 8px #888888;
 }
 
-p {
-    cursor: pointer;
-}
-
 .btn-primary {
     width: 96%; 
     cursor: pointer;

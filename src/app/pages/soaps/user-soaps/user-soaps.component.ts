@@ -27,6 +27,8 @@ export class UserSoapsComponent implements OnInit {
   ngOnInit(): void {
     this._soapService.getAllSoaps().subscribe((response: any) => {
       this.userSoaps = response.soaps;
+      console.log(this.userSoaps);
+      
     })
   }
 

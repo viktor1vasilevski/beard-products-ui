@@ -4,7 +4,9 @@
           <img [src]="oil.url" class="card-img-top" height="350px">
           <div class="card-body">
             <h5>{{ oil.brand }}, {{ oil.scent }}, {{ oil.liquidVolume }}ml</h5>
-            <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 125 }}<span (click)="loadmore(oil.id)">load more</span></p>
+            <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 125 }}
+              <span *ngIf="oil.description.length > 125 ? true : false" (click)="loadmore(oil.id)">load more</span>
+            </p>
             <h6>Price: {{ oil.unitPrice }}$</h6>
           </div>
           <div class="row m-3">

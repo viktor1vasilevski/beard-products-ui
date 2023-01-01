@@ -19,26 +19,26 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let item of products; let i = index">
-                            <td style="width: 5%;">{{i + 1}}</td>
-                            <td style="width: 15%;">{{ item.brand }}</td>
-                            <td><img style="width: 220px;" [src]="item.url" alt="asdasd"></td>
-                            <td style="width: 25%;">{{ item.description }}</td>
-                            <td style="width: 10%;">{{ item.unitQuantity }}</td>
-                            <th style="width: 10%;">{{item.unitPrice}}$</th>
-                            <th style="width: 10%;">
+                            <td >{{i + 1}}</td>
+                            <td>{{ item.brand }}</td>
+                            <td><img style="width: 220px;" [src]="item.url"></td>
+                            <td >{{ item.description }}</td>
+                            <td >{{ item.unitQuantity }}</td>
+                            <th >{{item.unitPrice}}$</th>
+                            <th >
                                 <span (click)="leftArrow(item)"><i class="bi bi-dash-square"></i></span>
                                     {{ item.quantity }}
                                 <span (click)="rightArrow(item)"><i class="bi bi-plus-square"></i></span>
                             </th>
-                            <th style="width: 10%;">{{item.quantity * item.unitPrice}}$</th>
+                            <th >{{item.quantity * item.unitPrice}}$</th>
                             <td>
                                 <button (click)="removeItem(item)" class="btn btn-danger"><i class="bi bi-trash"></i></button>
                             </td>
-                            <td style="width: 30%;">{{item.total}}</td>
+                            <td >{{item.total}}</td>
 
                         </tr>
                         <tr>
-                            <td colspan="4"></td>
+                            <td colspan="5"></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Empty Cart</button></td>
                             <td><button routerLink="/soaps" class="btn btn-primary">Shop More</button></td>
                             <td><button class="btn btn-success" (click)="checkOut()">Checkout</button></td>
