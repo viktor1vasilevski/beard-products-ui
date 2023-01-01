@@ -24,10 +24,7 @@ export class RegisterComponent {
     private _authService: AuthenticationService, 
     private router: Router, private fb: FormBuilder, private _toastr: ToastrService) {
       this._bannerService.toggleBanned(true);
-
-
       this.form = this.fb.group({
-
         username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]{3,15}$')]],
         email: ['', [Validators.email, Validators.required]],
         password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$')]],
@@ -77,6 +74,8 @@ export class RegisterComponent {
     let password = this.form.get('password')?.value;
     let confPassword = this.form.get('confirm_password')?.value;
     this._authService.signup(username, email, password, confPassword).subscribe((res: any) => {
+      console.log(res);
+      
       this._toastr.success('User successfully created!');
       this.router.navigate(['/signin']);
     }, (err: any) => {

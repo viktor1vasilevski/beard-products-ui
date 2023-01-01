@@ -42,7 +42,6 @@ export class UserSoapsComponent implements OnInit {
 
   addToCart(item: any) {
     this._cartService.addtoCart(item);
-    //this._toastr.success('You added item into your basket!')
   }
 
 }
