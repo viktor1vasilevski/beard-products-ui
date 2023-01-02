@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
-interface User {
-  userName: string;
-  userRole: string;
-  userStatus: boolean;
-}
-
 @Injectable({
   providedIn: 'root'
 })
