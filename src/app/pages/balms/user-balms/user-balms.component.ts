@@ -10,18 +10,33 @@ import { CartService } from 'src/app/services/cart.service';
 export class UserBalmsComponent implements OnInit {
 
   public userBalms: any;
-  public orginalBalms: any[] = [];
+  public data: any[] = [];
+  public loadProducts: boolean = false;
 
   constructor(private _balmSerice: BalmService, 
     private _cartService: CartService) { }
 
   ngOnInit(): void {
+    this.loadProducts = true;
     this._balmSerice.getAllBalms().subscribe((response: any) => {
-      this.userBalms = response.balms;
+      response.balms.forEach((element:any) => {
+        let balm = {
+          id: element.id,
+          volume: element.volume,
+          brand: element.brand,
+          description: element.description,
+          unitPrice: element.unitPrice,
+          unitQuantity: element.unitQuantity,
+          url: element.url
+        }
+        this.data.push(balm);
+      });
+
+      this.userBalms = this.data.slice(0, 3);
     })
   }
 
-  loadmore(id: any){
+  loadMoreDesc(id: any){
     let desc = this.userBalms.find((x : any) => x.id == id).description;
     let el = document.getElementById(id);
     if(el != undefined) {
@@ -31,6 +46,15 @@ export class UserBalmsComponent implements OnInit {
 
   addToCart(item: any) {
     this._cartService.addtoCart(item);
+  }
+
+  loadMoreProducts(){
+    let newLength = this.userBalms.length + 3;
+    if (newLength > this.data.length) {
+        newLength = this.data.length;
+        this.loadProducts = false;
+    }
+     this.userBalms = this.data.slice(0, newLength);
   }
 
 }

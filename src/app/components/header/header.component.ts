@@ -40,6 +40,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this._cartService.getProducts()
     .subscribe(res => {
+      debugger
       this.totalItem = 0;
       res.forEach((el: any) => {
         this.totalItem += el.quantity;

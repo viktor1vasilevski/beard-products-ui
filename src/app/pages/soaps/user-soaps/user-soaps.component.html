@@ -5,7 +5,7 @@
           <div class="card-body">
             <h5>{{ soap.brand }}, {{ soap.edition }}</h5>
             <p [id]="soap.id" class="card-text">{{ soap.description | truncate : 125 }}
-              <span *ngIf="soap.description.length > 125 ? true : false" (click)="loadmore(soap.id)">load more</span>
+              <span *ngIf="soap.description.length > 125 ? true : false" (click)="loadMoreDesc(soap.id)">load more</span>
             </p>
             <h6>Price: {{ soap.unitPrice }}$</h6>
           </div>
@@ -16,7 +16,7 @@
           </div>
         </div>
     </div> 
-</div>
-<div class="modal-container">
-  <div #addToCartWarningModal></div>
+    <div *ngIf="loadProducts" style="text-align: center;">
+      <button class="btn btn-primary" (click)="loadMoreProducts()"><i class="bi bi-three-dots"></i></button>
+    </div>
 </div>

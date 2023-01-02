@@ -22,18 +22,20 @@ export class CartService {
   }
 
   addtoCart(product : any) {
-    let el = this.cartItemList.find((x : any) => x.id == product.id);
-    if(el != undefined) {
-      if(el.quantity == product.unitQuantity) {
+    debugger
+    let element = this.cartItemList.find((x : any) => x.id == product.id);
+    if(element != undefined) {
+      if(element.quantity == product.unitQuantity) {
         return
       }
     }
 
     let index = this.cartItemList.findIndex((x: any) => x.id == product.id);
-    let element = this.cartItemList.find((x: any) => x.id == product.id);
+    //let element = this.cartItemList.find((x: any) => x.id == product.id);
 
     if(index != -1 && element != undefined){
       element.quantity += 1;
+      product['quantity'] = element.quantity;
       this.cartItemList.splice(index, 1);
     } else {
       product['quantity'] = 1;

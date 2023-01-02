@@ -5,7 +5,7 @@
           <div class="card-body">
             <h5>{{ oil.brand }}, {{ oil.scent }}, {{ oil.liquidVolume }}ml</h5>
             <p [id]="oil.id" class="card-text">{{ oil.description | truncate : 125 }}
-              <span *ngIf="oil.description.length > 125 ? true : false" (click)="loadmore(oil.id)">load more</span>
+              <span *ngIf="oil.description.length > 125 ? true : false" (click)="loadMoreDesc(oil.id)">load more</span>
             </p>
             <h6>Price: {{ oil.unitPrice }}$</h6>
           </div>
@@ -16,4 +16,7 @@
           </div>
         </div>
     </div> 
+    <div *ngIf="loadProducts" style="text-align: center; margin-bottom: 30px;">
+      <button class="btn btn-primary" (click)="loadMoreProducts()"><i class="bi bi-three-dots"></i></button>
+    </div>
 </div>

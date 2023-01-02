@@ -5,7 +5,7 @@
           <div class="card-body">
             <h5>{{ balm.brand }}, {{ balm.volume }}mg</h5>
             <p [id]="balm.id" class="card-text">{{ balm.description | truncate : 125 }}
-                <span *ngIf="balm.description.length > 125 ? true : false" (click)="loadmore(balm.id)">load more</span>
+                <span *ngIf="balm.description.length > 125 ? true : false" (click)="loadMoreDesc(balm.id)">load more</span>
             </p>
             <h6>Price: {{ balm.unitPrice }}$</h6>
           </div>
@@ -16,4 +16,7 @@
           </div>
         </div>
     </div> 
+    <div *ngIf="loadProducts" style="text-align: center; margin-bottom: 30px;">
+      <button class="btn btn-primary" (click)="loadMoreProducts()"><i class="bi bi-three-dots"></i></button>
+    </div>
 </div>

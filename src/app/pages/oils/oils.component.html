@@ -1,6 +1,5 @@
-<div class="row">
-  <app-user-oils *ngIf="!isAdminLogged; else adminOils"></app-user-oils>
-  <ng-template #adminOils>
-    <app-admin-oils></app-admin-oils>
-  </ng-template>
-</div>
+
+<app-user-oils *ngIf="!isAdminLogged; else adminOils"></app-user-oils>
+<ng-template #adminOils>
+  <app-admin-oils></app-admin-oils>
+</ng-template>

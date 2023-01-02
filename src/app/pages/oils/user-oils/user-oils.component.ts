@@ -10,16 +10,31 @@ import { OilService } from 'src/app/services/oil.service';
 export class UserOilsComponent implements OnInit {
 
   public userOils: any;
+  public data: any[] = [];
+  public loadProducts: boolean = false;
 
   constructor(private _oilService: OilService, private _cartService: CartService) { }
 
   ngOnInit(): void {
+    this.loadProducts = true;
     this._oilService.getAllOils().subscribe((response: any) => {
-      this.userOils = response.oils;
+      response.oils.forEach((element: any) => {
+        let oil = {
+          id: element.id,
+          liquidVolume: element.liquidVolume,
+          brand: element.brand,
+          description: element.description,
+          unitPrice: element.unitPrice,
+          unitQuantity: element.unitQuantity,
+          url: element.url
+        }
+        this.data.push(oil);
+      });
+      this.userOils = this.data.slice(0, 3);
     })
   }
 
-  loadmore(id: any){
+  loadMoreDesc(id: any){
     let desc = this.userOils.find((x : any) => x.id == id).description;
     let el = document.getElementById(id);
     if(el != undefined) {
@@ -29,6 +44,15 @@ export class UserOilsComponent implements OnInit {
 
   addToCart(item: any) {
     this._cartService.addtoCart(item);
+  }
+
+  loadMoreProducts() {
+    let newLength = this.userOils.length + 3;
+    if (newLength > this.data.length) {
+        newLength = this.data.length;
+        this.loadProducts = false;
+    }
+    this.userOils = this.data.slice(0, newLength);
   }
 
 }
