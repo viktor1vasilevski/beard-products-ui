@@ -79,10 +79,10 @@ export class RegisterComponent {
     this._authService.signup(username, email, password, confPassword).subscribe((res: any) => {
       console.log(res);
       
-      this._toastr.success('User successfully created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+      this._toastr.success('User successfully created!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
       this.router.navigate(['/signin']);
     }, (err: any) => {
-      this._toastr.error('User unsuccessfully created!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right'});
+      this._toastr.error('User unsuccessfully created!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right'});
      
     })
 

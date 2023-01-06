@@ -116,9 +116,9 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
             this.soaps.splice(indexOfEditedItem, 1);
             this.soaps.unshift(response);
             this.source.load(this.soaps);
-            this._toastr.success('Soap seccessfuly edited!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.success('Soap seccessfuly edited!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           }, (err:any) => {
-            this._toastr.error('Editing soap was unseccessfuly!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.error('Editing soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           })      
         });
         break;
@@ -133,16 +133,16 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
                   let index = this.soaps.findIndex((x : any) => x.id == event.data.id);
                   this.soaps.splice(index, 1);
                   this.source.load(this.soaps);
-                  this._toastr.success('Soap seccessfuly deleted!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.success('Soap seccessfuly deleted!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 } else {
-                  this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 }
               })
             } else { 
-              this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+              this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
             }       
           }, (err: any) => {
-            this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.error('Deleting soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           });
         break;
 
@@ -158,9 +158,9 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
         this._soapService.createEditSoap(model).subscribe((response: CreateEditSoapModel) => {
           this.soaps.unshift(response);
           this.source.load(this.soaps);
-          this._toastr.success('Soap seccessfuly created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+          this._toastr.success('Soap seccessfuly created!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
         }, (err:any) => {
-          this._toastr.error('Creating soap was unseccessfuly!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+          this._toastr.error('Creating soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
         })
       });
   } 

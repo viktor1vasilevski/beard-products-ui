@@ -113,9 +113,9 @@ export class AdminOilsComponent implements OnInit, OnDestroy {
        this._oilService.createEditOil(model).subscribe((response: CreateEditOilModel) => {
         this.oils.unshift(response);
         this.source.load(this.oils);
-        this._toastr.success('Oil seccessfuly created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+        this._toastr.success('Oil seccessfuly created!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
        }, (err: any) => {
-        this._toastr.error('Creating oil was unsuccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+        this._toastr.error('Creating oil was unsuccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
        });
       });
   } 
@@ -132,9 +132,9 @@ export class AdminOilsComponent implements OnInit, OnDestroy {
             this.oils.splice(indexOfEditedItem, 1);
             this.oils.unshift(response);
             this.source.load(this.oils);
-            this._toastr.success('Oil seccessfuly edited!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.success('Oil seccessfuly edited!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           }, (err:any) => {
-            this._toastr.error('Editing oil was unsuccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.error('Editing oil was unsuccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           })      
         });
         break;
@@ -149,13 +149,13 @@ export class AdminOilsComponent implements OnInit, OnDestroy {
                   let index = this.oils.findIndex((x : any) => x.id == event.data.id);
                   this.oils.splice(index, 1);
                   this.source.load(this.oils);
-                  this._toastr.success('Oil seccessfuly deleted!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.success('Oil seccessfuly deleted!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 } else { 
-                  this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 }
               })
-            } else { this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' }); }       
-          }, (err: any) => { this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' }); });
+            } else { this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' }); }       
+          }, (err: any) => { this._toastr.error('Deleting oil was unsuccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' }); });
         break;
 
       default:

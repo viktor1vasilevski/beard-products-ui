@@ -27,6 +27,7 @@ export class EditOilModalComponent implements OnInit {
   public showImagePanel: boolean = false;
 
   ngOnInit(): void {
+    debugger;
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 

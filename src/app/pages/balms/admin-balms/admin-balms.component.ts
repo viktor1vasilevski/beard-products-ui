@@ -103,9 +103,9 @@ export class AdminBalmsComponent implements OnInit {
             this.balms.splice(indexOfEditedItem, 1);
             this.balms.unshift(response);
             this.source.load(this.balms);
-            this._toastr.success('Balm seccessfuly edited!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.success('Balm seccessfuly edited!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           }, (err:any) => {
-            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
 
           })      
         });
@@ -121,16 +121,16 @@ export class AdminBalmsComponent implements OnInit {
                   let index = this.balms.findIndex((x : any) => x.id == event.data.id);
                   this.balms.splice(index, 1);
                   this.source.load(this.balms);
-                  this._toastr.success('Balm seccessfuly deleted!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.success('Balm seccessfuly deleted!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 } else {
-                  this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+                  this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
                 }
               })
             } else { 
-              this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+              this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
             }       
           }, (err: any) => {
-            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           });
         break;
 
@@ -146,9 +146,9 @@ export class AdminBalmsComponent implements OnInit {
         this._balmService.createEditBalm(model).subscribe((response: CreateEditBalmModel) => {
           this.balms.unshift(response);
           this.source.load(this.balms);
-          this._toastr.success('Balm seccessfuly created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+          this._toastr.success('Balm seccessfuly created!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
         }, (err:any) => {
-          this._toastr.error('Creating balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+          this._toastr.error('Creating balm was unseccessful!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
         })
       });
   } 
