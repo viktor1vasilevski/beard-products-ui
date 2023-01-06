@@ -103,9 +103,10 @@ export class AdminBalmsComponent implements OnInit {
             this.balms.splice(indexOfEditedItem, 1);
             this.balms.unshift(response);
             this.source.load(this.balms);
-            this._toastr.success('Balm seccessfuly edited!');
+            this._toastr.success('Balm seccessfuly edited!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
           }, (err:any) => {
-            this._toastr.error('Balm unseccessfuly edited!');
+            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
+
           })      
         });
         break;
@@ -120,16 +121,16 @@ export class AdminBalmsComponent implements OnInit {
                   let index = this.balms.findIndex((x : any) => x.id == event.data.id);
                   this.balms.splice(index, 1);
                   this.source.load(this.balms);
-                  this._toastr.success('Balm sucessfuly deleted!')
+                  this._toastr.success('Balm seccessfuly deleted!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
                 } else {
-                  this._toastr.error('Balm unsecessfuly deleted!');
+                  this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
                 }
               })
             } else { 
-              this._toastr.error('Balm unseccessfuly deleted!');
+              this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
             }       
           }, (err: any) => {
-            this._toastr.error('Balm unseccessfuly deleted!');
+            this._toastr.error('Deleting balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
           });
         break;
 
@@ -145,9 +146,9 @@ export class AdminBalmsComponent implements OnInit {
         this._balmService.createEditBalm(model).subscribe((response: CreateEditBalmModel) => {
           this.balms.unshift(response);
           this.source.load(this.balms);
-          this._toastr.success('Balm seccessfuly created!');
+          this._toastr.success('Balm seccessfuly created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
         }, (err:any) => {
-          this._toastr.error('Balm unseccessfuly created!');
+          this._toastr.error('Creating balm was unseccessful!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right' });
         })
       });
   } 

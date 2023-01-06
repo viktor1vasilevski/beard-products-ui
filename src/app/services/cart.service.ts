@@ -22,7 +22,6 @@ export class CartService {
   }
 
   addtoCart(product : any) {
-    debugger
     let element = this.cartItemList.find((x : any) => x.id == product.id);
     if(element != undefined) {
       if(element.quantity == product.unitQuantity) {

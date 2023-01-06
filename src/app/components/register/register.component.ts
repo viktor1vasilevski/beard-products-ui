@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,6 +14,8 @@ export class RegisterComponent {
 
   form: FormGroup = new FormGroup({});
   public showUsernameErrors: boolean = false;
+  // znaci ova ako go ostavam na true, non stop kje se pojavuva porakata "Username is required"
+
   public showEmailErrors: boolean = false;
   public showPasswordErrors: boolean = false;
   public showConfirmPasswordErrors: boolean = false;
@@ -22,13 +24,14 @@ export class RegisterComponent {
   constructor(
     private _bannerService: BannerService, 
     private _authService: AuthenticationService, 
-    private router: Router, private fb: FormBuilder, private _toastr: ToastrService) {
+    private router: Router, private fb: FormBuilder, 
+    private _toastr: ToastrService) {
       this._bannerService.toggleBanned(true);
       this.form = this.fb.group({
-        username: ['', [Validators.required, Validators.pattern('^[a-zA-Z0-9_-]{3,15}$')]],
-        email: ['', [Validators.email, Validators.required]],
-        password: ['', [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$')]],
-        confirm_password: ['', [Validators.required]]      
+        username: ['', [ Validators.required, Validators.pattern('^[a-zA-Z0-9_-]{3,15}$') ]],
+        email: ['', [ Validators.email, Validators.required ]],
+        password: ['', [ Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$') ]],
+        confirm_password: ['', [ Validators.required ]]      
       }, { 
         validator: this.confirmedValidator('password', 'confirm_password')
       })
@@ -76,11 +79,14 @@ export class RegisterComponent {
     this._authService.signup(username, email, password, confPassword).subscribe((res: any) => {
       console.log(res);
       
-      this._toastr.success('User successfully created!');
+      this._toastr.success('User successfully created!', 'Success', { timeOut: 2500, positionClass: 'toast-bottom-right' });
       this.router.navigate(['/signin']);
     }, (err: any) => {
-      this._toastr.error('User unsuccessfully created!');
+      this._toastr.error('User unsuccessfully created!', 'Error', { timeOut: 2500, positionClass: 'toast-bottom-right'});
+     
     })
+
+
   }
 
 }

@@ -56,7 +56,6 @@ export class CartComponent implements OnInit {
   }
 
   rightArrow(item: any) {
-    debugger;
     if(item.quantity == item.unitQuantity) {
       return;
     }
@@ -68,7 +67,6 @@ export class CartComponent implements OnInit {
   }
 
   leftArrow(item: any) {
-    debugger
     if(item.quantity <= 1) {
       return;
     }
