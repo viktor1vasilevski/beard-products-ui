@@ -19,9 +19,11 @@ export class UserOilsComponent implements OnInit {
     this.loadProducts = true;
     this._oilService.getAllOils().subscribe((response: any) => {
       response.oils.forEach((element: any) => {
+        debugger
         let oil = {
           id: element.id,
           liquidVolume: element.liquidVolume,
+          scent: element.scent,
           brand: element.brand,
           description: element.description,
           unitPrice: element.unitPrice,
