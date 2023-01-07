@@ -228,5 +228,9 @@ export class EditSoapModalComponent implements OnInit {
     this.errors.quantityValidationError = '';
     this.errors.imageUrlValidationError = '';
   }
+
+  onSubmit() {
+    
+  }
   
 }
