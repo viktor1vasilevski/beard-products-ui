@@ -71,11 +71,8 @@ export class CreateSoapModalComponent implements OnInit {
 
   fileChangeEvent(fileInput: any) {
     /**
-     * za da se detektira ovoj event treba da se smeni slikata
-     * ako stavime Slika_1, ja trgnime so Remove i ja stavime istata
-     * ovoj event nema da se trigerira i Create kopceto kje ostane Disable
      * 
-     * Isto taka ako odberime slika, soodvetno kje go pokazi imeto od slikata
+     * ako odberime slika, soodvetno kje go pokazi imeto od slikata
      * vo inputot. Ako odberime povtorno da odberime slika i stegnime cancel, sekako
      * ova e drug event i kje go fati samata funkcija, no vo inputot vekje ne go cuva
      * imeto na slikata tuku go dava default tekstot koga ne e odbrano nisto "No File chosen",
@@ -88,6 +85,9 @@ export class CreateSoapModalComponent implements OnInit {
      * 
      * Od druga strana ovaa logika ne vazi koga se pravi "Remove" na slikata
      * Na "Remove" moze da se setira inputot na prazen string
+     * 
+     * Posle povekje probuvajna ispagja deka moze da se setira vrednosta na prazen string
+     * inputot od tip "file", no nikako nemozi da se setira manuelno
      * 
      */
 
