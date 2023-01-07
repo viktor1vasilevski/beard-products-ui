@@ -77,9 +77,16 @@ export class CreateBalmModalComponent {
   }
 
   removeImage() {
+    var nodeList = document.querySelectorAll("input");
+    nodeList.forEach((el : any) => {
+      if(el.type === 'file'){
+        el.value = '';
+      } 
+    });
     this.cardImageBase64 = null;
     this.isImageChosen = false;
     this.createdBalmModel.url = '';
+    this.imageError = 'Image is required';
   }
 
 }

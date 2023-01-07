@@ -21,10 +21,13 @@ export class CreateSoapModalComponent implements OnInit {
     description: ''
   }
 
-  imageError: string | null = '';
-  isImageSaved: boolean = false;
-  cardImageBase64: string | null = '';
+  public imageError: string | null = '';
+  public isImageSaved: boolean = false;
+  public cardImageBase64: string | null = '';
   public isImageChosen: boolean = false;
+  public priceError: string = ''
+  public quantityError: string = ''
+  
 
   public choseImageFilePath: string = '';
 
@@ -38,7 +41,31 @@ export class CreateSoapModalComponent implements OnInit {
     this.closeMeEvent.emit();
   }
 
+  onPriceInput(event: any) {
+    this.priceError = '';
+  }
+
+  onQuantityInput(event: any) {
+    this.quantityError = '';
+  }
+
   confirm() { 
+    if(!Number.isInteger(this.createdSoapModel.unitPrice) && !Number.isInteger(this.createdSoapModel.unitQuantity)){
+      this.priceError = 'Price must be whole number';
+      this.quantityError = 'Quantity must be whole number';
+      return
+    }
+
+    if(!Number.isInteger(this.createdSoapModel.unitPrice)){
+      this.priceError = 'Price must be whole number';
+      return
+    }
+
+    if(!Number.isInteger(this.createdSoapModel.unitQuantity)){
+      this.quantityError = 'Quantity must be whole number';
+      return
+    }
+    
     this.confirmEvent.emit(this.createdSoapModel);
   }
 

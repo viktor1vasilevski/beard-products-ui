@@ -52,7 +52,7 @@
                             </div>
                         </div> 
                     </div>
-                    <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
+                    <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="showImagePanel">Remove image</a>
                 </div>
             </div>
             <div class="col-6">
@@ -66,7 +66,7 @@
         
         <div class="btn-container modal-footer">
             <button class="btn btn-secondary m-2" (click)="closeMe()">Close</button>
-            <button class="btn btn-danger" (click)="confirm(brand.value, volume.value, quantity.value, price.value, description.value)">Confirm</button>
+            <button class="btn btn-primary" (click)="confirm(brand.value, volume.value, quantity.value, price.value, description.value)">Confirm</button>
         </div>
     </div>
   </div>

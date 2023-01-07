@@ -51,7 +51,7 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   confirm(brand: string, edition: string, desc: string, quantity: string, price: string) {  
-    
+
     let errorCounter = 0;
     this.resetValidationErrors();
 
@@ -152,6 +152,11 @@ export class EditSoapModalComponent implements OnInit {
       counter++;
     }
 
+    if(!Number.isInteger(unitPrice)) {
+      this.errors.priceValidationError = 'Price must be whole number';
+      counter++;
+    }
+
     // soap price validation
     if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0';
@@ -159,6 +164,11 @@ export class EditSoapModalComponent implements OnInit {
     }
     if(model.price > 1000) {
       this.errors.priceValidationError = 'Price must be less then 1000';
+      counter++;
+    }
+
+    if(isNaN(unitPrice)) {
+      this.errors.priceValidationError = 'Price is required';
       counter++;
     }
 

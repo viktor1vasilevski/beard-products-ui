@@ -13,10 +13,14 @@
           <img [src]="imageUrl">
         </div>
       </div>
-
-      <div class="btn-container modal-footer">
-        <button class="btn btn-secondary" (click)="closeMe()">Close</button>
-        <button class="btn btn-danger" (click)="confirm()">Confirm</button>
+      <hr>
+      <div class="row align-center">
+        <div class="col-6">
+          <button class="btn btn-secondary" (click)="closeMe()">Close</button>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-danger" (click)="confirm()">Confirm</button>
+        </div>
       </div>
     </div>
   </div>

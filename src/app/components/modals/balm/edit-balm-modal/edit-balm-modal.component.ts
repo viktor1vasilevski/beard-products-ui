@@ -138,12 +138,12 @@ export class EditBalmModalComponent implements OnInit {
     }
 
     // oil quantity validation
-    if(model.quantity === 0 || model.quantity < 0) {
-      this.errors.quantityValidationError = 'Quantity must be more then 0';
+    if(unitQuantity === 0 || unitQuantity < 0) {
+      this.errors.quantityValidationError = 'Quantity must be more then 0 units';
       counter++;
     }
-    if(model.quantity > 500) {
-      this.errors.quantityValidationError = 'Quantity must be less then 500';
+    if(unitQuantity > 500) {
+      this.errors.quantityValidationError = 'Quantity must be less then 500 units';
       counter++;
     }
 
@@ -164,17 +164,17 @@ export class EditBalmModalComponent implements OnInit {
     }
 
     // oil price validation
-    if(model.price === 0 || model.price < 0) {
-      this.errors.priceValidationError = 'Price must be more then 0';
+    if(unitPrice === 0 || unitPrice < 0) {
+      this.errors.priceValidationError = 'Price must be more then 0 $';
       counter++;
     }
-    if(model.price > 1000) {
-      this.errors.priceValidationError = 'Price must be less then 1000';
+    if(unitPrice > 1000) {
+      this.errors.priceValidationError = 'Price must be less then 1000 $';
       counter++;
     }
 
     if(!this.showImagePanel) {
-      this.errors.imageUrlValidationError = 'Please choose image';
+      this.errors.imageUrlValidationError = 'Image is required';
       counter++;
     }
 
@@ -222,7 +222,7 @@ export class EditBalmModalComponent implements OnInit {
 
       reader.readAsDataURL(fileInput.target.files[0]);
     } else {
-      this.removeImage();
+      //this.removeImage();
     }
   }
 
