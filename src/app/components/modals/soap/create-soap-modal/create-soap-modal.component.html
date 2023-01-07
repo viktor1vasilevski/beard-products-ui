@@ -1,5 +1,6 @@
 <div class="modal-container">
     <div class="modal-card">
+      <h3 class="p-2">Create Soap</h3>
       <div class="row">
         <div class="col-6">
           <div class="m-3">
@@ -43,8 +44,8 @@
               <div class="img-space">
                   <div class="row">
                     <div class="col-12">
-                      <input type="file" class="form-control" (change)="fileChangeEvent($event)">
-                      <p>{{imageError}}</p>
+                      <input id="img-input" type="file" class="form-control" (change)="fileChangeEvent($event)">
+                      <p>{{ imageError }}</p>
                       <ng-container *ngIf="isImageChosen; else elseTemplate">
                         <img [src]="cardImageBase64" class="m-1"/>
                       </ng-container>
@@ -55,7 +56,7 @@
                   </div>
                   
               </div>
-            <a class="btn btn-outline-danger" (click)="removeImage()" *ngIf="isImageChosen">Remove</a>
+            <a class="btn btn-outline-danger m-2" (click)="removeImage()" *ngIf="isImageChosen">Remove image</a>
           </div>
         </div>
         <div class="col-6">
@@ -77,7 +78,7 @@
   
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary" (click)="closeMe()">Close</button>
-        <button class="btn btn-danger" 
+        <button class="btn btn-primary" 
           [disabled]="brand.errors || edition.errors || unitPrice.errors || unitQuantity.errors || !isImageChosen" (click)="confirm()">Confirm</button>
       </div>
     </div>

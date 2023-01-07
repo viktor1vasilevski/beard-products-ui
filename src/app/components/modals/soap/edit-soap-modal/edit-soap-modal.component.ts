@@ -28,6 +28,8 @@ export class EditSoapModalComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.model);
+    
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -51,40 +53,22 @@ export class EditSoapModalComponent implements OnInit {
   confirm(brand: string, edition: string, desc: string, quantity: string, price: string) {  
     
     let errorCounter = 0;
-    this.errors.brandValidationError = '';
-    this.errors.editionValidationError = '';
-    this.errors.priceValidationError = '';
-    this.errors.quantityValidationError = '';
-    this.errors.imageUrlValidationError = '';
-   
-    const unitPrice = this.convertStringToNumber(price);
-    const unitQuantity = this.convertStringToNumber(quantity);
-
-    if(isNaN(unitPrice) && isNaN(unitQuantity)) {
-      this.errors.priceValidationError = 'Please enter valid price';
-      this.errors.quantityValidationError = 'Please enter valid quantity';
-      return;
-    }
-    if(isNaN(unitPrice)) {
-      this.errors.priceValidationError = 'Please enter valid price';
-      return;
-    }
-    if(isNaN(unitQuantity)) {
-      this.errors.quantityValidationError = 'Please enter valid quantity';
-      return;
-    }
+    this.resetValidationErrors();
 
     let validationObject = {
       brand: brand,
       edition: edition,
       desc: desc,
-      quantity: unitQuantity,
-      price: unitPrice
+      quantity: quantity,
+      price: price
     }
 
     if(this.handleValidationErrors(errorCounter, validationObject) > 0) 
       return;
- 
+  
+    const unitPrice = this.convertStringToNumber(price);
+    const unitQuantity = this.convertStringToNumber(quantity);
+
     let editedSoapModel: CreateEditSoapModel = {
       id: this.model.id,
       brand: brand,
@@ -105,6 +89,25 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   handleValidationErrors(counter: any, model: any)  {
+
+    const unitPrice = this.convertStringToNumber(model.price);
+    const unitQuantity = this.convertStringToNumber(model.quantity);
+
+    if(isNaN(unitPrice) && isNaN(unitQuantity)) {
+      this.errors.priceValidationError = 'Price is required';
+      this.errors.quantityValidationError = 'Please enter valid quantity';
+      counter++;
+    }
+    if(isNaN(unitPrice)) {
+      this.errors.priceValidationError = 'Price is required';
+      counter++;
+    }
+    if(isNaN(unitQuantity)) {
+      this.errors.quantityValidationError = 'Please enter valid quantity';
+      counter++;
+    }
+
+
     // soap brand validation 
     if(model.brand === '') {
       this.errors.brandValidationError = 'Brand is required';
@@ -129,13 +132,13 @@ export class EditSoapModalComponent implements OnInit {
       counter++;
     }
 
-    if(!Number.isInteger(model.quantity)) {
+    if(!Number.isInteger(unitQuantity)) {
       this.errors.quantityValidationError = 'Quantity must be whole number';
       counter++;
     }
 
     // soap quantity validation
-    if(model.quantity === 0 || model.quantity < 0) {
+    if(unitQuantity === 0 || unitQuantity < 0) {
       this.errors.quantityValidationError = 'Quantity must be more then 0';
       counter++;
     }
@@ -144,8 +147,13 @@ export class EditSoapModalComponent implements OnInit {
       counter++;
     }
 
+    if(isNaN(unitQuantity)) {
+      this.errors.quantityValidationError = 'Quantity is required';
+      counter++;
+    }
+
     // soap price validation
-    if(model.price === 0 || model.price < 0) {
+    if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0';
       counter++;
     }
@@ -155,7 +163,7 @@ export class EditSoapModalComponent implements OnInit {
     }
 
     if(!this.showImagePanel) {
-      this.errors.imageUrlValidationError = 'Please choose image';
+      this.errors.imageUrlValidationError = 'Image is required';
       counter++;
     }
 
@@ -202,7 +210,7 @@ export class EditSoapModalComponent implements OnInit {
 
       reader.readAsDataURL(fileInput.target.files[0]);
     } else {
-      this.removeImage();
+      //this.removeImage();
     }
   }
 
@@ -210,6 +218,14 @@ export class EditSoapModalComponent implements OnInit {
     this.showImagePanel = false;
     this.isImageChanged = false;
     this.changedImageUrl = '';
+    this.errors.imageUrlValidationError = '';
+  }
+
+  resetValidationErrors() {
+    this.errors.brandValidationError = '';
+    this.errors.editionValidationError = '';
+    this.errors.priceValidationError = '';
+    this.errors.quantityValidationError = '';
     this.errors.imageUrlValidationError = '';
   }
   

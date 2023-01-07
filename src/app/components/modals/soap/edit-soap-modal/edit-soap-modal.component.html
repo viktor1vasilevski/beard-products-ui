@@ -1,5 +1,6 @@
 <div class="modal-container">
     <div class="modal-card">
+      <h3 class="p-2">Edit Soap</h3>
       <div class="row">
         <div class="col-6">
           <div class="m-3">
@@ -28,7 +29,7 @@
         <div class="col-6">
           <div class="m-3">
             <label for="description" class="form-label">Description</label>
-            <textarea type="text" id="description" rows="3" class="form-control" #description [value]="model.description"></textarea>
+            <textarea type="text" id="description" rows="1" class="form-control" #description [value]="model.description"></textarea>
           </div>
         </div>
       </div>
@@ -53,7 +54,7 @@
     
                     </div>
                   </div>             
-            <a class="btn btn-info" (click)="removeImage()" *ngIf="showImagePanel">Remove</a>
+            <a class="btn btn-outline-danger m-2" (click)="removeImage()" *ngIf="showImagePanel">Remove image</a>
           </div>
         </div>
         <div class="col-6">
@@ -66,7 +67,7 @@
       </div>
       <div class="btn-container modal-footer">
         <button class="btn btn-secondary"  (click)="closeMe()">Close</button>
-        <button class="btn btn-danger" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value)">Confirm</button>
+        <button class="btn btn-primary" (click)="confirm(brand.value, edition.value, description.value, quantity.value, price.value)">Confirm</button>
       </div>
     </div>
   </div>

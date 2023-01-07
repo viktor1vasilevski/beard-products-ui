@@ -25,12 +25,13 @@
     flex-direction: column;
 }
 
-.btn-container{
-    display: flex;
-} 
+.align-center {
+    text-align: center;
+}
 
 button {
-    margin: 5px;
+    margin: 0 6px 16px 0;
+    width: 80%;
 }
 
 h5 {

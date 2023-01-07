@@ -26,6 +26,8 @@ export class CreateSoapModalComponent implements OnInit {
   cardImageBase64: string | null = '';
   public isImageChosen: boolean = false;
 
+  public choseImageFilePath: string = '';
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -41,6 +43,27 @@ export class CreateSoapModalComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput: any) {
+    /**
+     * za da se detektira ovoj event treba da se smeni slikata
+     * ako stavime Slika_1, ja trgnime so Remove i ja stavime istata
+     * ovoj event nema da se trigerira i Create kopceto kje ostane Disable
+     * 
+     * Isto taka ako odberime slika, soodvetno kje go pokazi imeto od slikata
+     * vo inputot. Ako odberime povtorno da odberime slika i stegnime cancel, sekako
+     * ova e drug event i kje go fati samata funkcija, no vo inputot vekje ne go cuva
+     * imeto na slikata tuku go dava default tekstot koga ne e odbrano nisto "No File chosen",
+     * a slikata ostanuva.
+     * Probav da go zacuvam patot na samata slika koga se lepi slikata, i koga korisnikot 
+     * kje saka da odberi slika i klika "Cancel", da ja stavam povtorno vrednosta od patot na slikata,
+     * se pojavu greska od tipot 
+     * "This input element accepts a filename, which may only be programmatically set to the empty string"
+     * shto znaci deka nemozi da se setira manuelno value na input od tip file.
+     * 
+     * Od druga strana ovaa logika ne vazi koga se pravi "Remove" na slikata
+     * Na "Remove" moze da se setira inputot na prazen string
+     * 
+     */
+
     this.imageError = null;
     if (fileInput.target.files && fileInput.target.files[0]) {
       const max_size = 20971520;
@@ -75,15 +98,23 @@ export class CreateSoapModalComponent implements OnInit {
           }
         };
       };
-
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }
 
   removeImage() {
+
+    var nodeList = document.querySelectorAll("input");
+    nodeList.forEach((el : any) => {
+      if(el.type === 'file'){
+        el.value = '';
+      } 
+    });
+    
     this.cardImageBase64 = null;
     this.isImageChosen = false;
     this.createdSoapModel.url = '';
+    this.imageError = 'Image is required';
   }
   
 }

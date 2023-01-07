@@ -40,3 +40,8 @@ img {
     width: 230px; 
     height: 160px;
 }
+
+h3 {
+    text-align: left; 
+    text-decoration: underline;
+}
