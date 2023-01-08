@@ -11,50 +11,28 @@
         </div>
         
         <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" *ngIf="!isLoadingSpinner">
-
-
-          <div class="form-outline mb-4">
-            <label class="form-label" for="username">Username</label>
-            <input type="text" 
-                   id="username" 
-                   class="form-control form-control-lg" 
-                   placeholder="Enter Username" 
-                   autocomplete="off" 
-                   [(ngModel)]="user.username" 
-                   #username="ngModel" 
-                   name="username" 
-                   required 
-                   minlength="5"
-                   maxlength="15" 
-                   (click)="manageCustomErrors()"/>
-            <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['required']" style="color: red;">Username is required</p>
-            <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['minlength']" style="color: red;">Username must have more then 5 letters</p>
-            <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['maxlength']" style="color: red;">Username must be less then 15 letters</p>
-            <p *ngIf="errorMessage.length" style="color: red;">{{errorMessage}}</p>
-          </div>
-
-          <div class="form-outline mb-4">
-            <label class="form-label" for="password">Password</label>
-            <input type="password" 
-                   id="password" 
-                   class="form-control form-control-lg" 
-                   placeholder="Enter Password" 
-                   autocomplete="off" 
-                   [(ngModel)]="user.password" 
-                   #password="ngModel" 
-                   name="password"
-                   required 
-                   minlength="5"
-                   maxlength="25"
-                   (click)="manageCustomErrors()"/>
-            <p *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['required']" style="color: red;">Username is required</p>
-            <p *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['minlength']" style="color: red;">Username must have more then 5 letters</p>
-            <p *ngIf="password.invalid && (username.dirty || password.touched) && password.errors?.['maxlength']" style="color: red;">Username must be less then 15 letters</p>
-          </div>
-
-          <button class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" [disabled]="username.errors || password.errors" (click)="myLogin()">Login</button>
-          <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register" class="link-danger">Register</a></p>
+        
+        <div class="form-outline mb-4">
+          <label class="form-label" for="username">Username</label>
+          <input type="text" id="username" name="username" class="form-control" (keyup)="resetError($event)" required [(ngModel)]="user.username" #username="ngModel">
+          <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['required']">Username is required</p>
         </div>
+
+
+
+        <div class="form-outline mb-4">
+          <p *ngIf="usernameOrPassAreIncorectError.length">{{ usernameOrPassAreIncorectError }}</p>
+          <label class="form-label" for="password">Password</label>
+          <input type="password" id="password" name="password" class="form-control" (keyup)="resetError($event)" required [(ngModel)]="user.password" #password="ngModel">
+          <p *ngIf="password.invalid && (password.dirty || password.touched) && password.errors?.['required']">Password is required</p>
+        </div>
+
+        <div class="form-outline mb-4">
+          <button class="btn btn-primary btn-lg" style="padding-left: 2.5rem; padding-right: 2.5rem;" (click)="login()">Login</button>
+        </div>
+
+        <span class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a routerLink="/register" class="link-danger">Register</a></span>
       </div>
     </div>
-  </section>
+  </div>
+</section>

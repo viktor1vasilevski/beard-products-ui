@@ -13,3 +13,11 @@ height: calc(100% - 73px);
 height: 100%;
 }
 }
+
+p {
+    color: red;
+}
+
+label {
+    font-weight: 600;
+}

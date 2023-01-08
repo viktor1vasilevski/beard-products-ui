@@ -4,6 +4,9 @@
 
 button {
     margin: 10px 0 0 8px;
-
     width: 100px;
+}
+
+label {
+    font-weight: 600;
 }

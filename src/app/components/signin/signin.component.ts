@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/services/authentication/authentication.service';
 import { BannerService } from 'src/app/services/banner.service';
@@ -13,27 +14,37 @@ import { UserModel } from './user-model';
   styleUrls: ['./signin.component.css']
 })
 
-export class SigninComponent implements OnInit {
+export class SigninComponent {
+
+  loginForm: FormGroup = new FormGroup({});
 
   public user: UserModel = {
-    username: 'Viktor',
-    password: 'Viktor@123'
+    username: '',
+    password: ''
   }
 
   public hideLoginImage: boolean = false; 
   public isLoadingSpinner: boolean = false;
-  public errorMessage: string = '';
+  public usernameOrPassAreIncorectError: string = '';
 
   constructor(private _bannerService: BannerService, 
     private _authService: AuthenticationService, 
     private _userService: UserService, 
     private route: Router) {
-    this._bannerService.toggleBanned(true);
+      this._bannerService.toggleBanned(true);
    }
 
-  ngOnInit(): void {}
+   resetError(e: any) {
+    debugger
+    if(this.user.username == '' || this.user.password == '') {
+      this.usernameOrPassAreIncorectError = '';
+    }
+   }
 
-  myLogin() {
+  login() {
+    if(this.user.password == '' || this.user.username == '') {
+      return
+    }
     this._authService.login(this.user.username, this.user.password)
       .subscribe((res :any) => {
         this.isLoadingSpinner = true;
@@ -61,15 +72,8 @@ export class SigninComponent implements OnInit {
         this.route.navigate(['/'])
 
       }, (error: any) => {
-        if(error.status == 400) {
-          this.errorMessage = 'Your username or password might be incorect!';
-        }
+        this.usernameOrPassAreIncorectError = 'Your username or password might be incorect!';
       })
-    
-  }
-  
-  manageCustomErrors() {
-    this.errorMessage = '';
   }
 
 }
