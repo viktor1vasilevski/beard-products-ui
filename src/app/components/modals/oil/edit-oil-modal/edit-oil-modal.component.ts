@@ -156,17 +156,23 @@ export class EditOilModalComponent implements OnInit {
     }
 
     // oil quantity validation
-    if(model.quantity === 0 || model.quantity < 0) {
+    debugger;
+    if(unitQuantity === 0 || unitQuantity < 0) {
       this.errors.quantityValidationError = 'Quantity must be more then 0';
       counter++;
     }
-    if(model.quantity > 500) {
+    if(unitQuantity > 500) {
       this.errors.quantityValidationError = 'Quantity must be less then 500';
       counter++;
     }
 
+    if(!Number.isInteger(liquidVolume)) {
+      this.errors.liquidVolumeValidationError = 'Liquid volume must be whole number';
+      counter++;
+    }
+
     // oil liquid volume validaton
-    if(model.liquidVolume === 0 || model.liquidVolume < 30) {
+    if(liquidVolume === 0 || liquidVolume < 30) {
       this.errors.liquidVolumeValidationError = 'Liquie volume must be more then 30ml';
       counter++;
     }
@@ -176,23 +182,28 @@ export class EditOilModalComponent implements OnInit {
       counter++;
     }
     
-    if(model.liquidVolume > 100) {
+    if(liquidVolume > 100) {
       this.errors.liquidVolumeValidationError = 'Liquie volume must be less then 100ml';
       counter++;
     }
 
+    if(!Number.isInteger(unitPrice)) {
+      this.errors.priceValidationError = 'Price volume must be whole number';
+      counter++;
+    }
+
     // oil price validation
-    if(model.price === 0 || model.price < 0) {
+    if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0';
       counter++;
     }
-    if(model.price > 1000) {
+    if(unitPrice > 1000) {
       this.errors.priceValidationError = 'Price must be less then 1000';
       counter++;
     }
 
     if(!this.showImagePanel) {
-      this.errors.imageUrlValidationError = 'Please choose image';
+      this.errors.imageUrlValidationError = 'Image is required';
       counter++;
     }
 

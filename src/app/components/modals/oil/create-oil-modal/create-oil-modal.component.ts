@@ -17,6 +17,10 @@ export class CreateOilModalComponent {
   public cardImageBase64: string | null = '';
   public isImageChosen: boolean = false;
 
+  public quantityIsDecimalNumberError: string = '';
+  public liquidVolumeIsDecimalNumberError: string = '';
+  public priceIsDecimalNumberError: string = '';
+
   public createdOilModel: CreateEditOilModel = {
     brand : '',
     description: '',
@@ -33,6 +37,30 @@ export class CreateOilModalComponent {
 
   confirm() { 
     this.confirmEvent.emit(this.createdOilModel);
+  }
+
+  quantityInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.quantityIsDecimalNumberError = 'Quantity must be whole number';
+    } else {
+      this.quantityIsDecimalNumberError = '';
+    }
+  }
+
+  priceInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.priceIsDecimalNumberError = 'Price volume must be whole number';
+    } else {
+      this.priceIsDecimalNumberError = '';
+    }
+  }
+
+  liquidVolumeInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.liquidVolumeIsDecimalNumberError = 'Liquid volume must be whole number';
+    } else {
+      this.liquidVolumeIsDecimalNumberError = '';
+    }
   }
 
   fileChangeEvent(fileInput: any) {
@@ -76,9 +104,18 @@ export class CreateOilModalComponent {
   }
 
   removeImage() {
+
+    var nodeList = document.querySelectorAll("input");
+    nodeList.forEach((el : any) => {
+      if(el.type === 'file'){
+        el.value = '';
+      } 
+    });
+
     this.cardImageBase64 = null;
     this.isImageChosen = false;
     this.createdOilModel.url = '';
+    this.imageError = 'Image is required';
   }
 
 }

@@ -46,8 +46,7 @@ export class EditBalmModalComponent implements OnInit {
     }
   }
 
-  confirm(brand: string, volume: string, quantity: string, price: string, desc: string) {  
-    
+  confirm(brand: string, volume: string, quantity: string, price: string, desc: string) {   
     let errorCounter = 0;
     this.resetValidationErrors();
 
@@ -153,6 +152,11 @@ export class EditBalmModalComponent implements OnInit {
       counter++;
     }
 
+    if(!Number.isInteger(volume)) {
+      this.errors.volumeValidationError = 'Volume must be whole number';
+      counter++;
+    }
+
     if(isNaN(volume)) {
       this.errors.volumeValidationError = 'Volume is required';
       counter++;
@@ -163,11 +167,19 @@ export class EditBalmModalComponent implements OnInit {
       counter++;
     }
 
+    
+    if(!Number.isInteger(unitPrice)) {
+      this.errors.priceValidationError = 'Price must be whole number';
+      counter++;
+    }
+
     // oil price validation
+    debugger;
     if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0 $';
       counter++;
     }
+
     if(unitPrice > 1000) {
       this.errors.priceValidationError = 'Price must be less then 1000 $';
       counter++;

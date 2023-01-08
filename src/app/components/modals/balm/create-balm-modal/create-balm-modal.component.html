@@ -13,10 +13,11 @@
             <div class="col-6">
                 <div class="m-2 mt-2">
                     <label for="volume" class="form-label">Volume</label>
-                    <input type="number" id="volume" name="volume" class="form-control" required min="10" max="150" [(ngModel)]="createdBalmModel.volume" #volume="ngModel">
+                    <input type="number" id="volume" name="volume" class="form-control" required min="10" max="150" (keyup)="volumeInput($event)" [(ngModel)]="createdBalmModel.volume" #volume="ngModel">
                     <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['required']">Volume is required</p>
                     <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['min']">Volume must have more then 10g</p>
                     <p *ngIf="volume.invalid && (volume.dirty || volume.touched) && volume.errors?.['max']">Volume must be less then 150g</p>
+                    <p *ngIf="volumeIsDecimalNumberError.length">{{ volumeIsDecimalNumberError }}</p>
                 </div>
             </div>
         </div>
@@ -25,10 +26,11 @@
             <div class="col-6">
                 <div class="m-2">
                     <label for="quantity" class="form-label">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" class="form-control" min="1" max="500" required [(ngModel)]="createdBalmModel.unitQuantity" #unitQuantity="ngModel">
+                    <input type="number" id="quantity" name="quantity" class="form-control" (keyup)="quantityInput($event)" min="1" max="500" required [(ngModel)]="createdBalmModel.unitQuantity" #unitQuantity="ngModel">
                     <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']">Quantity is required</p>
                     <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['min']">Quantity must be more then 0 units</p>
                     <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['max']">Quantity must be less then 500 units</p>
+                    <p *ngIf="quantityIsDecimalNumberError.length">{{ quantityIsDecimalNumberError }}</p>
                 </div>
             </div>
             <div class="col-6">
@@ -65,10 +67,11 @@
             <div class="col-6">
                 <div class="m-2">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" id="price" name="price" class="form-control" min="1" max="1000" required [(ngModel)]="createdBalmModel.unitPrice" #unitPrice="ngModel">
+                    <input type="number" id="price" name="price" class="form-control" (keyup)="priceInput($event)" min="1" max="1000" required [(ngModel)]="createdBalmModel.unitPrice" #unitPrice="ngModel">
                     <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']">Price is required</p>
                     <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['min']">Price must be more then 0 $</p>
                     <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['max']">Price must be lest then 1000 $</p>
+                    <p *ngIf="priceIsDecimalNumberError.length">{{ priceIsDecimalNumberError }}</p>
                 </div>
             </div>
         </div>
@@ -76,7 +79,10 @@
         <div class="btn-container modal-footer">
             <button class="btn btn-secondary m-2" (click)="closeMe()">Close</button>
             <button class="btn btn-primary m-2" 
-            [disabled]="brand.errors || volume.errors || unitPrice.errors || unitQuantity.errors || !isImageChosen" (click)="confirm()">Confirm</button>
+                [disabled]="brand.errors ||  volume.errors || unitPrice.errors || 
+                unitQuantity.errors || !isImageChosen || 
+                volumeIsDecimalNumberError.length || quantityIsDecimalNumberError.length || priceIsDecimalNumberError.length" (click)="confirm()">Confirm
+            </button>
         </div>
     </div>
   </div>

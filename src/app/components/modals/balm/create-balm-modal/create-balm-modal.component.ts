@@ -17,6 +17,10 @@ export class CreateBalmModalComponent {
   public cardImageBase64: string | null = '';
   public isImageChosen: boolean = false;
 
+  public priceIsDecimalNumberError: string = '';
+  public quantityIsDecimalNumberError: string = '';
+  public volumeIsDecimalNumberError: string = '';
+
 
 
   public createdBalmModel: CreateEditBalmModel = {
@@ -34,6 +38,30 @@ export class CreateBalmModalComponent {
 
   confirm() { 
     this.confirmEvent.emit(this.createdBalmModel);
+  }
+
+  volumeInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.volumeIsDecimalNumberError = 'Volume must be whole number';
+    } else {
+      this.volumeIsDecimalNumberError = '';
+    }
+  }
+
+  priceInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.priceIsDecimalNumberError = 'Price must be whole number';
+    } else {
+      this.priceIsDecimalNumberError = '';
+    }
+  }
+
+  quantityInput(event: any){
+    if(event.target.value.includes('.')){
+      this.quantityIsDecimalNumberError = 'Quantity must be whole number';
+    } else {
+      this.quantityIsDecimalNumberError = '';
+    }
   }
 
   fileChangeEvent(fileInput: any) {
@@ -71,7 +99,6 @@ export class CreateBalmModalComponent {
           }
         };
       };
-
       reader.readAsDataURL(fileInput.target.files[0]);
     }
   }

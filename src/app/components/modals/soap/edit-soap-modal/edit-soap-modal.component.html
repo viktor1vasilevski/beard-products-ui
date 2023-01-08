@@ -6,15 +6,29 @@
           <div class="m-3">
             <label for="brand" class="form-label">Brand</label>
             <input type="text" id="brand" class="form-control" [value]="model.brand" #brand>
-            <p *ngIf="errors.brandValidationError">{{ errors.brandValidationError }}</p>
+            <p *ngIf="errors.brandValidationError.length">{{ errors.brandValidationError }}</p>
           </div>
         </div>
         <div class="col-6">
+
           <div class="m-3">
             <label for="edition" class="form-label">Edition</label>
             <input type="text" id="edition" class="form-control" #edition [value]="model.edition">
             <p *ngIf="errors.editionValidationError">{{ errors.editionValidationError }}</p>
           </div>
+
+          <!-- <div class="m-3">
+            <label for="edition" class="form-label">Edition</label>
+            <input type="text" id="edition" name="edition" class="form-control" required minlength="3" maxlength="50" [(ngModel)]="model.edition" #edition="ngModel">
+            <p *ngIf="edition.invalid && (edition.dirty || edition.touched) && edition.errors?.['required']">Edition is required</p>
+            <p *ngIf="edition.invalid && (edition.dirty || edition.touched) && edition.errors?.['minlength']">Edition must have more then 3 letters</p>
+            <p *ngIf="edition.invalid && (edition.dirty || edition.touched) && edition.errors?.['maxlength']">Edition must be less then 50 letters</p>
+            
+            ova jas mozam da go ostavam vamo i kje rabotaat validaciite, no problem e ako se smeni na primer
+            Edition, i korisnikot pritisne Cancel, predostata na poleto ostanuva ista kakva shto prethodno
+            sme ja napisale, odnosno nema da go zemi soodvetnoto polo
+
+          </div> -->
         </div>
       </div>
 

@@ -7,7 +7,7 @@ import * as _ from 'lodash'
   templateUrl: './create-soap-modal.component.html',
   styleUrls: ['./create-soap-modal.component.css']
 })
-export class CreateSoapModalComponent implements OnInit {
+export class CreateSoapModalComponent {
 
   @Output() closeMeEvent = new EventEmitter();
   @Output() confirmEvent = new EventEmitter<any>();
@@ -27,45 +27,35 @@ export class CreateSoapModalComponent implements OnInit {
   public isImageChosen: boolean = false;
   public priceError: string = ''
   public quantityError: string = ''
+
+  public priceIsDecimalNumberError: string = '';
+  public quantityIsDecimalNumberError: string = '';
+  public volumeIsDecimalNumberError: string = '';
   
 
   public choseImageFilePath: string = '';
-
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  ngOnDestroy(): void {}
 
   closeMe() {
     this.closeMeEvent.emit();
   }
 
-  onPriceInput(event: any) {
-    this.priceError = '';
+  priceInput(event: any) {
+    if(event.target.value.includes('.')){
+      this.priceIsDecimalNumberError = 'Price must be whole number';
+    } else {
+      this.priceIsDecimalNumberError = '';
+    }
   }
 
-  onQuantityInput(event: any) {
-    this.quantityError = '';
+  quantityInput(event: any){
+    if(event.target.value.includes('.')){
+      this.quantityIsDecimalNumberError = 'Quantity must be whole number';
+    } else {
+      this.quantityIsDecimalNumberError = '';
+    }
   }
 
-  confirm() { 
-    if(!Number.isInteger(this.createdSoapModel.unitPrice) && !Number.isInteger(this.createdSoapModel.unitQuantity)){
-      this.priceError = 'Price must be whole number';
-      this.quantityError = 'Quantity must be whole number';
-      return
-    }
-
-    if(!Number.isInteger(this.createdSoapModel.unitPrice)){
-      this.priceError = 'Price must be whole number';
-      return
-    }
-
-    if(!Number.isInteger(this.createdSoapModel.unitQuantity)){
-      this.quantityError = 'Quantity must be whole number';
-      return
-    }
-    
+  confirm() {
     this.confirmEvent.emit(this.createdSoapModel);
   }
 

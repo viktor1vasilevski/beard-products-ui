@@ -21,15 +21,13 @@ export class EditSoapModalComponent implements OnInit {
     imageUrlValidationError: ''
   }
 
-  public changedImageUrl = '';
+  public changedImageUrl: string = '';
   public isImageChanged: boolean = false;
   public showImagePanel: boolean = false;
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.model);
-    
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -106,7 +104,6 @@ export class EditSoapModalComponent implements OnInit {
       this.errors.quantityValidationError = 'Please enter valid quantity';
       counter++;
     }
-
 
     // soap brand validation 
     if(model.brand === '') {
@@ -192,11 +189,13 @@ export class EditSoapModalComponent implements OnInit {
 
       if (fileInput.target.files[0].size > max_size) {
         this.errors.imageUrlValidationError =`Maximum size allowed is ${max_size / 1000}Mb`;
+        fileInput.target.value = ''
         return;
       } 
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
         this.errors.imageUrlValidationError = 'Only Images are allowed ( JPG | PNG )';
+        fileInput.target.value = ''
         return;
       } 
       const reader = new FileReader();
@@ -210,6 +209,7 @@ export class EditSoapModalComponent implements OnInit {
 
           if (img_height > max_height && img_width > max_width) {
             this.errors.imageUrlValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
+            fileInput.target.value = ''
             return;
           } else {  
             this.isImageChanged = true;
@@ -238,9 +238,4 @@ export class EditSoapModalComponent implements OnInit {
     this.errors.quantityValidationError = '';
     this.errors.imageUrlValidationError = '';
   }
-
-  onSubmit() {
-    
-  }
-  
 }
