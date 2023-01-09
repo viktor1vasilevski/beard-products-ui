@@ -71,7 +71,7 @@
                 <div class="img-space">
                     <div class="row">
                         <div class="col-12">
-                        <input type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
+                        <input [disabled]="isImageChosen ? true : false" type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
                         <p>{{imageError}}</p>
         
                         <ng-container *ngIf="isImageChosen; else elseTemplate">

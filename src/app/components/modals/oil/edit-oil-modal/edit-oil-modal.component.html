@@ -54,7 +54,7 @@
                 <div class="img-space">
                     <div class="row">
                         <div class="col-12">
-                        <input type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
+                        <input [disabled]="showImagePanel ? true : false" type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
                         <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
                         <div *ngIf="showImagePanel">
                             <ng-container *ngIf="!isImageChanged else elseTemplate">
