@@ -35,7 +35,6 @@ export class SigninComponent {
    }
 
    resetError(e: any) {
-    debugger
     if(this.user.username == '' || this.user.password == '') {
       this.usernameOrPassAreIncorectError = '';
     }

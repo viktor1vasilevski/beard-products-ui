@@ -27,7 +27,6 @@ export class EditOilModalComponent implements OnInit {
   public showImagePanel: boolean = false;
 
   ngOnInit(): void {
-    debugger;
     this.model.url === '' ? this.showImagePanel = false : this.showImagePanel = true;
   }
 
@@ -156,7 +155,7 @@ export class EditOilModalComponent implements OnInit {
     }
 
     // oil quantity validation
-    debugger;
+
     if(unitQuantity === 0 || unitQuantity < 0) {
       this.errors.quantityValidationError = 'Quantity must be more then 0';
       counter++;

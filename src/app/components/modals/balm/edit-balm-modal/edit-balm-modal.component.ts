@@ -174,7 +174,6 @@ export class EditBalmModalComponent implements OnInit {
     }
 
     // oil price validation
-    debugger;
     if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0 $';
       counter++;

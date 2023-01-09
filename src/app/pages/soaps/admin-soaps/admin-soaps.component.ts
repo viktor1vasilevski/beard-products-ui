@@ -118,7 +118,6 @@ export class AdminSoapsComponent implements OnInit, OnDestroy {
             this.source.load(this.soaps);
             this._toastr.success('Soap seccessfuly edited!', 'Success', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           }, (err:any) => {
-            debugger
             this._toastr.error('Editing soap was unseccessfuly!', 'Error', { timeOut: 3000, positionClass: 'toast-bottom-right' });
           })      
         });
