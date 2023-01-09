@@ -90,11 +90,15 @@ export class CreateSoapModalComponent {
 
       if (fileInput.target.files[0].size > max_size) {
         this.imageError =`Maximum size allowed is ${max_size / 1000}Mb`;
+        this.isImageChosen = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
         this.imageError = 'Only Images are allowed ( JPG | PNG )';
+        this.isImageChosen = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
       const reader = new FileReader();
@@ -107,6 +111,8 @@ export class CreateSoapModalComponent {
 
           if (img_height > max_height && img_width > max_width) {
             this.imageError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
+            this.isImageChosen = false;
+            this.setInputTypeFileValueToEmptyString();
             return;
           } else {
             this.cardImageBase64 = e.target.result.toString();    
@@ -120,18 +126,19 @@ export class CreateSoapModalComponent {
   }
 
   removeImage() {
-
-    var nodeList = document.querySelectorAll("input");
-    nodeList.forEach((el : any) => {
-      if(el.type === 'file'){
-        el.value = '';
-      } 
-    });
-    
     this.cardImageBase64 = null;
     this.isImageChosen = false;
     this.createdSoapModel.url = '';
     this.imageError = 'Image is required';
+    this.setInputTypeFileValueToEmptyString();
+  }
+
+  setInputTypeFileValueToEmptyString() {
+    document.querySelectorAll('input').forEach((element: any) => {
+      if(element.type == 'file') {  
+        element.value = '';
+      }
+    });
   }
   
 }

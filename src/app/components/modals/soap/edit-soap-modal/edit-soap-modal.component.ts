@@ -178,9 +178,7 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput: any) {
-    console.log(fileInput);
-    
-    this.showImagePanel = true;
+    //this.showImagePanel = true;
     this.errors.imageUrlValidationError = '';
     if (fileInput.target.files && fileInput.target.files[0]) {
 
@@ -191,13 +189,15 @@ export class EditSoapModalComponent implements OnInit {
 
       if (fileInput.target.files[0].size > max_size) {
         this.errors.imageUrlValidationError =`Maximum size allowed is ${max_size / 1000}Mb`;
-        fileInput.target.value = ''
+        this.showImagePanel = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
         this.errors.imageUrlValidationError = 'Only Images are allowed ( JPG | PNG )';
-        fileInput.target.value = ''
+        this.showImagePanel = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
       const reader = new FileReader();
@@ -211,10 +211,12 @@ export class EditSoapModalComponent implements OnInit {
 
           if (img_height > max_height && img_width > max_width) {
             this.errors.imageUrlValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
-            fileInput.target.value = ''
+            this.showImagePanel = false;
+            this.setInputTypeFileValueToEmptyString();
             return;
           } else {  
             this.isImageChanged = true;
+            this.showImagePanel = true;
             this.changedImageUrl = e.target.result.toString();    
           }
         };
@@ -226,11 +228,20 @@ export class EditSoapModalComponent implements OnInit {
     }
   }
 
+  setInputTypeFileValueToEmptyString() {
+    document.querySelectorAll('input').forEach((element: any) => {
+      if(element.type == 'file') {  
+        element.value = '';
+      }
+    });
+  }
+
   removeImage() {
     this.showImagePanel = false;
     this.isImageChanged = false;
     this.changedImageUrl = '';
     this.errors.imageUrlValidationError = '';
+    this.setInputTypeFileValueToEmptyString();
   }
 
   resetValidationErrors() {
