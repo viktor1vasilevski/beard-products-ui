@@ -54,7 +54,7 @@
             <label for="formFile" class="form-label">Image url</label>
                   <div class="row">
                     <div class="col-12">
-                      <input type="file" class="form-control" (change)="fileChangeEvent($event)">
+                      <input [disabled]="showImagePanel ? true : false" type="file" class="form-control" value="test" (change)="fileChangeEvent($event)">
                       <p *ngIf="errors.imageUrlValidationError">{{ errors.imageUrlValidationError }}</p>
     
                       <div *ngIf="showImagePanel">

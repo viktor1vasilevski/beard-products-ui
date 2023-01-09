@@ -194,7 +194,7 @@ export class EditBalmModalComponent implements OnInit {
 
 
   fileChangeEvent(fileInput: any) {
-    this.showImagePanel = true;
+    
     this.errors.imageUrlValidationError = '';
     if (fileInput.target.files && fileInput.target.files[0]) {
 
@@ -205,11 +205,15 @@ export class EditBalmModalComponent implements OnInit {
 
       if (fileInput.target.files[0].size > max_size) {
         this.errors.imageUrlValidationError =`Maximum size allowed is ${max_size / 1000}Mb`;
+        this.showImagePanel = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
 
       if (!_.includes(allowed_types, fileInput.target.files[0].type)) {
         this.errors.imageUrlValidationError = 'Only Images are allowed ( JPG | PNG )';
+        this.showImagePanel = false;
+        this.setInputTypeFileValueToEmptyString();
         return;
       } 
       const reader = new FileReader();
@@ -223,8 +227,11 @@ export class EditBalmModalComponent implements OnInit {
 
           if (img_height > max_height && img_width > max_width) {
             this.errors.imageUrlValidationError = `Maximum dimentions allowed ${max_height}*${max_width}px`;
+            this.showImagePanel = false;
+            this.setInputTypeFileValueToEmptyString();
             return;
           } else {  
+            this.showImagePanel = true;
             this.isImageChanged = true;
             this.changedImageUrl = e.target.result.toString();    
           }
@@ -242,6 +249,8 @@ export class EditBalmModalComponent implements OnInit {
     this.isImageChanged = false;
     this.changedImageUrl = '';
     this.errors.imageUrlValidationError = '';
+    this.setInputTypeFileValueToEmptyString();
+
   }
 
   resetValidationErrors() {
@@ -251,6 +260,14 @@ export class EditBalmModalComponent implements OnInit {
     this.errors.priceValidationError = '';
     this.errors.quantityValidationError = '';
     this.errors.imageUrlValidationError = '';
+  }
+
+  setInputTypeFileValueToEmptyString() {
+    document.querySelectorAll('input').forEach((element: any) => {
+      if(element.type == 'file') {  
+        element.value = '';
+      }
+    });
   }
 
 }

@@ -19,8 +19,8 @@ export class SigninComponent {
   loginForm: FormGroup = new FormGroup({});
 
   public user: UserModel = {
-    username: '',
-    password: ''
+    username: 'Viktor',
+    password: 'Viktor@123'
   }
 
   public hideLoginImage: boolean = false; 
@@ -42,7 +42,7 @@ export class SigninComponent {
 
   login() {
     if(this.user.password == '' || this.user.username == '') {
-      return
+      return;
     }
     this._authService.login(this.user.username, this.user.password)
       .subscribe((res :any) => {

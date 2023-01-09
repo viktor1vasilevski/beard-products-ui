@@ -43,26 +43,23 @@
 
         <div class="row">
             <div class="col-6">
-                
-                    <div class="m-2">
-                        <label for="image" class="form-label">Image</label> 
-                        <div class="img-space">
-                            <div class="row">
-                                <div class="col-12">
-                                <input type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
+                <div class="m-2">
+                    <label for="image" class="form-label">Image</label> 
+                    <div class="img-space">
+                        <div class="row">
+                            <div class="col-12">
+                                <input [disabled]="isImageChosen ? true : false" type="file" id="data-image-input" class="form-control" (change)="fileChangeEvent($event)">
                                 <p>{{ imageError }}</p>
-                
                                 <ng-container *ngIf="isImageChosen; else elseTemplate">
                                     <img [src]="cardImageBase64" class="m-1" />
                                 </ng-container>
                                 <ng-template #elseTemplate>
                                 </ng-template>
-                                </div>
                             </div>
                         </div>
-                        <a class="btn btn-outline-danger m-2" (click)="removeImage()" *ngIf="isImageChosen">Remove image</a>
                     </div>
-                
+                    <a class="btn btn-outline-danger m-2" (click)="removeImage()" *ngIf="isImageChosen">Remove image</a>
+                </div>
             </div>
             <div class="col-6">
                 <div class="m-2">

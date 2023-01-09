@@ -136,7 +136,7 @@ export class EditSoapModalComponent implements OnInit {
 
     // soap quantity validation
     if(unitQuantity === 0 || unitQuantity < 0) {
-      this.errors.quantityValidationError = 'Quantity must be more then 0';
+      this.errors.quantityValidationError = 'Quantity must be more then 0 units';
       counter++;
     }
     if(model.quantity > 500) {
@@ -156,7 +156,7 @@ export class EditSoapModalComponent implements OnInit {
 
     // soap price validation
     if(unitPrice === 0 || unitPrice < 0) {
-      this.errors.priceValidationError = 'Price must be more then 0';
+      this.errors.priceValidationError = 'Price must be more then 0 $';
       counter++;
     }
     if(model.price > 1000) {
@@ -178,6 +178,8 @@ export class EditSoapModalComponent implements OnInit {
   }
 
   fileChangeEvent(fileInput: any) {
+    console.log(fileInput);
+    
     this.showImagePanel = true;
     this.errors.imageUrlValidationError = '';
     if (fileInput.target.files && fileInput.target.files[0]) {
