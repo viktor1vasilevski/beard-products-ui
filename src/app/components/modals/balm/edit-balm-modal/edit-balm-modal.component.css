@@ -36,9 +36,14 @@ p {
     color: red
 }
 
+label {
+    font-weight: 600;
+}
+
 h3 {
     text-align: left; 
     text-decoration: underline;
+    margin-left: 12px;
 }
 
 img {

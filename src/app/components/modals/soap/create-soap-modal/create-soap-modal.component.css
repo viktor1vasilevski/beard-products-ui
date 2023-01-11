@@ -26,9 +26,10 @@
     flex-direction: column;
 }
 
-.btn-container{
+.btn-container {
     display: flex;
 } 
+
 button{
     margin: 5px;
 }
@@ -49,5 +50,6 @@ img {
 h3 {
     text-align: left; 
     text-decoration: underline;
+    margin-left: 12px;
 }
 

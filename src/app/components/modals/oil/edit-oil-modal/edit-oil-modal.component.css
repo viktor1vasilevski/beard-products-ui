@@ -39,6 +39,11 @@ p {
 h3 {
     text-align: left; 
     text-decoration: underline;
+    margin-left: 12px;
+}
+
+label {
+    font-weight: 600;
 }
 
 img {
@@ -47,5 +52,5 @@ img {
 }
 
 #data-image-input {
-    width: 98%;
+    width: 96%;
 }

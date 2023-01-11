@@ -173,6 +173,11 @@ export class EditBalmModalComponent implements OnInit {
       counter++;
     }
 
+    if(isNaN(unitPrice)) {
+      this.errors.priceValidationError = 'Price is required';
+      counter++;
+    }
+
     // oil price validation
     if(unitPrice === 0 || unitPrice < 0) {
       this.errors.priceValidationError = 'Price must be more then 0 $';

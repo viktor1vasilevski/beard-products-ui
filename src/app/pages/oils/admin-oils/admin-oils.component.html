@@ -1,6 +1,6 @@
 <button class="btn btn-primary m-3" (click)="openCreateOilModal()">Create Oil</button>
 
-<ng2-smart-table class="table" [settings]="settings" [source]="source" (custom)="onAction($event)"></ng2-smart-table>
+<ng2-smart-table class="table m-4" [settings]="settings" [source]="source" (custom)="onAction($event)"></ng2-smart-table>
 <div class="modal-container">
   <div #deleteOilModal></div>
   <div #createOilModal></div>

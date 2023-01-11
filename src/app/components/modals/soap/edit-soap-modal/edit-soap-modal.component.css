@@ -44,4 +44,9 @@ img {
 h3 {
     text-align: left; 
     text-decoration: underline;
+    margin-left: 12px;
+}
+
+label {
+    font-weight: 600;
 }

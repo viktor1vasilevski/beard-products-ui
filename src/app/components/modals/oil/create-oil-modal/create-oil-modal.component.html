@@ -3,7 +3,7 @@
         <h3 class="p-2">Create Oil</h3>
         <div class="row">
             <div class="col-6">
-                <div class="m-2 mt-2">
+                <div class="m-3 mt-2">
                     <label for="brand" class="form-label">Brand</label>
                     <input type="text" id="brand" name="brand" class="form-control" required minlength="3" [(ngModel)]="createdOilModel.brand" #brand="ngModel" autocomplete="off">
                     <p *ngIf="brand.invalid && (brand.dirty || brand.touched) && brand.errors?.['required']">Brand is required</p>
@@ -11,7 +11,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="m-2 mt-2">
+                <div class="m-3 mt-2">
                     <label for="scent" class="form-label">Scent</label>
                     <input type="text" id="scent" name="edition" class="form-control" required minlength="3" maxlength="50" [(ngModel)]="createdOilModel.scent" #scent="ngModel">
                     <p *ngIf="scent.invalid && (scent.dirty || scent.touched) && scent.errors?.['required']">Scent is required</p>
@@ -23,18 +23,18 @@
 
         <div class="row">
             <div class="col-6">
-                <div class="m-2">
+                <div class="m-3">
                     <label for="liquidVolume" class="form-label">Liquid Volume</label>
                     <input type="number" id="liquidVolume" name="liquidVolume" class="form-control" (keyup)="liquidVolumeInput($event)" min="30" max="100" required [(ngModel)]="createdOilModel.liquidVolume" #liquidVolume="ngModel">
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['required']">Liquid Volum is required</p>
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['min']">Liquid Volum must be more then 30 ml</p>
-                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['max']">Liquid Volum must be less then 100 ml</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['required']">Liquid volume is required</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['min']">Liquid volume must be more then 30 ml</p>
+                    <p *ngIf="liquidVolume.invalid && (liquidVolume.dirty || liquidVolume.touched) && liquidVolume.errors?.['max']">Liquid volume must be less then 100 ml</p>
                     <p *ngIf="liquidVolumeIsDecimalNumberError.length">{{ liquidVolumeIsDecimalNumberError }}</p>
 
                 </div>
             </div>
             <div class="col-6">
-                <div class="m-2">
+                <div class="m-3">
                     <label for="description" class="form-label">Description</label>
                     <textarea class="form-control" id="desciption" rows="1" [(ngModel)]="createdOilModel.description" #description="ngModel"></textarea>
                 </div>
@@ -43,7 +43,7 @@
 
         <div class="row">
             <div class="col-6">
-                <div class="m-2">
+                <div class="m-3">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" id="quantity" name="quantity" class="form-control" (keyup)="quantityInput($event)" min="1" max="500" required [(ngModel)]="createdOilModel.unitQuantity" #unitQuantity="ngModel">
                     <p *ngIf="unitQuantity.invalid && (unitQuantity.dirty || unitQuantity.touched) && unitQuantity.errors?.['required']">Quantity is required</p>
@@ -53,7 +53,7 @@
                 </div>
             </div>
             <div class="col-6">
-                <div class="m-2">
+                <div class="m-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" id="price" name="price" class="form-control" (keyup)="priceInput($event)" min="1" max="1000" required [(ngModel)]="createdOilModel.unitPrice" #unitPrice="ngModel">
                     <p *ngIf="unitPrice.invalid && (unitPrice.dirty || unitPrice.touched) && unitPrice.errors?.['required']">Price is required</p>
@@ -66,7 +66,7 @@
 
 
         <div class="row">
-            <div class="m-2">
+            <div class="m-3">
                 <label for="image" class="form-label">Image</label> 
                 <div class="img-space">
                     <div class="row">
