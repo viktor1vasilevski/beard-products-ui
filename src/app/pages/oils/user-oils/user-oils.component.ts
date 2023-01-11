@@ -16,7 +16,7 @@ export class UserOilsComponent implements OnInit {
   constructor(private _oilService: OilService, private _cartService: CartService) { }
 
   ngOnInit(): void {
-    this.loadProducts = true;
+
     this._oilService.getAllOils().subscribe((response: any) => {
       response.oils.forEach((element: any) => {
 
@@ -34,6 +34,7 @@ export class UserOilsComponent implements OnInit {
       });
       this.userOils = this.data.slice(0, 3);
     })
+    this.loadProducts = true;
   }
 
   loadMoreDesc(id: any){
@@ -50,7 +51,7 @@ export class UserOilsComponent implements OnInit {
 
   loadMoreProducts() {
     let newLength = this.userOils.length + 3;
-    if (newLength > this.data.length) {
+    if (newLength >= this.data.length) {
         newLength = this.data.length;
         this.loadProducts = false;
     }

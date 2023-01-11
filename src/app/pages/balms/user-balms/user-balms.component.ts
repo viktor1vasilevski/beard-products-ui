@@ -17,7 +17,7 @@ export class UserBalmsComponent implements OnInit {
     private _cartService: CartService) { }
 
   ngOnInit(): void {
-    this.loadProducts = true;
+
     this._balmSerice.getAllBalms().subscribe((response: any) => {
       response.balms.forEach((element:any) => {
         let balm = {
@@ -34,6 +34,7 @@ export class UserBalmsComponent implements OnInit {
 
       this.userBalms = this.data.slice(0, 3);
     })
+    this.loadProducts = true;
   }
 
   loadMoreDesc(id: any){
@@ -50,7 +51,7 @@ export class UserBalmsComponent implements OnInit {
 
   loadMoreProducts(){
     let newLength = this.userBalms.length + 3;
-    if (newLength > this.data.length) {
+    if (newLength >= this.data.length) {
         newLength = this.data.length;
         this.loadProducts = false;
     }

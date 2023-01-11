@@ -24,7 +24,7 @@ export class UserSoapsComponent implements OnInit {
      }
 
   ngOnInit(): void {
-    this.loadProducts = true;
+    
     this._soapService.getAllSoaps().subscribe((response: any) => {
       response.soaps.forEach((element: any) => {
         let soap = {
@@ -40,6 +40,7 @@ export class UserSoapsComponent implements OnInit {
       });
       this.userSoaps = this.data.slice(0, 3);
     })
+    this.loadProducts = true;
   }
 
   loadMoreDesc(id: any){
@@ -56,7 +57,7 @@ export class UserSoapsComponent implements OnInit {
 
   loadMoreProducts() {
     let newLength = this.userSoaps.length + 3;
-    if (newLength > this.data.length) {
+    if (newLength >= this.data.length) {
         newLength = this.data.length;
         this.loadProducts = false;
     }
