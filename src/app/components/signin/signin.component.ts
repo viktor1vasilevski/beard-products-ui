@@ -19,8 +19,8 @@ export class SigninComponent {
   loginForm: FormGroup = new FormGroup({});
 
   public user: UserModel = {
-    username: 'Viktor',
-    password: 'Viktor@123'
+    username: '',
+    password: ''
   }
 
   public hideLoginImage: boolean = false; 

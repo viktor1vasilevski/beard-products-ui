@@ -14,7 +14,7 @@
         
         <div class="form-outline mb-4">
           <label class="form-label" for="username">Username</label>
-          <input type="text" id="username" name="username" class="form-control" (keyup)="resetError($event)" required [(ngModel)]="user.username" #username="ngModel">
+          <input type="text" id="username" name="username" class="form-control" autocomplete="off" (keyup)="resetError($event)" required [(ngModel)]="user.username" #username="ngModel">
           <p *ngIf="username.invalid && (username.dirty || username.touched) && username.errors?.['required']">Username is required</p>
         </div>
 
