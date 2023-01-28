@@ -10,6 +10,11 @@ This is a front-end angular project for my back-end project, the clean-architect
 Basicaly this was a excercise, and get more familiar working with Angular.
 This project has two main parts. One is the admin part, where you can do CRUD operactions, and the other one is the user part where you can see the products as a normal user.
 
-## Admin
+## Admin part
+This is the logic for the CRUD operations. The data is represented in table, specificaly ng2-smart-table, where all the filtering, sorting and paging are donw for you.
 
 
+## User part
+
+## External libraries used.
+https://akveo.github.io/ng2-smart-table/#/
