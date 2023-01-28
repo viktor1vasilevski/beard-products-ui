@@ -6,5 +6,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-This is a front-end angular project for my other project https://github.com/viktor1vasilevski/clean-architecture-webapi
+This is a front-end angular project for my back-end project, the clean-architecture-webapi https://github.com/viktor1vasilevski/clean-architecture-webapi
 
