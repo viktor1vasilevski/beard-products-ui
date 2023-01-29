@@ -19,6 +19,11 @@ CRUD operations are done with modals, not with separate pages, and this is becau
 The user part is the part where you can navigate throug the page, load more products as you scroll down the page, load more description on each product, add to cart logic, also register and login part, view your cart items and so on.
 
 ## Things to improve
+- ovde kje napisi deka nema logika za kupuvajne
+  ### Admin part
+- Much better UI/UX design for Add to cart page. The page is it self functional but it has not so good design. The buttons at the bottom can be much better placed, when   you click on (+) or (-) it's selected the number in between the two signs. The description in the cart page is unnecessary, and it was there just to show that I can     show the whole desciption, despite that it's cut of in the user page.
+- When 
+
 
 ## External libraries used.
 https://akveo.github.io/ng2-smart-table/#/
