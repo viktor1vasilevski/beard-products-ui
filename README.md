@@ -26,7 +26,6 @@ The user part is the part where you can navigate throug the page, load more prod
 - When you go from Soaps to Balms for example, there is a slight second delay. In other words, it takes time to take the soaps and show them. In between the time of     clicking and showing them, the "Show More" buttom and the footer will appear on the screen. I tried to handle this, but I was unsuccessful. The best solution for       this is to somehow wait for the products, and then load them. Include some spinner so something.
 
   ### Admin part
-- The create part was kind of simple because you are creating new model and there was no problem to implement ngModel in the html. There are some part of the code that   I handle them seperately, but it was pretty straightforward.
 - The edit modal was troublesome. I couldn't use ngModel because the changes then will apply in the table at the same time, and then when I wanted to close the modal     the changes would stay. And when you refresh the page, normally, everything will be as it should be. Then the validation part came, and it was not a good solution.
   As you can see in the code, it was not at all good solution and this will stay for me in the future to manage a better approach.
 - The delete modal is also straightforward.
