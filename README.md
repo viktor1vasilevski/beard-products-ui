@@ -22,7 +22,7 @@ The user part is the part where you can navigate throug the page, load more prod
 - There is no logic for buying products
   ### User part
 - Much better UI/UX design for Add to cart page. The page in it self is functional but it has not so good design. The buttons at the bottom can be much better placed,   when you click on (+) or (-) it's selected the number in between the two signs. The description in the cart page is unnecessary, and it was there just to show that     I can show the whole desciption, despite that it's cut of in the user page.
-- When you go from Soaps to Balms for example, there is a slight second delay. In other words, it takes time to take the soaps and show them. In between the time of     clicking and showing them, the "Show More" buttom and the footer will appear on the screen. I tried to handle this, but I was unsuccessful. The best solution for       this is to somehow wait for the products, and then load them. Until then, don't go to that page.
+- When you go from Soaps to Balms for example, there is a slight second delay. In other words, it takes time to take the soaps and show them. In between the time of     clicking and showing them, the "Show More" buttom and the footer will appear on the screen. I tried to handle this, but I was unsuccessful. The best solution for       this is to somehow wait for the products, and then load them. Include some spinner so somwthing.
 
   ### Admin part
 - The create part was kind of simple because you are creating new model and there was no problem to implement ngModel in the html. There are some part of the code that   I handle them seperately, but it was pretty straightforward.
