@@ -1,6 +1,7 @@
 # Beard Products Project
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+Just a small note that I was on a deadline with this project, and also I was new into Angular framework, so this is the code that I came up with.
 
 ## Development server
 
