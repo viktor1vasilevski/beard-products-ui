@@ -20,15 +20,15 @@ CRUD operations are done with modals, not with separate pages, and this is becau
 The user part is the part where you can navigate throug the page, load more products as you scroll down the page, load more description on each product, add to cart logic, also register and login part, view your cart items and so on.
 
 ## Things to improve
-- There is no logic for buying products
+- There is no logic for buying products.
+- Better UX/UI design.
   ### User part
-- Much better UI/UX design for Add to cart page. The page in it self is functional but it has not so good design. The buttons at the bottom can be much better placed,   when you click on (+) or (-) it's selected the number in between the two signs. The description in the cart page is unnecessary, and it was there just to show that     I can show the whole desciption, despite that it's cut of in the user page.
+- Much better UI/UX design for Add to cart page. The page in it self is functional but it has not so good design. The buttons at the bottom can be much better placed,   when you click on (+) or (-) it's selected the number in between the two signs. The description in the add to cart page is unnecessary, and it was there just to show   that I can show the whole desciption, despite that it's cut of in the user page.
 - When you go from Soaps to Balms for example, there is a slight second delay. In other words, it takes time to take the soaps and show them. In between the time of     clicking and showing them, the "Show More" buttom and the footer will appear on the screen. I tried to handle this, but I was unsuccessful. The best solution for       this is to somehow wait for the products, and then load them. Include some spinner so something.
 
   ### Admin part
-- The edit modal was troublesome. I couldn't use ngModel because the changes then will apply in the table at the same time, and then when I wanted to close the modal     the changes would stay. And when you refresh the page, normally, everything will be as it should be. Then the validation part came, and it was not a good solution.
+- The edit modal was troublesome. I couldn't use ngModel because the changes then will apply in the table at the same time, and then when I wanted to close the modal     the changes would stay. And when you refresh the page, normally, everything will be as it should be. Then the validation part came, and this part was tricky.
   As you can see in the code, it was not at all good solution and this will stay for me in the future to manage a better approach.
-- The delete modal is also straightforward.
 - Also the Edit and Delete button should have better design.
 
 
